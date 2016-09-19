@@ -1,0 +1,64 @@
+/* Este arquivo será o arquivo geral, para todos os documentos do projeto */
+
+*{
+    box-sizing: border-box;
+    font-family: "Comic Sans MS";
+    text-decoration: none;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+}
+
+@media screen and (min-width:1360px){
+    body{
+        background: url(../img/biblioteca_form_alta_res.png);
+        background-size: 100%;
+        font-size: 62.5%;
+    }
+}
+
+@media screen and (max-width:1360px){
+    body{
+        background: url(../img/biblioteca_form.png);
+        background-size: 100%;
+        font-size: 62.5%;
+    }
+}
+
+/* Formatando a div principal */
+.interface{
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+/* Formatando o botão de voltar */
+.bt-voltar {
+	position: absolute;
+	top: 3%;
+	left: 3%;
+	width: 10%;
+	height: 93px;
+    font-size: 2.5em;
+    cursor: pointer;
+    background-color: rgb(0, 0, 255);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border: none;
+}
+
+    .bt-voltar:hover{
+        background-color: rgba(0, 0, 255, 0.5);
+    }
+
+/* Formatando o subtitulo */
+h2 {
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 3em;
+}

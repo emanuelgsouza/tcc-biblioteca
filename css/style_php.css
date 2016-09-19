@@ -1,0 +1,191 @@
+/* Importando o arquivo de cores */
+@import url(color_style_php.css);
+
+/* Dando a formatação geral à página */
+* {
+	box-sizing: border-box;
+    font-family: "Comic Sans MS";
+}
+
+/* dando a formatação ao body */
+@media screen and (min-width:1360px){
+    body{
+        background: url(../img/biblioteca_form_alta_res.png) no-repeat;
+        background-size: 100%;
+        font-size: 62.5%;
+    }
+}
+
+@media screen and (max-width:1360px){
+    body{
+        background: url(../img/biblioteca_form.png) no-repeat;
+        background-size: 100%;
+        font-size: 62.5%;
+    }
+}
+
+/* Formatando o butao voltar */
+.bt-voltar {
+	position: absolute;
+	top: 3%;
+	left: 3%;
+	width: 10%;
+	height: 93px;
+    font-size: 2.5em;
+    cursor: pointer;
+    background-color: rgb(0, 0, 255);
+    border-radius: 10px;
+    border: none;
+}
+
+/* Formatando a div principal */
+.interface {
+	width: 90%;
+	height: 90%;
+	margin: 0px auto;
+	position: absolute;
+}
+
+/* Formatando a div onde aparecerá o resultado */
+.result{
+    position: relative;
+    width: 50%;
+    min-height: 50%;
+    margin: 3% auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, .5);
+    text-align: center;
+}
+
+/* Formatando o parágrafo do resultado */
+.result p{
+    font-size: 2em;
+}
+
+/* Formatando as linhas de exibição do conteúdo adicionado */
+.result ul li{
+    font-size: 2.4em;
+    list-style: none;
+}
+
+/* Formatando a tabela para impressão */
+table{
+    margin: 0px auto;
+}
+
+table th{
+    font-size: 2.6em;
+}
+
+table td{
+    font-size: 2.4em;
+}
+
+/* Formatando os botoes no código */
+input[type="submit"] {
+    min-width: 50%;
+    height: 60px;
+    border: none;
+    display: block;
+    margin: 10px auto;
+    cursor: pointer;
+    background-color: rgba(0, 0, 255, 0.4);
+    font-size: 2.4em;
+}
+
+input[type="submit"]:hover, .bt-result:hover, bt-menor:hover{
+    background-color: rgba(0, 255, 0, 0.4);
+}
+
+input[type="submit"]:active, .bt-result:active{
+    background-color: #0f0;
+}
+
+input[type="submit"]:visited{
+    border: 1px solid #0f0;
+}
+
+input[type="text"] {
+	height: 50px; 
+	text-transform: uppercase;
+}
+
+label {
+    display: block;
+    font-size: 1.8em;
+}
+
+input[type="text"]{
+    border: none;
+    width: 80%;
+    height: 50px;
+    background-color: rgba(0, 0, 255, 0.6);
+    font-size: 1.8em;
+}
+
+/* Formatando os butoes de resultado das pesquisas */
+.bt-result{
+    display: block;
+    margin: 5px auto;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    font-size: 2.6em;
+    border: none;
+    background-color: rgb(255, 102, 0);
+    padding: 10px;
+    width: 80%;
+}
+
+/* Formulário de Registro de Emprestimo */
+.block{
+    width: 100%;
+    display: flex;
+}
+
+.bt-menor{
+    width: 20%;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    font-size: 2.4em;
+    border: none;
+    background-color: rgb(255, 102, 0);
+}
+
+/* Caso o usuário queira imprimir */
+@media print{
+    *{
+        background: transparent;
+        color: #000;
+    }
+    
+    body{
+        margin: 0;
+        padding: 0;
+        line-height: 1.4em;
+        font-family: "Times New Roman" serif;
+    }
+    
+    @page{margin: 0.5cm;}
+    
+    .imgbutton, .bt-result{display: none;}
+    
+    .result, .interface{
+        margin: 0;
+        width: 100%;
+    }
+    
+    table{
+        margin: 0px auto;
+        border-collapse: collapse;
+    }
+    
+    table td, th{
+        padding: 5pt;
+        font-size: 16pt;
+        border: 1px solid black;
+    }
+    
+    table th{font-size: 20pt;}
+}

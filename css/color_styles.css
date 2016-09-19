@@ -1,0 +1,51 @@
+/* Este arquivo configura as cores de todos os elementos nos documentos */
+
+button, input{
+    color: #fff;
+}
+
+input[type="text"], 
+input[type="number"],
+input[type="tel"]
+{
+    color: #000;
+}
+
+label{
+    color: #fff;
+}
+
+fieldset{
+    background-color: rgba(0, 0, 0, .5);
+}
+
+legend{
+    color: #0f0;
+}
+
+/* Botão de confirmação */
+.confirm{
+    background-color: #0f0;
+}
+
+    .confirm:hover{
+        background-color: rgba(0, 255, 0, .3);
+    }
+
+/* Botão de não confirmação */
+.alert{
+    background-color: #f00;
+}
+
+    .alert:hover{
+        background-color: rgba(255, 0, 0, .3);
+    }
+
+/* Botão para filtrar */
+.bt_filtro{
+    background-color: #00f;
+}
+
+    .bt_filtro:hover{
+        background-color: rgba(0, 0, 255, .3);
+    }
