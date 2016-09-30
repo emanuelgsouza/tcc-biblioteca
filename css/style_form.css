@@ -1,13 +1,13 @@
 /* Arquivo que formata todos os formularios */
-
+@import url(geral.css);
 @import url(color_styles.css);
 
 @charset "utf-8";
 
 /* Formatando o formulario */
 label {
-    font-weight: bold;
-    font-size: 2.4em;
+  font-weight: bold;
+  font-size: 2.4em;
 	margin: 5px;
 }
 
@@ -75,7 +75,7 @@ input{
 
 /* Classe para os formulários das listas */
 .form-lista{
-    
+
 }
 
 /* Formantando os butoes para os formulários de soma */
@@ -91,10 +91,10 @@ input{
 
 /* Configurando o elemento butao das paginas de pesquisa */
 .bt_pesquisa {
-    position: relative;	
-    width: 100%; 
-    height: 3em; 
-    border: none;	
+    position: relative;
+    width: 100%;
+    height: 3em;
+    border: none;
     border-radius: 2px;
     cursor: pointer;
     font-size: 2em;
