@@ -45,13 +45,15 @@
           </div>
       </fieldset>
   </form>
+  <div class="resposta">
+    <p id="resposta">  </p>
+  </div>
 <script>
   "use strict";
   let btn_conf = document.getElementById("btn-confirm"),
       btn_reset = document.getElementById("btn-reset");
 
   btn_conf.addEventListener("click", function() {
-    console.log("Cheguei aqui");
     // Recuperando os dados dos formulários
     var nome  = document.getElementById("nome").value,
         rua = document.getElementById("rua").value,
@@ -62,23 +64,31 @@
 
     // Realizando a requisição ajax
     var http = new XMLHttpRequest();
-    var url = "http://127.0.0.1/tcc-biblioteca/php/arq_pessoas/adicionar_pessoa.php?nome=" + nome + "&rua=" + rua + "&complemento=" + complemento + "&bairro=" + bairro + "&telefone=" + telefone + "&celular=" + celular;
-    http.open("GET", url, true);
-    http.send(null);
 
     http.onreadystatechange = function() {
       console.log("Cheguei aqui");
       if (http.readyState == 4 && http.status == 200) {
         var resposta = http.responseText;
-        alert(resposta);
+        document.getElementsByClassName("resposta")[0].style.display = "block";
+        document.getElementById("resposta").innerHTML = resposta;
+      } else {
+        document.getElementsByClassName("resposta")[0].style.display = "block";
+        document.getElementById("resposta").innerHTML = "Carregando";
       }
     }
+
+    http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_pessoas/adicionar_pessoa.php?nome=" + nome + "&rua=" + rua + "&complemento=" + complemento + "&bairro=" + bairro + "&telefone=" + telefone + "&celular=" + celular, true);
+    http.send(null);
   });
 
   btn_reset.addEventListener("click", function() {
     // "Limpando" os campos
-    document.getElementById("nome").value = "";
-    document.getElementById("turma").value = "";
+    document.getElementById("nome").value = "",
+    document.getElementById("rua").value = "",
+    document.getElementById("complemento").value = "",
+    document.getElementById("bairro").value = "",
+    document.getElementById("telefone").value = "",
+    document.getElementById("celular").value = "";
   });
 </script>
 </div>
