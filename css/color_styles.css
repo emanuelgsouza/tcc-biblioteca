@@ -4,19 +4,21 @@ button, input{
     color: #fff;
 }
 
-input[type="text"], 
+input[type="text"],
 input[type="number"],
 input[type="tel"]
 {
     color: #000;
 }
 
-label{
+label,
+#resposta {
     color: #fff;
 }
 
-fieldset{
-    background-color: rgba(0, 0, 0, .5);
+fieldset,
+.resposta {
+    background-color: rgba(0, 0, 0, .7);
 }
 
 legend{

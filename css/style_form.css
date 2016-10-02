@@ -35,7 +35,7 @@ input{
 /* Formatando os formulários */
 .form_adicionar, .form_pesquisar, .form_imprimir{
 	position: relative;
-    color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 	margin: 0px auto;
 	width: 50%;
 }
@@ -122,4 +122,18 @@ div.filtros{
 
 fieldset#didatico, fieldset#escola, fieldset#genero, fieldset#autor, fieldset#livro, fieldset#lidos{
 	display: none;
+}
+
+/* Formatando a resposta */
+.resposta {
+  width: 49%;
+  margin: 2em auto 0 auto;
+  padding: 2em;
+  border: 5px solid rgb(255, 170, 51);
+  display: none;
+}
+
+#resposta {
+  text-align: center;
+  font-size: 2em;
 }
