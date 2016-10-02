@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <title> Adicionando Pessoa ao Cadastro | Qg da Leitura </title>
+  <link rel="stylesheet" href="../../css/style_form.css">
+</head>
+<body>
+<div class="interface">
+  <a class="bt-voltar" href="menu_pessoas.html"> Menu </a>
+  <h1> Adicionar pessoa ao cadastro </h1>
+  <form class="form_adicionar">
+      <fieldset>
+          <legend> Informações pessoais </legend>
+              <div>
+                  <label>Nome: </label>
+                  <input type="text" name="nome" placeholder="Digite o nome do aluno" maxlength="35" autofocus id="nome" required>
+              </div>
+      <fieldset>
+          <legend>Endereço:</legend>
+              <div>
+                  <label> Rua: </label>
+                  <input type="text" name="rua" id="rua" placeholder="Rua nomedarua" required maxlength="30">
+              </div>
+              <div>
+                  <label> Complemento: </label>
+                  <input type="text" name="complemento" id="complemento" placeholder="Lote 00 Quadra 00" required maxlength="20">
+              </div>
+              <div>
+                  <label> Bairro: </label>
+                  <input type="text" name="bairro" id="bairro" placeholder="Digite o Bairro" required maxlength="15">
+              </div>
+      </fieldset>
+          <div>
+              <label> Telefone: </label>
+              <input type="tel" name="telefone" id="telefone" placeholder="12345678" pattern="\d\d\d\d\d\d\d\d">
+          </div>
+          <div>
+              <label> Celular: </label>
+              <input type="tel" name="celular" id="celular" placeholder="912345678" pattern="9\d\d\d\d\d\d\d\d">
+          </div>
+          <div>
+            <button type="button" class="bt confirm" id="btn-confirm"> Confirmar </button>
+            <button type="button" class="bt alert" id="btn-reset"> Resetar </button>
+          </div>
+      </fieldset>
+  </form>
+<script>
+  "use strict";
+  let btn_conf = document.getElementById("btn-confirm"),
+      btn_reset = document.getElementById("btn-reset");
+
+  btn_conf.addEventListener("click", function() {
+    console.log("Cheguei aqui");
+    // Recuperando os dados dos formulários
+    var nome  = document.getElementById("nome").value,
+        rua = document.getElementById("rua").value,
+        complemento = document.getElementById("complemento").value,
+        bairro = document.getElementById("bairro").value,
+        telefone = document.getElementById("telefone").value,
+        celular = document.getElementById("celular").value;
+
+    // Realizando a requisição ajax
+    var http = new XMLHttpRequest();
+    var url = "http://127.0.0.1/tcc-biblioteca/php/arq_pessoas/adicionar_pessoa.php?nome=" + nome + "&rua=" + rua + "&complemento=" + complemento + "&bairro=" + bairro + "&telefone=" + telefone + "&celular=" + celular;
+    http.open("GET", url, true);
+    http.send(null);
+
+    http.onreadystatechange = function() {
+      console.log("Cheguei aqui");
+      if (http.readyState == 4 && http.status == 200) {
+        var resposta = http.responseText;
+        alert(resposta);
+      }
+    }
+  });
+
+  btn_reset.addEventListener("click", function() {
+    // "Limpando" os campos
+    document.getElementById("nome").value = "";
+    document.getElementById("turma").value = "";
+  });
+</script>
+</div>
+</body>
+</html>
