@@ -3,22 +3,22 @@
   require "../funcoes.php";
 
   // Pegando as variáveis do método POST
-  $titulo   = isset($_POST["titulo"])?$_POST["titulo"]:"";
+  $titulo   = isset($_GET["titulo"])?$_GET["titulo"]:"";
   $titulo   = strtoupper($titulo);
-  $autor    = isset($_POST["autor"])?$_POST["autor"]:"";
+  $autor    = isset($_GET["autor"])?$_GET["autor"]:"";
   $autor    = strtoupper($autor);
-  $editora  = isset($_POST["editora"])?$_POST["editora"]:"";
+  $editora  = isset($_GET["editora"])?$_GET["editora"]:"";
   $editora  = strtoupper($editora);
-  $genero   = isset($_POST["genero"])?$_POST["genero"]:"nenhum";
+  $genero   = isset($_GET["genero"])?$_GET["genero"]:"nenhum";
   $genero   = strtoupper($genero);
-  $escola   = isset($_POST["escola"])?$_POST["escola"]:"nenhum";
+  $escola   = isset($_GET["escola"])?$_GET["escola"]:"nenhum";
   $escola   = strtoupper($escola);
-  $didatico = isset($_POST["didatico"])?$_POST["didatico"]:"nenhum";
+  $didatico = isset($_GET["didatico"])?$_GET["didatico"]:"nenhum";
   $didatico = strtoupper($didatico);
-  $estoque  = isset($_POST["estoque"])?$_POST["estoque"]:"0";
-  $cod_book = isset($_POST["cod_livro"])?$_POST["cod_livro"]:"0";
-  $estante  = isset($_POST["estante"])?$_POST["estante"]:"0";
-  $prateleira = isset($_POST["prateleira"])?$_POST["estante"]:"null";
+  $estoque  = isset($_GET["estoque"])?$_GET["estoque"]:"0";
+  $cod_book = isset($_GET["cod_livro"])?$_GET["cod_livro"]:"0";
+  $estante  = isset($_GET["estante"])?$_GET["estante"]:"0";
+  $prateleira = isset($_GET["prateleira"])?$_GET["estante"]:"null";
   $prateleira = strtoupper($prateleira);
 
   // Chamando a função de conexão

@@ -95,46 +95,62 @@
              <input type="number" name="estoque" min="0" placeholder="Estoque" value="1" required id="estoque">
         </div>
         <div>
-					<button type="button" class="bt confirm" id="btn-confirm"> Confirmar </button>
-					<button type="button" class="bt alert" id="btn-reset"> Resetar </button>
+            <button type="button" class="bt confirm" id="btn-confirm"> Confirmar </button>
+            <button type="button" class="bt alert" id="btn-reset"> Resetar </button>
         </div>
     </fieldset>
 </form>
+<div class="resposta">
+  <p id="resposta">  </p>
+</div>
 <script>
 "use strict";
 let btn_conf = document.getElementById("btn-confirm"),
 		btn_reset = document.getElementById("btn-reset");
 
 btn_conf.addEventListener("click", function() {
-	console.log("Cheguei aqui");
 	// Recuperando os dados dos formulários
 	var titulo  = document.getElementById("titulo").value,
 			autor = document.getElementById("autor").value,
 			editora = document.getElementById("editora").value,
 			genero = document.getElementById("genero").value,
 			didatico = document.getElementById("didatico").value,
-			escola = document.getElementById("escola").value;
-			cod_livro = document.getElementById("cod_livro").value;
+			escola = document.getElementById("escola").value,
+			cod_livro = document.getElementById("cod_livro").value,
+      prateleira = document.getElementById("prateleira").value,
+      estoque = document.getElementById("estoque").value,
+      estante = document.getElementById("estante").value;
 
 	// Realizando a requisição ajax
 	var http = new XMLHttpRequest();
-	var url = "http://127.0.0.1/tcc-biblioteca/php/arq_pessoas/adicionar_pessoa.php?titulo=" + titulo + "&autor=" + autor + "&editora=" + editora + "&genero=" + genero + "&didatico=" + didatico + "&escola=" + escola + "&cod_livro=" + cod_livro + "&estante=" + estante + "&prateleira=" + prateleira + "&estoque=" + estoque;
-	http.open("GET", url, true);
-	http.send(null);
 
 	http.onreadystatechange = function() {
-		console.log("Cheguei aqui");
 		if (http.readyState == 4 && http.status == 200) {
 			var resposta = http.responseText;
-			alert(resposta);
-		}
+      document.getElementsByClassName("resposta")[0].style.display = "block";
+      document.getElementById("resposta").innerHTML = resposta;
+    } else {
+      document.getElementsByClassName("resposta")[0].style.display = "block";
+      document.getElementById("resposta").innerHTML = "Carregando";
+    }
 	}
+
+  http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_livros/adicionar_livro.php?titulo=" + titulo + "&autor=" + autor + "&editora=" + editora + "&genero=" + genero + "&didatico=" + didatico + "&escola=" + escola + "&cod_livro=" + cod_livro + "&estante=" + estante + "&prateleira=" + prateleira + "&estoque=" + estoque, true);
+	http.send(null);
 });
 
 btn_reset.addEventListener("click", function() {
 	// "Limpando" os campos
-	document.getElementById("nome").value = "";
-	document.getElementById("turma").value = "";
+  document.getElementById("titulo").value = "";
+  document.getElementById("autor").value = "";
+  document.getElementById("editora").value = "";
+  document.getElementById("didatico").value = "";
+  document.getElementById("genero").value = "";
+  document.getElementById("estoque").value = "";
+  document.getElementById("escola").value = "";
+  document.getElementById("cod_livro").value = "";
+  document.getElementsByClassName("resposta")[0].style.display = "none";
+  document.getElementById("resposta").innerHTML = "";
 });
 </script>
 </div>
