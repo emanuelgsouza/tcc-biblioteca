@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../../css/style_form.css">
+		<title> Formulário de livros mais lidos | Qg da Leitura </title>
+	</head>
+	<body>
+	<div class="interface">
+		<a class="bt-voltar" href="menu-listas.html"> Menu </a>
+
+    <h1> Lista de livros mais lidos</h1>
+
+		<form class="form_imprimir">
+      <fieldset>
+          <legend> Pesquisar </legend>
+          <label> Exibir os livros mais lidos no período de: </label>
+          <select name="periodo">
+              <option value="1"> Dois meses </option>
+              <option value="2"> Tres meses </option>
+              <option value="3"> Seis meses meses </option>
+              <option value="4"> Anual </option>
+          </select>
+
+					<label for="numero"> N° de registros </label>
+					<input type="number" id="numero" name="quantidade" min="10" value="10">
+          <button type="button" id="submit" class="bt confirm"> Enviar </button>
+      </fieldset>
+    </form>
+
+		<div class="resposta">
+
+		</div>
+		</div>
+	<script>
+		var btn = document.getElementById("submit");
+
+		// Executando a requisição ajax
+		btn.addEventListener("click", function() {
+			// Recuperando os dados dos formulários
+			var select  = document.getElementsByTagName("select")[0].value,
+					quantidade = document.getElementById("numero").value,
+					div = document.getElementsByClassName("resposta")[0],
+					p = "<p> Carregando... </p>";
+
+			// Realizando a requisição ajax
+			var http = new XMLHttpRequest();
+
+			http.onreadystatechange = function() {
+				if (http.readyState == 4 && http.status == 200) {
+					var resposta = http.responseText;
+					div.style.display = "block";
+					div.innerHTML = resposta;
+				} else {
+					div.style.display = "block";
+					div.innerHTML = p;
+				}
+			}
+
+			http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/lista/lista-lidos.php?quantidade=" + quantidade + "&periodo=" + select, true);
+			http.send(null);
+
+		});
+	</script>
+	</body>
+</html>
