@@ -86,7 +86,7 @@ input{
 	border: 0px;
 	border-radius: 2px;
 	cursor: pointer;
-    font-size: 1.8em;
+  font-size: 1.8em;
 }
 
 /* Configurando o elemento butao das paginas de pesquisa */
@@ -133,7 +133,7 @@ fieldset#didatico, fieldset#escola, fieldset#genero, fieldset#autor, fieldset#li
   display: none;
 }
 
-#resposta {
+.resposta p {
   text-align: center;
   font-size: 2em;
 }

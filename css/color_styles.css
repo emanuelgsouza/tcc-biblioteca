@@ -12,7 +12,7 @@ input[type="tel"]
 }
 
 label,
-#resposta {
+.resposta {
     color: #fff;
 }
 
@@ -44,10 +44,12 @@ legend{
     }
 
 /* Botão para filtrar */
-.bt_filtro{
+.bt_filtro,
+.bt-esc {
     background-color: #00f;
 }
 
-    .bt_filtro:hover{
+    .bt_filtro:hover,
+    .bt-esc:hover {
         background-color: rgba(0, 0, 255, .3);
     }
