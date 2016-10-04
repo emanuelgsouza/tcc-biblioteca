@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <title> Gerar Lista de Alunos por Turma | Qg da Leitura </title>
+  <link rel="stylesheet" href="../../css/style_form.css">
+</head>
+<body>
+<div class="interface">
+  <a class="bt-voltar" href="menu-listas.html"> Menu </a>
+
+  <h1> Gerar lista de alunos por turma: </h1>
+
+    <form method="post" class="form_imprimir">
+        <fieldset id="lista-alunos">
+            <legend> Pesquisar </legend>
+                <label> Informe o número de uma turma para o sistema e ele irá gerar uma lista de alunos</label>
+            <div>
+                <input type="number" placeholder="Faça a sua busca" name="turma" size="35" maxlength="15" min="1000" id="turma" pattern="/\d\d\d\d/" autofocus>
+
+                <button type="button" class="bt_pesquisa confirm" id="submit"> Gerar Lista </button>
+            </div>
+        </fieldset>
+    </form>
+
+    <div class="resposta">
+
+    </div>
+    <script>
+
+    var btn = document.getElementById("submit");
+
+    btn.addEventListener("click", function() {
+      // Recuperando os dados dos formulários
+      var turma = document.getElementById("turma").value;
+
+      // Realizando a requisição ajax
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+          var resposta = http.responseText;
+          document.getElementsByClassName("resposta")[0].style.display = "block";
+          document.getElementsByClassName("resposta")[0].innerHTML = resposta;
+        } else {
+          document.getElementsByClassName("resposta")[0].style.display = "block";
+          document.getElementsByClassName("resposta")[0].innerHTML = "<p> Carregando...</p>";
+        }
+      }
+
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/lista/lista-alunos.php?turma=" + turma, true);
+      http.send(null);
+    });
+</script>
+</div>
+</body>
+</html>
