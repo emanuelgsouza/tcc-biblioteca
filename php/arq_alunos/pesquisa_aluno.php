@@ -43,26 +43,27 @@ if(isset($_GET["idaluno"])){
     }
 
     // Fazendo a busca no banco de dados para registrar emprestimo ou devolução
-    $q  = "SELECT MAX(idregistro), r.data, r.situacao, a.aluno, l.titulo, l.autor FROM regalunos as r JOIN alunos_matriculados as a ON r.idaluno = a.idaluno JOIN livros as l ON r.idlivro = l.idlivro WHERE r.idaluno = '$id' AND idregistro = (SELECT MAX(idregistro) FROM regalunos WHERE idaluno = '$id')";
+    $q = "SELECT MAX(r.idregistro), r.data, r.situacao, a.aluno, l.titulo, l.autor, l.idlivro FROM regalunos as r JOIN alunos_matriculados as a ON r.idaluno = a.idaluno JOIN livros as l ON r.idlivro = l.idlivro WHERE r.idaluno = $id AND r.idregistro = (SELECT MAX(r.idregistro) FROM regalunos WHERE a.idaluno = $id)";
     $sel  = executaQuery($con, $q);
     $data = mysqli_fetch_all($sel, MYSQLI_ASSOC);
     $situacao = $data[0]["situacao"];
-    $idreg = $data[0]["MAX(idregistro)"];
+    $idreg = $data[0]["MAX(r.idregistro)"];
+    $idlivro = $data[0]["idlivro"];
     if($situacao === "e"){
         echo "<p> Há um livro emprestado </p>";
-        echo "<ul>
-                <li> Título: " . $data[0]["titulo"] . " </li>
-                <li> Autor: " . $data[0]["autor"] . " </li>
-              </ul>";
-        // Caso tenha algum livro emprestado, registrar devolução
-        echo "<button type='button' class='bt confirm' data-estado='emprestar' data-id='$id' data-idreg='$idreg' id='bt-reg' onclick='registrar(1)'> Registrar devolução </button>";
+        echo "<p> Título: " . $data[0]["titulo"] . " </p>";
+        echo "<p> Autor: " . $data[0]["autor"] . " </p>";
+        echo "<button type='button' class='bt confirm' data-idlivro='$idlivro' data-idreg='$idreg' id='bt-reg' onclick='mostrarEmprestimo()'> Mostrar dados do emprestimo </button>";
+        echo "<div id='mostrarDadosLivro'></div>";
     }else{
         // Caso não tenha algum livro emprestado
+        echo "<div>";
         echo "<p> O aluno não possui livro emprestado </p>";
         echo "<label for='codbook'> Digite o nome do livro para registrar empréstimo </label>";
         echo "<input type='text' id='codbook' onkeyup='buscaLivro(this.value)'>";
         echo "<div id='recebeBusca'></div>";
         // echo "<button type='button' class='bt confirm' data-estado='devolver' data-id='$id' id='bt-reg' onclick='registrar(2)'> Registrar empréstimo </button>";
+        echo "</div>";
     }
 }
 
