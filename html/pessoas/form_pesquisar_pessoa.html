@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <title> Adicionando Pessoa ao Cadastro | Qg da Leitura </title>
+  <link rel="stylesheet" href="../../css/style_form.css">
+</head>
+<body>
+<div class="interface">
+  <a class="bt-voltar" href="menu_pessoas.html"> Menu </a>
+  <h1> Registrar empréstimo ou devolução </h1>
+  <form class="form_pesquisar">
+    <fieldset>
+        <legend> Pesquisar </legend>
+            <label> Informe o nome da pessoa para o sistema </label>
+            <div>
+                <input type="text" placeholder="Faça a sua busca" name="nome" size="35" maxlength="15" autofocus onkeyup="buscarAluno(this.value)" id="query">
+            </div>
+    </fieldset>
+  </form>
+  <div class="resposta">
+    <div id="resultone"></div>
+    <div id="resultstwo"></div>
+    <div id="resultsthree"></div>
+  </div>
+  <script>
+    // Função que retorna o resultado da pesquisa
+    function buscarAluno(x) {
+      document.getElementsByClassName("resposta")[0].style.display = "block";
+      var pesquisa = x;
+
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+          var resposta = http.responseText;
+          document.getElementById("resultone").style.display = "block";
+          document.getElementById("resultone").innerHTML = resposta;
+        } else {
+          document.getElementById("resultone").style.display = "block";
+          document.getElementById("resultone").innerHTML = "<p> Carregando... </p>";
+        }
+      }
+
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_pessoas/pesquisa_pessoa.php?nome=" + x, true);
+      http.send();
+    }
+
+    // Função que mostra o butao para mostrar os dados do aluno
+    function respondeChecked() {
+      var id = document.querySelector("input[type='radio']:checked").value;
+      // Armazenando o id do aluno no localStorage
+      localStorage.setItem("id", id);
+
+      if(!(document.querySelector(".resposta button"))) {
+        var text = document.createTextNode("Ver dados da pessoa"),
+            button = document.createElement("button");
+
+        // Criando o butao
+        button.setAttribute("class", "bt confirm");
+        button.appendChild(text);
+        document.getElementById("resultone").appendChild(button);
+
+        // Chamando a função que irá fazer a requisição ajax para saber se o aluno está ou não com livro emprestado
+        button.addEventListener("click", mostrarDados);
+      }
+    }
+
+    // Função que faz requisição no banco de dados e mostra os dados do aluno
+    function mostrarDados() {
+      document.getElementById("resultone").style.display = "none";
+      var idnaluno = localStorage.getItem("id");
+
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+          var resposta = http.responseText;
+          document.getElementById("resultstwo").style.display = "block";
+          document.getElementById("resultstwo").innerHTML = resposta;
+        } else {
+          document.getElementById("resultstwo").style.display = "block";
+          document.getElementById("resultstwo").innerHTML = "<p> Carregando... </p>";
+        }
+      }
+
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_pessoas/pesquisa_pessoa.php?idnaluno=" + idnaluno, true);
+      http.send();
+    }
+
+    // Função que busca os dados do livro no banco de dados
+    function buscaLivro(x) {
+      var pesq = x;
+      var div = document.getElementById("resultsthree");
+
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+          var resposta = http.responseText;
+          div.style.display = "block";
+          div.innerHTML = resposta;
+        } else {
+          div.innerHTML = "<p> Carregando... </p>";
+        }
+      }
+
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_livros/buscaLivro.php?query=" + pesq, true);
+      http.send();
+    }
+
+    // Função que mostra os dados do livro e cria o botao de confirmação de emprestimo
+    function respondeEmprestimo(x) {
+      var cod = x;
+      localStorage.setItem("cod_book", cod); // Armazenando o codigo do livro
+
+      var text = document.createTextNode("Ver dados do livro"),
+          button = document.createElement("button");
+
+        // Criando o butao
+        button.setAttribute("class", "bt confirm");
+        button.appendChild(text);
+        document.getElementById("resultsthree").style.display = "block";
+        document.getElementById("resultsthree").appendChild(button);
+
+        // Mostrando os dados do livro
+        button.addEventListener("click", function() {
+          document.querySelector("#resultstwo div").style.display = "none";
+          var http = new XMLHttpRequest();
+
+          http.onreadystatechange = function() {
+            if (http.readyState == 4 && http.status == 200) {
+              var resposta = http.responseText;
+              document.getElementById("resultsthree").innerHTML = resposta;
+              var text = document.createTextNode("Confirmar empréstimo"),
+                  button = document.createElement("button");
+
+              // Criando o butao
+              button.setAttribute("class", "bt confirm");
+              button.appendChild(text);
+              document.getElementById("resultsthree").appendChild(button);
+              button.addEventListener("click", confirmarEmprestimo);
+            } else {
+              document.getElementById("resultsthree").innerHTML = "<p> Carregando... </p>";
+            }
+          }
+
+          http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_livros/mostrarDados.php?query=" + cod, true);
+          http.send();
+        });
+    }
+
+    // Função que confirma o emprestimo
+    function confirmarEmprestimo() {
+      var idnaluno = localStorage.getItem("id");
+      var cod = localStorage.getItem("cod_book");
+
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+          var resposta = http.responseText;
+          document.getElementsByClassName("resposta")[0].innerHTML = resposta;
+          var button = document.createElement("button");
+          var text = document.createTextNode("Voltar a pesquisa de pessoas");
+          button.appendChild(text);
+          button.setAttribute("class", "bt confirm");
+          document.getElementsByClassName("resposta")[0].appendChild(button);
+          button.addEventListener("click", voltarPesquisa);
+        } else {
+          document.getElementsByClassName("resposta")[0].innerHTML = "<p> Carregando... </p>";
+        }
+      }
+
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_pessoas/registro_final.php?idnaluno=" + idnaluno + "&cod_book=" + cod, true);
+      http.send();
+    }
+
+    // Função que obtem os dados do emprestimo, para devolução
+    function mostrarEmprestimo() {
+      var idnaluno = localStorage.getItem("id");
+      var idlivro = document.getElementById("bt-reg").dataset.idlivro;
+      var idReg = document.getElementById("bt-reg").dataset.idreg;
+      localStorage.setItem("idlivro", idlivro); // Armazenando o id do livro
+      localStorage.setItem("idregistro", idReg); // Armazenando o id de registro do emprestimo
+
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+          var resposta = http.responseText;
+          document.getElementsByClassName("resposta")[0].innerHTML = resposta;
+        } else {
+          document.getElementsByClassName("resposta")[0].innerHTML = "<p> Carregando... </p>";
+        }
+      }
+
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_pessoas/registrar_devolucao.php?idnaluno=" + idnaluno + "&idlivro=" + idlivro + "&idreg=" + idReg, true);
+      http.send();
+    }
+
+    // Função que confirma devolução
+    function confirmaDevolucao() {
+      var idnaluno = localStorage.getItem("id");
+      var idlivro = localStorage.getItem("idlivro");
+
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+          var resposta = http.responseText;
+          document.getElementsByClassName("resposta")[0].innerHTML = resposta;
+          var button = document.createElement("button");
+          var text = document.createTextNode("Voltar a pesquisa de alunos");
+          button.appendChild(text);
+          button.setAttribute("class", "bt confirm");
+          document.getElementsByClassName("resposta")[0].appendChild(button);
+          button.addEventListener("click", voltarPesquisa);
+        } else {
+          document.getElementsByClassName("resposta")[0].innerHTML = "<p> Carregando... </p>";
+        }
+      }
+
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_pessoas/registrar_devolucao.php?idnAluno=" + idnaluno + "&idLivro=" + idlivro, true);
+      http.send();
+    }
+
+    // Função que retorna pesquisa dos alunos
+    function voltarPesquisa() {
+      window.location.reload();
+    }
+  </script>
+</div>
+</body>
+</html>
