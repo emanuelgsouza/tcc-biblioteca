@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <title> Pesquisando Livros do Arquivo Morto | Qg da Leitura </title>
+  <link rel="stylesheet" href="../../css/style_form.css">
+</head>
+<body>
+<div class="interface">
+	<a class="bt-voltar" href="menu_arquivo_morto.html"> Menu </a>
+  <h1> Pesquisar determinado livro </h1>
+  <div class="filtros">
+      <button  type="button" onclick="mudaEscolha(1)" class="bt-esc bt_filtro"> Título </button>
+
+      <button  type="button" onclick="mudaEscolha(2)" class="bt-esc bt_filtro"> Autor </button>
+  </div>
+  <form class="form_imprimir">
+
+    <!-- Pesquisando por titulo de livro -->
+    <fieldset id="livro">
+      <legend> Pesquisar </legend>
+        <label> Informe o nome do livro para o sistema </label>
+        <div>
+           <input type="text" placeholder="Digite o titulo do livro" name="titulo" size="35" maxlength="35" autofocus id="titulo">
+           <button type="button" class="bt_pesquisa confirm" onclick="pesquisarLivro()"> Pesquisar </button>
+        </div>
+    </fieldset>
+
+    <!-- Pesquisando por autor -->
+    <fieldset id="autor">
+      <legend> Pesquisar </legend>
+        <label> Informe o nome do autor para o sistema </label>
+      <div>
+         <input type="text" placeholder="Digite um nome de autor" name="autor" size="35" maxlength="15" autofocus id="author">
+         <button type="button" class="bt_pesquisa confirm" onclick="pesquisarAutor()"> Pesquisar </button>
+      </div>
+    </fieldset>
+
+    <!-- Caso queira voltar aos filtros -->
+    <button class="bt bt_filtro confirm" type="button" onclick="voltarFiltros()"> Voltar aos filtros </button>
+  </form>
+
+  <div class="resposta"></div>
+  <script>
+    var divResposta = document.getElementsByClassName("resposta")[0];
+    document.getElementsByClassName("form_imprimir")[0].style.display = "none"; // Sumindo com o formulário
+    function mudaEscolha(x){
+        document.getElementsByClassName("form_imprimir")[0].style.display = "block";
+        document.getElementsByClassName("filtros")[0].style.display = "none";
+        if(x === 1){
+            document.getElementById("livro").style.display = "block";
+        }else{
+            document.getElementById("autor").style.display = "block";
+        }
+    }
+
+    // Função que volta aos filtros
+    function voltarFiltros(){
+        divResposta.style.display = "none";
+        document.getElementsByClassName("form_imprimir")[0].style.display = "none"; // Sumindo com o form novamente
+        document.getElementsByClassName("filtros")[0].style.display = "flex";
+        document.getElementById("autor").style.display = "none";
+        document.getElementById("livro").style.display = "none";
+    }
+
+    // Função que busca um livro em específico e exibe o resultado
+    function pesquisarLivro() {
+      divResposta.style.display = "block";
+      var titulo = document.getElementById("titulo").value;
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function() {
+        if(http.readyState == 4 && http.status == 200) {
+          var resposta = http.responseText;
+          divResposta.innerHTML = resposta;
+        } else {
+          divResposta.innerHTML = "<p> Carregando </p>";
+        }
+      }
+
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_morto/pesquisa_livro.php?titulo=" + titulo, true);
+      http.send();
+    }
+
+    // Função que gera o botao para mostrar os dados do livro
+    function respondeChecked() {
+      var id = document.querySelector("input[type='radio']:checked").value;
+      // Armazenando o id do aluno no localStorage
+      localStorage.setItem("cod", id);
+
+      if(!(document.querySelector(".resposta button"))) {
+        var text = document.createTextNode("Ver dados do livro"),
+            button = document.createElement("button");
+
+        // Criando o butao
+        button.setAttribute("class", "bt confirm");
+        button.appendChild(text);
+        divResposta.appendChild(button);
+
+        // Chamando a função que irá fazer a requisição ajax para saber se o aluno está ou não com livro emprestado
+        button.addEventListener("click", mostrarDados);
+      }
+    }
+
+    // Função que faz requisição no banco de dados e mostra os dados do aluno
+    function mostrarDados() {
+      var cod = localStorage.getItem("cod");
+
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+          var resposta = http.responseText;
+          divResposta.style.display = "block";
+          divResposta.innerHTML = resposta;
+        } else {
+          divResposta.style.display = "block";
+          divResposta.innerHTML = "<p> Carregando... </p>";
+        }
+      }
+
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_morto/mostrarDados.php?query=" + cod, true);
+      http.send();
+    }
+
+    // Função que pesquisa os livros pelo autor
+    function pesquisarAutor() {
+      divResposta.style.display = "block";
+
+      var autor = document.getElementById("author").value;
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+          var resposta = http.responseText;
+          divResposta.style.display = "block";
+          divResposta.innerHTML = resposta;
+        } else {
+          divResposta.style.display = "block";
+          divResposta.innerHTML = "<p> Carregando... </p>";
+        }
+      }
+
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_morto/pesquisa_livro.php?autor=" + autor, true);
+      http.send();
+    }
+  </script>
+  </div>
+</body>
+</html>
