@@ -1,55 +1,21 @@
-* {
-	box-sizing: border-box;
+@charset "UTF-8";
+@import url("color.css");
+@import url("geral.css");
+
+/* Formatando a home */
+.home {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-@media screen and (min-width:1360px){
-    body{
-        background: url(../img/biblioteca_alta_res.png) no-repeat;
-        background-size: 100%;
-    }
-}
-
-@media screen and (max-width:1360px){
-    body{
-        background: url(../img/biblioteca.jpg) no-repeat;
-        background-size: 100%;
-    }
-}
-
-a {
-	text-decoration: none;
-}
-
-/* Configurando a div que receberá todos os elementos */
-.interface {
-    width: 97vw;
-    height: 97vh;
-    /* width: 95%;
-    min-height: 95%; */
-	margin: 0px auto;
-    display: flex;
-    flex-flow: row;
-    align-items: flex-end;
-}
-
-.menus{
-    margin: 0 10px;
-    flex-grow: 1;
-    /* min-width: 250px; */
-    min-height: 150px;
-    cursor: pointer;
-    background-color: rgb(0, 0, 255);
-    transition: 0.5s;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.5em;
-    color: white;
-}
-
-.menus:hover{
-    background-color: rgba(0, 0, 255, .5);
-}
-
-.menus:active{
-    background-color: rgb(0, 255, 0);
+/* Formatando a div do menu do sistema */
+.menu-system {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	position: absolute;
+	bottom: 5%;
 }
