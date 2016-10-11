@@ -34,13 +34,10 @@ body{
 
 /* Aparencia de butao */
 .btn {
-  box-shadow: 5px 5px 0 #006000;
   padding: 2em;
   color: #FFF;
-  background-color: #0F0;
   margin: 1em;
-  font-size: 1.8em;
-  transition: all .5s;
+  transition: all .2s;
 }
 
 .btn:active {
@@ -52,6 +49,9 @@ body{
 	position: absolute;
 	top: 2%;
 	left: 2%;
+  font-size: 1.6em;
+  background-color: #417BB8;
+  box-shadow: 0 10px 0 #26486C;
 }
 
 /* Formatando o subtitulo */
@@ -78,4 +78,18 @@ h1 {
 
 .frm-large {
   width: 90%;
+}
+
+/* Estilizando os butoes dos menis */
+.btn-menu{
+    margin: auto;
+    font-size: 2em;
+    color: #FFF;
+    border-radius: 4px;
+    background-color: #FF6600;
+		box-shadow: 0 10px 0 #9D3E00;
+}
+
+.btn-menu:hover{
+    color: #020052;
 }

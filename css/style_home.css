@@ -5,7 +5,6 @@
 /* Formatando a home */
 .home {
   display: flex;
-  height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -16,6 +15,9 @@
 	display: flex;
 	justify-content: center;
 	width: 100%;
-	position: absolute;
-	bottom: 5%;
+}
+
+/* Configuração basica */
+.btn-menu {
+  margin: auto 1em;
 }

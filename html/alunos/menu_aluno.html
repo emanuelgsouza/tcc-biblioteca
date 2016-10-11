@@ -3,25 +3,22 @@
 	<head>
 		<meta charset="UTF-8">
 		<link href="../../css/style_menu_menor.css" rel="stylesheet" type="text/css">
-		<title> Menu - Aluno </title>
+		<title> Menu Aluno | Qg da Leitura </title>
 	</head>
 
 	<body>
 		<div class="interface">
-      <button class="bt-voltar" onclick="window.location.href = '../../qg_home.html'"> Home </button>
+      <a class="btn bt-voltar" href="../menu-home.html"> Home </a>
+			<figure class="img-menor">
+				<img src="../../img/logo-qg-da-leitura.png">
+			</figure>
       <h1> Área do Aluno </h1>
       <div id="flex">
-        <div class="menu_menor" onclick="window.location.href= 'form_adicionar_aluno.html'">
-            <p> Adicionar <br /> aluno </p>
-        </div>
+        <a class="btn btn-menu" href="form_adicionar_aluno.html"> Adicionar aluno </a>
 
-        <div class="menu_menor" onclick="window.location.href= 'form_excluir_aluno.php'">
-            <p> Excluir <br /> aluno </p>
-        </div>
+				<a class="btn btn-menu" href="form_excluir_aluno.php"> Excluir aluno </a>
 
-        <div class="menu_menor" onclick="window.location.href= 'form_pesquisar_aluno.html'">
-            <p> Registrar <br /> empréstimo <br /> ou <br /> devolução </p>
-        </div>
+				<a class="btn btn-menu" href="form_pesquisar_aluno.html"> Registrar empréstimo ou devolução </a>
 			</div>
 	</body>
 </html>
