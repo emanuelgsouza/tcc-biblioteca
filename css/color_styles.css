@@ -1,55 +1,44 @@
 /* Este arquivo configura as cores de todos os elementos nos documentos */
 
-button, input{
-    color: #fff;
+/*
+-- Configurações da folha de estilo
+*/
+
+/* Cores dos textos */
+.btn,
+.frm label {
+  color: #FFF;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="tel"]
-{
-    color: #000;
+.txt-confirm {
+  color: #00A651;
 }
 
-label,
-.resposta {
-    color: #fff;
+.txt-alert {
+  color: #ED1C24;
 }
 
+legend {
+  color: #A17D41;
+}
+
+/* Cores de fundo */
 fieldset,
 .resposta {
-    background-color: rgba(0, 0, 0, .7);
-}
-
-legend{
-    color: #0f0;
+  background-color: rgba(0, 0, 0, .6);
+  border: 2px solid #A17D41;
 }
 
 /* Botão de confirmação */
-.confirm{
-    background-color: #0f0;
+.confirm {
+  background-color: #00A651;
 }
-
-    .confirm:hover{
-        background-color: rgba(0, 255, 0, .3);
-    }
 
 /* Botão de não confirmação */
-.alert{
-    background-color: #f00;
+.alert {
+  background-color: #ED1C24;
 }
 
-    .alert:hover{
-        background-color: rgba(255, 0, 0, .3);
-    }
-
-/* Botão para filtrar */
-.bt_filtro,
-.bt-esc {
-    background-color: #00f;
+.checked {
+  background-color: #00ABF9;
 }
-
-    .bt_filtro:hover,
-    .bt-esc:hover {
-        background-color: rgba(0, 0, 255, .3);
-    }
