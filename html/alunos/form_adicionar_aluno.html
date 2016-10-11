@@ -7,11 +7,11 @@
 </head>
 <body>
 <div class="interface">
-  <a class="bt-voltar" href="menu_aluno.html"> Menu </a>
+  <a class="btn bt-voltar" href="menu_aluno.html"> Menu </a>
 
   <h1> Adicionar aluno ao cadastro </h1>
 
-  <form class="form_adicionar">
+  <form class="frm frm-medium">
       <fieldset>
           <legend> Informações pessoais </legend>
           <div>
@@ -19,12 +19,12 @@
              <input type="text" name="nome" placeholder="Digite o nome do aluno" maxlength="35" autofocus id="nome" required>
           </div>
           <div>
-             <label for="turma">Turma:</label>
-             <input type="number" name="turma" placeholder="Turma" id="turma" min="1000" required maxlength="4">
+             <label for="turma">Turma: </label>
+             <input type="number" name="turma" placeholder="Ex.:1002" id="turma" min="1000" max="9999" required maxlength="4">
           </div>
-          <div>
-              <button type="button" class="bt confirm" id="btn-confirm"> Confirmar </button>
-              <button type="button" class="bt alert" id="btn-reset"> Resetar </button>
+          <div class="div-butoes">
+              <button type="button" class="btn confirm" id="btn-confirm"> Confirmar </button>
+              <button type="button" class="btn alert" id="btn-reset"> Resetar </button>
           </div>
       </fieldset>
   </form>
@@ -38,8 +38,28 @@
 
     btn_conf.addEventListener("click", function() {
       // Recuperando os dados dos formulários
-      var nome  = document.getElementById("nome").value,
-          turma = document.getElementById("turma").value;
+      var nome = document.getElementById("nome").value;
+      var turma = document.getElementById("turma").value;
+
+      // Executando a verificação
+      if(nome == "") {
+        alert("Digite um nome válido");
+        document.getElementById("nome").focus();
+      } else if (/[^\D]/.test(nome)) {
+        alert("Foi digitado número em meio a letra no nome do aluno");
+        document.getElementById("nome").focus();
+      } else if(turma == "") {
+        alert("Digite um número de turma válido");
+        document.getElementById("turma").focus();
+      } else if(turma > 9999) {
+        alert("Foi digitado um valor maior que 9999 na turma");
+        document.getElementById("turma").focus();
+      } else {
+        insereDados(nome, turma); // Chamando a função de inserção de dados no banco de dados
+      }
+    });
+
+    function insereDados(nome, turma) {
 
       // Realizando a requisição ajax
       var http = new XMLHttpRequest();
@@ -57,12 +77,12 @@
 
       http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_alunos/adicionar_aluno.php?nome=" + nome + "&turma=" + turma, true);
       http.send(null);
-
-      });
+    }
 
     btn_reset.addEventListener("click", function() {
       // "Limpando" os campos
       document.getElementById("nome").value = "";
+      document.getElementById("nome").focus();
       document.getElementById("turma").value = "";
       document.getElementsByClassName("resposta")[0].style.display = "none";
       document.getElementById("resposta").innerHTML = "";

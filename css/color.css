@@ -7,7 +7,8 @@
 /* Cores dos textos */
 .btn,
 .frm label,
-h1 {
+h1,
+legend {
   color: #FFF;
 }
 
@@ -19,8 +20,14 @@ h1 {
   color: #ED1C24;
 }
 
-legend {
-  color: #A17D41;
+input:valid {
+  color: #08C808;
+  border: 1px solid #0F0;
+}
+
+input:invalid {
+  color: #F00;
+  border: 1px solid #F00;
 }
 
 /* Cores de fundo */
@@ -38,6 +45,14 @@ fieldset,
 /* Botão de não confirmação */
 .alert {
   background-color: #ED1C24;
+}
+
+button.confirm {
+  box-shadow: 0 5px 0 #026131;
+}
+
+button.alert {
+  box-shadow: 0 5px 0 #901318;
 }
 
 .checked {

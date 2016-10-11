@@ -1,38 +1,62 @@
 /* Arquivo que formata todos os formularios */
 @import url(geral.css);
-@import url(color_styles.css);
+@import url(color.css);
 
 @charset "utf-8";
+
+h1 {
+  margin-top: 2em;
+}
 
 /* Formatando o formulario */
 label {
   font-weight: bold;
-  font-size: 2.4em;
-	margin: 5px;
+  font-size: 2em;
+}
+
+.frm div {
+  margin: .5em auto;
 }
 
 /* Formantando os fieldsets */
 fieldset {
-    border: 5px solid rgb(255, 170, 51);
-    border-radius: 5px;
-    width: 100%;
-    display: flex;
+  border: 5px solid #A17D41;
+  border-radius: 5px;
+  width: 100%;
 }
 
 legend{
-    font-size: 1.8em;
+  font-size: 1.8em;
 }
 
 input{
-    font-size: 2.4em;
+  font-size: 2em;
 }
 
-    input:focus{
-        border: 2px solid rgb(255, 102, 0);
-        color: rgb(255, 102, 0);
-    }
+input:focus{
+  border: 2px solid #00F;
+  color: #00F;
+}
 
-/* Formatando os formulários */
+input[type="text"] {
+  width: 80%;
+}
+
+/* Selecionando a div dos butoes */
+.div-butoes {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.div-butoes button {
+  width: 15em;
+  height: 2em;
+  padding: 0;
+  font-size: 1.6em;
+}
+
+/* Formatando os formulários
 .form_adicionar, .form_pesquisar, .form_imprimir{
 	position: relative;
   color: rgb(255, 255, 255);
@@ -56,7 +80,7 @@ input{
 
 .form_pesquisar select, .form_adicionar select{
 	font-size: 2.5em;
-}
+}  */
 
 /* Fazendo sumir os fieldsets de exclusao */
 #pesq_maior{
@@ -71,11 +95,6 @@ input{
 	font-size: 2.5em;
 	margin: 5px;
 	cursor: pointer;
-}
-
-/* Classe para os formulários das listas */
-.form-lista{
-
 }
 
 /* Formantando os butoes para os formulários de soma */
