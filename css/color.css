@@ -6,7 +6,8 @@
 
 /* Cores dos textos */
 .btn,
-.frm label {
+.frm label,
+h1 {
   color: #FFF;
 }
 
