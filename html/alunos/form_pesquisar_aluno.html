@@ -7,14 +7,15 @@
 </head>
 <body>
 <div class="interface">
-  <a class="bt-voltar" href="menu_aluno.html"> Menu </a>
+  <a class="btn bt-voltar" href="menu_aluno.html"> Menu </a>
   <h1> Registrar empréstimo ou devolução </h1>
-  <form class="form_pesquisar">
+  <form class="frm frm-medium">
       <fieldset>
           <legend> Pesquisar </legend>
           <label> Informe o nome do aluno para o sistema </label>
           <div>
-              <input type="text" placeholder="Faça a sua busca" name="nome" size="35" maxlength="15" autofocus id="query" onkeyup="buscarAluno(this.value)">
+              <input type="text" placeholder="Faça a sua busca" name="nome" size="35" maxlength="15" autofocus id="query">
+              <button type="button" class="btn bt confirm" onclick="buscarAluno()"> Pesquisar </button>
           </div>
       </fieldset>
   </form>
@@ -28,7 +29,7 @@
     // Função que retorna o resultado da pesquisa
     function buscarAluno(x) {
       document.getElementsByClassName("resposta")[0].style.display = "block";
-      var pesquisa = x;
+      var pesquisa = document.getElementById("query").value;
 
       var http = new XMLHttpRequest();
 
