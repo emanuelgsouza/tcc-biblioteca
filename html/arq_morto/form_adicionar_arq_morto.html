@@ -7,46 +7,43 @@
 </head>
 <body>
 <div class="interface">
-	<button class="bt-voltar" onclick="window.location.href = 'menu_arquivo_morto.html'"> Menu </button>
+	<a class="btn bt-voltar" href="menu_arquivo_morto.html"> Menu </a>
 
 	<h1> Adicionar livro de arquivo morto ao cadastro </h1>
-	<form method="post" class="form_adicionar" onsubmit="return validar()" action="../../php/arq_morto/adicionar_livro.php">
+	<form class="frm frm-large">
 		<fieldset>
-    	<fieldset>
-        	<legend> Informações do livro </legend>
-	            <div>
-	                <label> Título </label>
-	                <input type="text" placeholder="Digite o título do livro" name="titulo" maxlength="35" autofocus id="titulo" required>
-	            </div>
-	            <div>
-	                <label> Autor </label>
-	                <input type="text" placeholder="Digite o autor do livro" name="autor" maxlength="35" id="autor" required>
-	            </div>
-	            <div>
-	                <label> Editora </label>
-	                <input type="text" placeholder="Digite a editora do livro" name="editora" maxlength="35" id="editora" required>
-	            </div>
-	    </fieldset>
-	    <fieldset>
-	        <legend> Arquivo Morto </legend>
-	            <div>
-	                 <label> Gaveta </label>
-	                 <input type="number" name="gaveta" min="0" value="0" maxlength="2" id="gaveta">
-	            </div>
-	            <div>
-	                 <label> Livro </label>
-	                 <input type="number" name="livro" min="0" value="0" maxlength="3" id="livro">
-	            </div>
-	    </fieldset>
-	        <div>
-	            <label> Estoque </label>
-	            <input type="number" name="estoque" min="0" placeholder="Estoque" value="1" required id="estoque">
-	        </div>
-          <div>
-              <button type="button" class="bt confirm" id="btn-confirm"> Confirmar </button>
-              <button type="button" class="bt alert" id="btn-reset"> Resetar </button>
-          </div>
-	</fieldset>
+    	<legend> Informações do livro </legend>
+      <div class="col-large">
+          <label> Título </label>
+          <input type="text" placeholder="Digite o título do livro" name="titulo" maxlength="35" autofocus id="titulo" required>
+      </div>
+      <div class="col-large">
+          <label> Autor </label>
+          <input type="text" placeholder="Digite o autor do livro" name="autor" maxlength="35" id="autor" required>
+      </div>
+      <div class="col-large">
+          <label> Editora </label>
+          <input type="text" placeholder="Digite a editora do livro" name="editora" maxlength="35" id="editora" required>
+      </div>
+      <div class="col-tres">
+        <div>
+          <label> Gaveta </label>
+          <input type="number" name="gaveta" min="0" maxlength="2" id="gaveta">
+        </div>
+        <div>
+          <label> Livro </label>
+          <input type="number" name="livro" min="0" maxlength="3" id="livro">
+        </div>
+        <div>
+          <label> Estoque </label>
+          <input type="number" name="estoque" min="0" placeholder="Estoque" required id="estoque">
+        </div>
+      </div>
+      <div class="div-butoes">
+          <button type="button" class="btn confirm" id="btn-confirm"> Confirmar </button>
+          <button type="button" class="btn alert" id="btn-reset"> Resetar </button>
+      </div>
+	  </fieldset>
 	</form>
   <div class="resposta">
     <p id="resposta">  </p>
