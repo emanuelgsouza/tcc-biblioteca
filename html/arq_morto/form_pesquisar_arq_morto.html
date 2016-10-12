@@ -7,37 +7,36 @@
 </head>
 <body>
 <div class="interface">
-	<a class="bt-voltar" href="menu_arquivo_morto.html"> Menu </a>
+	<a class="btn bt-voltar" href="menu_arquivo_morto.html"> Menu </a>
   <h1> Pesquisar determinado livro </h1>
   <div class="filtros">
-      <button  type="button" onclick="mudaEscolha(1)" class="bt-esc bt_filtro"> Título </button>
-
-      <button  type="button" onclick="mudaEscolha(2)" class="bt-esc bt_filtro"> Autor </button>
+    <button  type="button" onclick="mudaEscolha(1)" class="btn bt-esc filtro"> Título </button>
+    <button  type="button" onclick="mudaEscolha(2)" class="btn bt-esc filtro"> Autor </button>
   </div>
-  <form class="form_imprimir">
+  <form class="frm frm-medium form_imprimir">
 
     <!-- Pesquisando por titulo de livro -->
     <fieldset id="livro">
       <legend> Pesquisar </legend>
         <label> Informe o nome do livro para o sistema </label>
-        <div>
-           <input type="text" placeholder="Digite o titulo do livro" name="titulo" size="35" maxlength="35" autofocus id="titulo">
-           <button type="button" class="bt_pesquisa confirm" onclick="pesquisarLivro()"> Pesquisar </button>
+        <div class="col-large">
+          <input type="text" placeholder="Digite o titulo do livro" name="titulo" size="35" maxlength="35" autofocus id="titulo">
+          <button type="button" class="btn bt confirm" onclick="pesquisarLivro()"> Pesquisar </button>
         </div>
     </fieldset>
 
     <!-- Pesquisando por autor -->
     <fieldset id="autor">
       <legend> Pesquisar </legend>
-        <label> Informe o nome do autor para o sistema </label>
-      <div>
-         <input type="text" placeholder="Digite um nome de autor" name="autor" size="35" maxlength="15" autofocus id="author">
-         <button type="button" class="bt_pesquisa confirm" onclick="pesquisarAutor()"> Pesquisar </button>
+      <label> Informe o nome do autor para o sistema </label>
+      <div class="col-large">
+        <input type="text" placeholder="Digite um nome de autor" name="autor" size="35" maxlength="15" autofocus id="author">
+        <button type="button" class="btn bt confirm" onclick="pesquisarAutor()"> Pesquisar </button>
       </div>
     </fieldset>
 
     <!-- Caso queira voltar aos filtros -->
-    <button class="bt bt_filtro confirm" type="button" onclick="voltarFiltros()"> Voltar aos filtros </button>
+    <button class="btn filtro" type="button" onclick="voltarFiltros()"> Voltar aos filtros </button>
   </form>
 
   <div class="resposta"></div>
