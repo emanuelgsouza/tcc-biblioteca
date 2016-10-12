@@ -34,7 +34,7 @@ if(!($c >= 1)){
         die(mysqli_error($con));
     }
 }else{
-    echo "O registro de $titulo já existe no banco de dados de livros";
+    echo "O registro de <span class='txt-alert'>$titulo</span> já existe no banco de dados de livros";
 }
 
 // Fechando a conexão
