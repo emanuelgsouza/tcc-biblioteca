@@ -7,18 +7,18 @@
 </head>
 <body>
 <div class="interface">
-	<a class="bt-voltar" href="menu_livro.html"> Menu </a>
+	<a class="btn bt-voltar" href="menu_livro.html"> Menu </a>
 
   <div class="filtros">
       <h1> Quer pesquisar por? </h1>
-      <button class="bt-esc bt_filtro" onclick="mudaEscolha(1)"> Gênero Literário </button>
-      <button class="bt-esc bt_filtro" onclick="mudaEscolha(2)"> Escola Literária </button>
-      <button class="bt-esc bt_filtro" onclick="mudaEscolha(3)"> Autor </button>
-      <button class="bt-esc bt_filtro" onclick="mudaEscolha(4)"> Livro Didático </button>
-      <button class="bt-esc bt_filtro" onclick="mudaEscolha(5)"> Livro em especial </button>
+      <button class="btn bt-esc filtro" onclick="mudaEscolha(1)"> Gênero Literário </button>
+      <button class="btn bt-esc filtro" onclick="mudaEscolha(2)"> Escola Literária </button>
+      <button class="btn bt-esc filtro" onclick="mudaEscolha(3)"> Autor </button>
+      <button class="btn bt-esc filtro" onclick="mudaEscolha(4)"> Livro Didático </button>
+      <button class="btn bt-esc filtro" onclick="mudaEscolha(5)"> Livro em especial </button>
   </div>
 
-  <form class="form_imprimir">
+  <form class="frm frm-medium form_imprimir">
     <h1> Pesquise por </h1>
     <!-- Caso seja um livro que ele esteja procurando -->
     <fieldset id="livro">
@@ -26,7 +26,7 @@
           <label> Informe o nome do livro para o sistema </label>
           <div>
             <input type="text" placeholder="Digite o titulo do livro" name="titulo" size="35" maxlength="35" id="titulo">
-            <button type="button" class="bt_pesquisa confirm" onclick="pesquisarLivro()"> Pesquisar </button>
+            <button type="button" class="btn bt confirm" onclick="pesquisarLivro()"> Pesquisar </button>
           </div>
     </fieldset>
 
@@ -46,7 +46,7 @@
               <option value="t"> Dramático </option>
               <option value="n" selected> Nenhum </option>
           </select>
-          <button type="button" class="bt_pesquisa confirm" onclick="pesquisarGenero()"> Gerar Lista </button>
+          <button type="button" class="btn bt confirm" onclick="pesquisarGenero()"> Gerar Lista </button>
       </div>
     </fieldset>
 
@@ -70,7 +70,7 @@
                 <option value="pom"> Pós-modernismo </option>
                 <option value="n" selected> Nenhum </option>
                 </select>
-            <button type="button" class="bt_pesquisa confirm" onclick="pesquisarEscola()"> Gerar Lista </button>
+            <button type="button" class="btn bt confirm" onclick="pesquisarEscola()"> Gerar Lista </button>
         </div>
     </fieldset>
 
@@ -91,7 +91,7 @@
             <option value="d"> Dicionários </option>
             <option value="n" selected> Nenhum </option>
         </select>
-        <button type="button" class="bt_pesquisa confirm" onclick="pesquisarDidatico()"> Gerar Lista </button>
+        <button type="button" class="btn bt confirm" onclick="pesquisarDidatico()"> Gerar Lista </button>
         </div>
     </fieldset>
 
@@ -101,12 +101,12 @@
         <label> Informe o nome do autor para o sitema </label>
         <div>
           <input type="text" maxlength="35" size="35" name="autor" placeholder="Digite um nome de autor" id="author">
-          <button type="button" class="bt_pesquisa confirm" onclick="pesquisarAutor()"> Pesquisar </button>
+          <button type="button" class="btn bt confirm" onclick="pesquisarAutor()"> Pesquisar </button>
         </div>
     </fieldset>
 
       <!-- Caso queira voltar aos filtros -->
-      <button class="bt bt_filtro confirm" type="button" onclick="voltarFiltros()"> Voltar aos filtros </button>
+      <button class="btn filtro" type="button" onclick="voltarFiltros()"> Voltar aos filtros </button>
   </form>
 
   <div class="resposta"></div>
