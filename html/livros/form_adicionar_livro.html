@@ -7,96 +7,94 @@
 </head>
 <body>
 <div class="interface">
-	<a class="bt-voltar" href="menu_livro.html"> Menu </a>
+	<a class="btn bt-voltar" href="menu_livro.html"> Menu </a>
 
 <h1> Adicionar livro ao cadastro </h1>
-<form class="form_adicionar">
+<form class="frm frm-large">
     <fieldset>
         <legend> Informações do livro </legend>
-        <div>
+        <div class="col-large">
             <label> Título </label>
             <input type="text" placeholder="Digite o título do livro" name="titulo" maxlength="50" size="30" autofocus id="titulo" required>
         </div>
-        <div>
+        <div class="col-large">
             <label> Autor </label>
             <input type="text" placeholder="Digite o autor do livro" name="autor" maxlength="35" size="30" id="autor" required>
         </div>
-        <div>
+        <div class="col-large">
             <label> Editora </label>
             <input type="text" placeholder="Digite o auto do livro" name="editora" maxlength="35" size="30" id="editora" required>
         </div>
-        <fieldset>
-            <legend> Literário </legend>
-            <div>
-                <label> Gênero literário </label>
-                <select name="genero" id="genero">
-                <option value="a"> Aventura </option>
-                <option value="rm"> Romance </option>
-                <option value="f"> Ficção </option>
-                <option value="tr"> Terror </option>
-                <option value="s"> Suspense </option>
-                <option value="rp"> Romance Policial </option>
-                <option value="p"> Poesia </option>
-                <option value="t"> Dramático </option>
-                <option value="n" selected> Nenhum </option>
-                </select>
-            </div>
-            <div>
-                <label> Escola literária </label>
+        <div class="col-tres">
+          <div>
+            <label> Gênero literário </label>
+            <select name="genero" id="genero">
+              <option value="a"> Aventura </option>
+              <option value="rm"> Romance </option>
+              <option value="f"> Ficção </option>
+              <option value="tr"> Terror </option>
+              <option value="s"> Suspense </option>
+              <option value="rp"> Romance Policial </option>
+              <option value="p"> Poesia </option>
+              <option value="t"> Dramático </option>
+              <option value="n" selected> Nenhum </option>
+            </select>
+          </div>
+          <div>
+            <label> Escola literária </label>
             <select name="escola" id="escola">
-                <option value="c"> Clássico </option>
-                <option value="h"> Humanismo (Iluminismo) </option>
-                <option value="li"> Literatura de informação </option>
-                <option value="t"> Trovadorismo </option>
-                <option value="a"> Arcadismo </option>
-                <option value="b"> Barroco </option>
-                <option value="rm"> Romantismo </option>
-                <option value="r"> Realismo </option>
-                <option value="s"> Simbolismo </option>
-                <option value="pem"> Pré-modernismo </option>
-                <option value="m"> Modernismo </option>
-                <option value="pom"> Pós-modernismo </option>
-                <option value="n" selected> Nenhum </option>
-                    </select>
-            </div>
-            <div>
-                <label> Didático </label>
-                <select name="didatico" id="didatico">
-                <option value="fs"> Filosofia/Sociologia </option>
-                <option value="mf"> Matemática/Física </option>
-                <option value="pl"> Português/Literatura </option>
-                <option value="b"> Biológicas </option>
-                <option value="h"> Historia </option>
-                <option value="g"> Geografia </option>
-                <option value="p"> Pedagógicos </option>
-                <option value="e"> Enciclopédias </option>
-                <option value="d"> Dicionários </option>
-                <option value="n" selected> Nenhum </option>
-                </select>
-            </div>
-        </fieldset>
-        <fieldset>
-            <legend> Atribuindo um número ao livro </legend>
-        <div>
-             <label> Código do livro </label>
-             <input type="number" name="cod_livro" min="0" id="cod_livro">
+              <option value="c"> Clássico </option>
+              <option value="h"> Humanismo (Iluminismo) </option>
+              <option value="li"> Literatura de informação </option>
+              <option value="t"> Trovadorismo </option>
+              <option value="a"> Arcadismo </option>
+              <option value="b"> Barroco </option>
+              <option value="rm"> Romantismo </option>
+              <option value="r"> Realismo </option>
+              <option value="s"> Simbolismo </option>
+              <option value="pem"> Pré-modernismo </option>
+              <option value="m"> Modernismo </option>
+              <option value="pom"> Pós-modernismo </option>
+              <option value="n" selected> Nenhum </option>
+            </select>
+          </div>
+          <div>
+            <label> Didático </label>
+            <select name="didatico" id="didatico">
+              <option value="fs"> Filosofia/Sociologia </option>
+              <option value="mf"> Matemática/Física </option>
+              <option value="pl"> Português/Literatura </option>
+              <option value="b"> Biológicas </option>
+              <option value="h"> Historia </option>
+              <option value="g"> Geografia </option>
+              <option value="p"> Pedagógicos </option>
+              <option value="e"> Enciclopédias </option>
+              <option value="d"> Dicionários </option>
+              <option value="n" selected> Nenhum </option>
+            </select>
+          </div>
         </div>
-        <div>
-             <label> Estante </label>
-             <input type="number" name="estante" min="0" id="estante">
+        <div class="col-tres">
+          <div>
+            <label> Código do livro </label>
+            <input type="number" name="cod_livro" min="0" id="cod_livro">
+          </div>
+          <div>
+            <label> Estante </label>
+            <input type="number" name="estante" min="0" id="estante">
+          </div>
+          <div>
+            <label> Prateleira </label>
+            <input type="text" name="prateleira" min="0" id="prateleira">
+          </div>
         </div>
-        <div>
-             <label> Prateleira </label>
-             <input type="text" name="prateleira" min="0" id="prateleira">
-        </div>
-        </fieldset>
-        <div>
-             <label> Estoque </label>
-             <input type="number" name="estoque" min="0" placeholder="Estoque" value="1" required id="estoque">
-        </div>
-        <div>
-            <button type="button" class="bt confirm" id="btn-confirm"> Confirmar </button>
-            <button type="button" class="bt alert" id="btn-reset"> Resetar </button>
+          <div>
+            <label> Estoque </label>
+            <input type="number" name="estoque" min="0" placeholder="Estoque" value="1" required id="estoque">
+          </div>
+        <div class="div-butoes">
+          <button type="button" class="btn confirm" id="btn-confirm"> Confirmar </button>
+          <button type="button" class="btn alert" id="btn-reset"> Resetar </button>
         </div>
     </fieldset>
 </form>
