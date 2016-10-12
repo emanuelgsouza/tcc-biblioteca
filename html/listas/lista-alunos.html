@@ -7,20 +7,20 @@
 </head>
 <body>
 <div class="interface">
-  <a class="bt-voltar" href="menu-listas.html"> Menu </a>
+  <a class="btn bt-voltar" href="menu-listas.html"> Menu </a>
 
   <h1> Gerar lista de alunos por turma: </h1>
 
-    <form method="post" class="form_imprimir">
-        <fieldset id="lista-alunos">
-            <legend> Pesquisar </legend>
-                <label> Informe o número de uma turma para o sistema e ele irá gerar uma lista de alunos</label>
-            <div>
-                <input type="number" placeholder="Faça a sua busca" name="turma" size="35" maxlength="15" min="1000" id="turma" pattern="/\d\d\d\d/" autofocus>
+    <form class="frm frm-medium form_lista">
+      <fieldset id="lista-alunos">
+        <legend> Pesquisar </legend>
+          <label> Informe o número de uma turma para o sistema e ele irá gerar uma lista de alunos</label>
+          <div>
+            <input type="number" placeholder="Faça a sua busca" name="turma" size="35" maxlength="15" min="1000" id="turma" pattern="/\d\d\d\d/" autofocus>
 
-                <button type="button" class="bt_pesquisa confirm" id="submit"> Gerar Lista </button>
-            </div>
-        </fieldset>
+            <button type="button" class="btn confirm" id="submit"> Gerar Lista </button>
+          </div>
+      </fieldset>
     </form>
 
     <div class="resposta">
