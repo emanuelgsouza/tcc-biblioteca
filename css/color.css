@@ -47,12 +47,20 @@ fieldset,
   background-color: #ED1C24;
 }
 
+.filtro {
+  background-color: #211CED;
+}
+
 button.confirm {
   box-shadow: 0 5px 0 #026131;
 }
 
 button.alert {
   box-shadow: 0 5px 0 #901318;
+}
+
+button.filtro {
+  box-shadow: 0 5px 0 #131086;
 }
 
 .checked {

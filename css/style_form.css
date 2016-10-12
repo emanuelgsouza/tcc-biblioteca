@@ -12,10 +12,65 @@ h1 {
 label {
   font-weight: bold;
   font-size: 2em;
+  word-wrap: break-word;
 }
 
+/* Formatando as divs dentro dos formulários */
 .frm div {
-  margin: .5em auto;
+  margin: 1em auto;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.frm-medium select {
+  width: 80%;
+}
+
+/* Caso precisa preencher todo o formulário */
+.col-large,
+.col-tres {
+  width: 100%;
+}
+
+/* Caso a div tem mais de uma coluna */
+.col-tres {
+  display: flex;
+}
+
+.col-tres div {
+  flex-grow: 1;
+}
+
+.col-tres div:not(:first-child) {
+  padding-left: 1em;
+}
+
+.col-tres input[type="number"],
+.col-tres input[type="text"],
+.col-tres select,
+.form_lista select,
+.form_lista input[type="number"] {
+  width: 50%;
+  height: 2em;
+}
+
+select {
+  font-size: 2em;
+}
+
+input {
+  padding: .3em;
+  font-size: 2em;
+}
+
+input:focus {
+  border: 1px solid #00F;
+  color: #00F;
+}
+
+input[type="text"] {
+  width: 80%;
 }
 
 /* Formantando os fieldsets */
@@ -29,20 +84,7 @@ legend{
   font-size: 1.8em;
 }
 
-input{
-  font-size: 2em;
-}
-
-input:focus{
-  border: 2px solid #00F;
-  color: #00F;
-}
-
-input[type="text"] {
-  width: 80%;
-}
-
-/* Selecionando a div dos butoes */
+/* Selecionando a div dos butoes de confirmar e cancelar nos formulários de de cadastro */
 .div-butoes {
   display: flex;
   justify-content: space-around;
@@ -51,89 +93,31 @@ input[type="text"] {
 
 .div-butoes button {
   width: 15em;
-  height: 2em;
+  height: 2.5em;
   padding: 0;
   font-size: 1.6em;
 }
 
-/* Formatando os formulários
-.form_adicionar, .form_pesquisar, .form_imprimir{
-	position: relative;
-  color: rgb(255, 255, 255);
-	margin: 0px auto;
-	width: 50%;
-}
-
-.form_adicionar div, .form_pesquisar div, .form_imprimir div{
-    margin: 0.5em;
-    display: flex;
-    justify-content: space-between;
-}
-
-.form_adicionar div label, .form_pesquisar div label{
-	width: 6em;
-}
-
-.form_adicionar div input, .form_adicionar div select, .form_pesquisar select{
-	flex-grow: 2;
-}
-
-.form_pesquisar select, .form_adicionar select{
-	font-size: 2.5em;
-}  */
-
-/* Fazendo sumir os fieldsets de exclusao */
-#pesq_maior{
-	display: none;
-}
-
 /* Estilizando os butoes para a pesquisa */
-.bt-esc{
+.bt-esc {
 	border: none;
 	width: 50%;
-	height: 50px;
-	font-size: 2.5em;
-	margin: 5px;
+	margin: 5px auto;
 	cursor: pointer;
+  font-size: 1.6em;
+  padding: 1em;
 }
 
-/* Formantando os butoes para os formulários de soma */
+/* Formantando os butoes para os formulários de pesquisa e registrar emprestimo */
 .bt {
-	margin: 5px;
-	width: 30%;
-	height: 40px;
-	border: 0px;
-	border-radius: 2px;
-	cursor: pointer;
-  font-size: 1.8em;
-}
-
-/* Configurando o elemento butao das paginas de pesquisa */
-.bt_pesquisa {
-    position: relative;
-    width: 100%;
-    height: 3em;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-    font-size: 2em;
-}
-
-/* Estilizando o selects dos formulários de impressão*/
-.form_imprimir select{
-    width: 100%;
-    font-size: 2em;
-}
-
-/* Estilizando os butoes do formulário de impressão*/
-.form_imprimir button{
-	flex-grow: 0;
-	font-size: 2em;
+	margin: 0;
+  padding: 1em;
+  font-size: 1.6em;
+  flex-grow: 1;
 }
 
 /* Estilizando o formulários de pesquisa */
 div.filtros{
-    /* width: 100%; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -141,6 +125,13 @@ div.filtros{
 
 fieldset#didatico, fieldset#escola, fieldset#genero, fieldset#autor, fieldset#livro, fieldset#lidos{
 	display: none;
+}
+
+/* Formatando os formulários de lista */
+.form_lista button {
+  padding: .5em;
+  width: 10em;
+  margin: 0;
 }
 
 /* Formatando a resposta */
