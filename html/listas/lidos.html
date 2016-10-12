@@ -7,24 +7,27 @@
 	</head>
 	<body>
 	<div class="interface">
-		<a class="bt-voltar" href="menu-listas.html"> Menu </a>
+		<a class="btn bt-voltar" href="menu-listas.html"> Menu </a>
 
     <h1> Lista de livros mais lidos</h1>
 
-		<form class="form_imprimir">
+		<form class="frm frm-medium form_lista">
       <fieldset>
           <legend> Pesquisar </legend>
+					<div>
           <label> Exibir os livros mais lidos no período de: </label>
-          <select name="periodo">
+	          <select name="periodo">
               <option value="1"> Dois meses </option>
               <option value="2"> Tres meses </option>
               <option value="3"> Seis meses meses </option>
               <option value="4"> Anual </option>
-          </select>
-
-					<label for="numero"> N° de registros </label>
-					<input type="number" id="numero" name="quantidade" min="10" value="10">
-          <button type="button" id="submit" class="bt confirm"> Enviar </button>
+	          </select>
+					</div>
+					<div>
+						<label for="numero"> N° de registros </label>
+						<input type="number" id="numero" name="quantidade" min="10" value="10">
+					</div>
+          <button type="button" id="submit" class="btn confirm"> Enviar </button>
       </fieldset>
     </form>
 
