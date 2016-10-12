@@ -7,29 +7,32 @@
 	</head>
 	<body>
 	<div class="interface">
-		<a class="bt-voltar" href="menu-listas.html"> Menu </a>
+		<a class="btn bt-voltar" href="menu-listas.html"> Menu </a>
 
     <h1> Gerar lista de: </h1>
 
     <div class="filtros">
-        <button type="button" class="bt-esc" onclick="muda(1)"> Alunos </button>
-        <button type="button" class="bt-esc" onclick="muda()"> Pessoas </button>
+        <button type="button" class="btn bt-esc filtro" onclick="muda(1)"> Alunos </button>
+        <button type="button" class="btn bt-esc filtro" onclick="muda()"> Pessoas </button>
     </div>
 
-		<form class="form_imprimir">
+		<form class="frm frm-medium form_lista">
       <fieldset>
-          <legend> Filtrar pesquisa </legend>
-	          <label for="data"> Alunos inadimplentes à </label>
-	          <select name="diasAluno" id="data">
-	              <option value="1"> Mais do que trinta dias </option>
-	              <option value="2"> Menos do que trinta dias</option>
-	          </select>
-
-						<label for="numero"> N° de registros </label>
-						<input type="number" id="numero" name="quantidade">
-          <button  type="button" id="submit" class="bt confirm"> Enviar </button>
+	      <legend> Filtrar pesquisa </legend>
+				<div class="col-large">
+	        <label for="data"> Alunos inadimplentes à </label>
+	        <select name="diasAluno" id="data">
+	          <option value="1"> Mais do que trinta dias </option>
+	          <option value="2"> Menos do que trinta dias</option>
+	        </select>
+				</div>
+				<div class="col-large">
+					<label for="numero"> N° de registros </label>
+					<input type="number" id="numero" name="quantidade">
+				</div>
+	      <button  type="button" id="submit" class="btn confirm"> Enviar </button>
       </fieldset>
-      <button type="button" class="bt alert" onclick="volta()"> Voltar as categorias </button>
+      <button type="button" class="btn filtro" onclick="volta()"> Voltar as categorias </button>
     </form>
 
 		<div class="resposta">
@@ -37,9 +40,9 @@
 		</div>
 	</div>
 	<script>
-    document.getElementsByClassName("form_imprimir")[0].style.display = "none";
+    document.getElementsByClassName("form_lista")[0].style.display = "none";
     function muda(x){
-        document.getElementsByClassName("form_imprimir")[0].style.display = "block";
+        document.getElementsByClassName("form_lista")[0].style.display = "block";
         document.getElementsByClassName("filtros")[0].style.display = "none";
         if(x != 1){
             document.getElementsByTagName("select")[0].setAttribute("name", "diasPessoa");
@@ -48,7 +51,7 @@
     }
 
     function volta(){
-        document.getElementsByClassName("form_imprimir")[0].style.display = "none";
+        document.getElementsByClassName("form_lista")[0].style.display = "none";
         document.getElementsByClassName("filtros")[0].style.display = "flex";
 				document.getElementsByClassName("resposta")[0].style.display = "none";
     }
