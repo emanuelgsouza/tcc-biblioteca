@@ -9,16 +9,16 @@
   $autor    = strtoupper($autor);
   $editora  = isset($_GET["editora"])?$_GET["editora"]:"";
   $editora  = strtoupper($editora);
-  $genero   = isset($_GET["genero"])?$_GET["genero"]:"nenhum";
+  $genero   = isset($_GET["genero"])?$_GET["genero"]:"n";
   $genero   = strtoupper($genero);
-  $escola   = isset($_GET["escola"])?$_GET["escola"]:"nenhum";
+  $escola   = isset($_GET["escola"])?$_GET["escola"]:"n";
   $escola   = strtoupper($escola);
-  $didatico = isset($_GET["didatico"])?$_GET["didatico"]:"nenhum";
+  $didatico = isset($_GET["didatico"])?$_GET["didatico"]:"n";
   $didatico = strtoupper($didatico);
   $estoque  = isset($_GET["estoque"])?$_GET["estoque"]:"0";
-  $cod_book = isset($_GET["cod_livro"])?$_GET["cod_livro"]:"0";
   $estante  = isset($_GET["estante"])?$_GET["estante"]:"0";
-  $prateleira = isset($_GET["prateleira"])?$_GET["estante"]:"null";
+  $prateleira = isset($_GET["prateleira"])?$_GET["estante"]:"0";
+  $cod_book = isset($_GET["cod_livro"])?$_GET["cod_livro"]:"0";
   $prateleira = strtoupper($prateleira);
 
   // Chamando a função de conexão
@@ -45,9 +45,8 @@
     }
   } else {
       //Caso o livro esteja repetindo o código, sugerir o próximo número
-      $cod = $cod_book + 1;
-      echo "O código $cod_book já tem um dono! Por favor, insira um outro número, como o $cod para este livro";
+      echo "O código <span class='txt-alert'>$cod_book</span> já tem um dono! Por favor, insira um outro número";
   }
-// Fechando a conexão
-fechaDB($con);
+  // Fechando a conexão
+  fechaDB($con);
 ?>
