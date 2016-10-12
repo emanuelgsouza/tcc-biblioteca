@@ -29,7 +29,8 @@
       </fieldset>
   </form>
   <div class="resposta">
-    <p id="resposta">  </p>
+    <p id="resposta"></p>
+    <button class="btn filtro" type="button" onclick="voltarAdicionar()"> Voltar a adicionar </button>
   </div>
   <script>
     "use strict";
@@ -60,6 +61,10 @@
     });
 
     function insereDados(nome, turma) {
+      // Fazendo surgir a tela de resposta
+      document.getElementsByClassName("resposta")[0].style.transform = "translateY(0)";
+      document.getElementsByClassName("frm")[0].style.transition = "transform 1s";
+      document.getElementsByClassName("frm")[0].style.transform = "translateY(-200%)";
 
       // Realizando a requisição ajax
       var http = new XMLHttpRequest();
@@ -79,14 +84,23 @@
       http.send(null);
     }
 
-    btn_reset.addEventListener("click", function() {
+    btn_reset.addEventListener("click", resetar);
+    function resetar() {
       // "Limpando" os campos
       document.getElementById("nome").value = "";
       document.getElementById("nome").focus();
       document.getElementById("turma").value = "";
       document.getElementsByClassName("resposta")[0].style.display = "none";
       document.getElementById("resposta").innerHTML = "";
-    });
+    };
+
+    function voltarAdicionar() {
+      // Voltando com o frm
+      document.getElementsByClassName("resposta")[0].style.transform = "translateY(300%)";
+      document.getElementsByClassName("frm")[0].style.transition = "transform 1s";
+      document.getElementsByClassName("frm")[0].style.transform = "translateY(0)";
+      resetar();
+    }
   </script>
   </div>
 </body>

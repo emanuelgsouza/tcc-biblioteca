@@ -21,14 +21,14 @@ if(isset($_GET["nome"]) and isset($_GET["turma"])){
       $q  = "INSERT INTO alunos_matriculados (aluno, turma) VALUES ('$nome', '$turma')";
       $db = executaQuery($con, $q);
       if($db) {
-        echo "Houve a inserção de $nome da turma $turma no banco de dados";
+        echo "Houve a inserção de <span class='txt-confirm'>$nome</span> da turma <span class='txt-confirm'>$turma</span> no banco de dados";
       } else {
         echo "Não houve a inserção dos dados";
         die(mysqli_error($con));
     }
   } else {
     //Caso o aluno já esteja registrado, mensagem de erro
-    echo "O registro de $nome já existe no banco de dados de alunos";
+    echo "O registro de <span class='txt-alert'>$nome</span> da turma <span class='txt-alert'>$turma</span> já existe no banco de dados de alunos";
   }
 } else {
   echo "Você não entrou com os dados do aluno";

@@ -4,6 +4,10 @@
 
 @charset "utf-8";
 
+body {
+  overflow: hidden;
+}
+
 h1 {
   margin-top: 2em;
 }
@@ -75,7 +79,7 @@ input[type="text"] {
 
 /* Formantando os fieldsets */
 fieldset {
-  border: 5px solid #A17D41;
+  border: 2px solid #A17D41;
   border-radius: 5px;
   width: 100%;
 }
@@ -134,16 +138,22 @@ fieldset#didatico, fieldset#escola, fieldset#genero, fieldset#autor, fieldset#li
   margin: 0;
 }
 
-/* Formatando a resposta */
+/* Formatando a resposta dos formulários de cadastro */
 .resposta {
-  width: 49%;
-  margin: 2em auto 0 auto;
+  width: 50vw;
+  margin: -20em auto 0 auto;
   padding: 2em;
-  border: 5px solid rgb(255, 170, 51);
-  display: none;
+  transform: translateY(300%);
+  transition: transform 1s;
+  z-index: 2;
 }
 
 .resposta p {
   text-align: center;
   font-size: 2em;
+}
+
+.resposta button {
+  display: block;
+  margin: 2em auto;
 }

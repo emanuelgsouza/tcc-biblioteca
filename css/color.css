@@ -8,7 +8,8 @@
 .btn,
 .frm label,
 h1,
-legend {
+legend,
+.resposta {
   color: #FFF;
 }
 
