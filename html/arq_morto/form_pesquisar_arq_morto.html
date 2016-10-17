@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title> Pesquisando Livros do Arquivo Morto | Qg da Leitura </title>
-  <link rel="stylesheet" href="../../css/style_form.css">
+  <link rel="stylesheet" href="../../css/style_form.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="../../css/print.css" media="print">
 </head>
 <body>
 <div class="interface">
@@ -20,7 +21,7 @@
       <legend> Pesquisar </legend>
         <label> Informe o nome do livro para o sistema </label>
         <div class="col-large">
-          <input type="text" placeholder="Digite o titulo do livro" name="titulo" size="35" maxlength="35" autofocus id="titulo">
+          <input type="text" placeholder="Digite o título do livro para pesquisa" name="titulo" size="35" maxlength="35" autofocus id="titulo">
           <button type="button" class="btn bt confirm" onclick="pesquisarLivro()"> Pesquisar </button>
         </div>
     </fieldset>
@@ -30,7 +31,7 @@
       <legend> Pesquisar </legend>
       <label> Informe o nome do autor para o sistema </label>
       <div class="col-large">
-        <input type="text" placeholder="Digite um nome de autor" name="autor" size="35" maxlength="15" autofocus id="author">
+        <input type="text" placeholder="Digite o nome de autor para pesquisa" name="autor" size="35" maxlength="15" autofocus id="author">
         <button type="button" class="btn bt confirm" onclick="pesquisarAutor()"> Pesquisar </button>
       </div>
     </fieldset>
@@ -39,7 +40,9 @@
     <button class="btn filtro" type="button" onclick="voltarFiltros()"> Voltar aos filtros </button>
   </form>
 
-  <div class="resposta"></div>
+  <div class="resposta">
+
+  </div>
   <script>
     var divResposta = document.getElementsByClassName("resposta")[0];
     document.getElementsByClassName("form_imprimir")[0].style.display = "none"; // Sumindo com o formulário
@@ -64,21 +67,26 @@
 
     // Função que busca um livro em específico e exibe o resultado
     function pesquisarLivro() {
-      divResposta.style.display = "block";
       var titulo = document.getElementById("titulo").value;
-      var http = new XMLHttpRequest();
+      if(titulo != "") {
+        divResposta.style.display = "block";
+        document.getElementsByClassName("frm")[0].style.display = "none";
 
-      http.onreadystatechange = function() {
-        if(http.readyState == 4 && http.status == 200) {
-          var resposta = http.responseText;
-          divResposta.innerHTML = resposta;
-        } else {
-          divResposta.innerHTML = "<p> Carregando </p>";
+        var http = new XMLHttpRequest();
+        http.onreadystatechange = function() {
+          if(http.readyState == 4 && http.status == 200) {
+            var resposta = http.responseText;
+            divResposta.innerHTML = resposta + "<button class='btn filtro' type='button' onclick='voltarAdicionar()'> Voltar a adicionar </button>";
+          } else {
+            divResposta.innerHTML = "<p> Carregando </p>";
+          }
         }
+        http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_morto/pesquisa_livro.php?titulo=" + titulo, true);
+        http.send();
+      } else {
+        alert("O campo título está vazio, digite alguma coisa");
+        document.getElementById("titulo").focus();
       }
-
-      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_morto/pesquisa_livro.php?titulo=" + titulo, true);
-      http.send();
     }
 
     // Função que gera o botao para mostrar os dados do livro
@@ -87,17 +95,19 @@
       // Armazenando o id do aluno no localStorage
       localStorage.setItem("cod", id);
 
-      if(!(document.querySelector(".resposta button"))) {
-        var text = document.createTextNode("Ver dados do livro"),
-            button = document.createElement("button");
+      if(document.querySelector(".resposta button.filtro")) {
+        if(!(document.querySelector(".resposta button.confirm"))) {
+          var text = document.createTextNode("Ver dados do livro"),
+              button = document.createElement("button");
 
-        // Criando o butao
-        button.setAttribute("class", "bt confirm");
-        button.appendChild(text);
-        divResposta.appendChild(button);
+          // Criando o butao
+          button.setAttribute("class", "btn bt confirm");
+          button.appendChild(text);
+          divResposta.appendChild(button);
 
-        // Chamando a função que irá fazer a requisição ajax para saber se o aluno está ou não com livro emprestado
-        button.addEventListener("click", mostrarDados);
+          // Chamando a função que irá fazer a requisição ajax para saber se o aluno está ou não com livro emprestado
+          button.addEventListener("click", mostrarDados);
+        }
       }
     }
 
@@ -124,24 +134,32 @@
 
     // Função que pesquisa os livros pelo autor
     function pesquisarAutor() {
-      divResposta.style.display = "block";
-
       var autor = document.getElementById("author").value;
-      var http = new XMLHttpRequest();
-
-      http.onreadystatechange = function() {
-        if (http.readyState == 4 && http.status == 200) {
-          var resposta = http.responseText;
-          divResposta.style.display = "block";
-          divResposta.innerHTML = resposta;
-        } else {
-          divResposta.style.display = "block";
-          divResposta.innerHTML = "<p> Carregando... </p>";
+      if (autor != "") {
+        divResposta.style.display = "block";
+        document.getElementsByClassName("frm")[0].style.display = "none";
+        var http = new XMLHttpRequest();
+        http.onreadystatechange = function() {
+          if (http.readyState == 4 && http.status == 200) {
+            var resposta = http.responseText;
+            divResposta.style.display = "block";
+            divResposta.innerHTML = resposta;
+          } else {
+            divResposta.style.display = "block";
+            divResposta.innerHTML = "<p> Carregando... </p>";
+          }
         }
-      }
 
-      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_morto/pesquisa_livro.php?autor=" + autor, true);
-      http.send();
+        http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_morto/pesquisa_livro.php?autor=" + autor, true);
+        http.send();
+      } else {
+        alert("O campo autor está vazio, digite algum nome de autor válido");
+        document.getElementById("author").focus();
+      }
+    }
+
+    function voltarAdicionar() {
+      window.location.reload();
     }
   </script>
   </div>
