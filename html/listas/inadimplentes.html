@@ -2,14 +2,15 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="../../css/style_form.css">
+		<link rel="stylesheet" href="../../css/style_form.css" media="screen">
+		<link rel="stylesheet" href="../../css/print.css" media="print">
 		<title> Formulário pessoas inadimplentes | Qg da Leitura </title>
 	</head>
 	<body>
 	<div class="interface">
 		<a class="btn bt-voltar" href="menu-listas.html"> Menu </a>
 
-    <h1> Gerar lista de: </h1>
+    <h1> Lista de Inadimplentes </h1>
 
     <div class="filtros">
         <button type="button" class="btn bt-esc filtro" onclick="muda(1)"> Alunos </button>
@@ -28,7 +29,7 @@
 				</div>
 				<div class="col-large">
 					<label for="numero"> N° de registros </label>
-					<input type="number" id="numero" name="quantidade">
+					<input type="number" id="numero" name="quantidade" value="10">
 				</div>
 	      <button  type="button" id="submit" class="btn confirm"> Enviar </button>
       </fieldset>
@@ -60,6 +61,12 @@
 
 		// Executando a requisição ajax
 		btn.addEventListener("click", function() {
+			document.getElementsByClassName("resposta")[0].style.display = "block";
+			document.getElementsByClassName("frm")[0].style.display = "none";
+
+			var butao1 = " <button class='btn bt confirm' type='button' onclick='window.print()'> Imprimir </button> ";
+			var butao2 = " <button class='btn filtro' type='button' onclick='voltar()'> Voltar a adicionar </button> ";
+
 			// Recuperando os dados dos formulários
 			var escolha = document.getElementsByTagName("select")[0].getAttribute("name"),
 					select  = document.getElementsByTagName("select")[0].value,
@@ -74,7 +81,7 @@
 				if (http.readyState == 4 && http.status == 200) {
 					var resposta = http.responseText;
 					div.style.display = "block";
-					div.innerHTML = resposta;
+					div.innerHTML = resposta + butao1 + butao2;
 				} else {
 					div.style.display = "block";
 					div.innerHTML = p;
@@ -85,6 +92,10 @@
 			http.send(null);
 
 		});
+
+		function voltar() {
+			window.location.reload();
+		}
   </script>
 	</body>
 </html>
