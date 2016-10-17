@@ -121,9 +121,8 @@
         estante = document.getElementById("estante").value;
 
     // Fazendo surgir a tela de resposta
-    document.getElementsByClassName("resposta")[0].style.transform = "translateY(-100%)";
-    document.getElementsByClassName("frm")[0].style.transition = "transform 1s";
-    document.getElementsByClassName("frm")[0].style.transform = "translateY(-200%)";
+    document.getElementsByClassName("resposta")[0].style.display = "block";
+    document.getElementsByClassName("frm")[0].style.display = "none";
 
   	// Realizando a requisição ajax
   	var http = new XMLHttpRequest();
@@ -162,9 +161,8 @@
 
   function voltarAdicionar() {
     // Voltando com o frm
-    document.getElementsByClassName("resposta")[0].style.transform = "translateY(300%)";
-    document.getElementsByClassName("frm")[0].style.transition = "transform 1s";
-    document.getElementsByClassName("frm")[0].style.transform = "translateY(0)";
+    document.getElementsByClassName("resposta")[0].style.display = "none";
+    document.getElementsByClassName("frm")[0].style.display = "block";
     resetar();
   }
 </script>
