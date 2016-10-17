@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <title> Adicionando Livro ao Cadastro | Qg da Leitura </title>
+  <link rel="stylesheet" href="../../css/style_form.css">
+</head>
+<body>
+<div class="interface">
+	<a class="btn bt-voltar" href="menu_livro.html"> Menu </a>
+  <h1> Excluir determinado livro </h1>
+  <form class="frm frm-medium">
+    <fieldset>
+      <legend> Pesquisar </legend>
+      <label for="query"> Informe o nome do livro para o sistema </label>
+      <div>
+        <input type="text" placeholder="Digite o titulo do livro" name="titulo" size="35" maxlength="15" autofocus id="query">
+        <button type="button" class="btn bt confirm" onclick="pesquisa()"> Pesquisar </button>
+      </div>
+    </fieldset>
+  </form>
+  <div class="resposta"></div>
+  <script>
+    function verificaCampo(campo) {
+      var query = campo;
+      if(document.getElementById(campo).value == "") {
+        alert("O campo " + query + " está em branco, digite alguma coisa");
+        document.getElementById(campo).focus();
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    function pesquisa() {
+      var result = verificaCampo("query");
+
+      if(result) {
+        var titulo = document.getElementById("query").value;
+        document.getElementsByClassName("resposta")[0].style.display = "block";
+        document.getElementsByClassName("frm")[0].style.display = "none";
+
+        var http = new XMLHttpRequest();
+        http.onreadystatechange = function() {
+          if(http.readyState == 4 && http.status == 200) {
+            var resposta = http.responseText;
+            document.getElementsByClassName("resposta")[0].innerHTML = resposta + "<button class='btn filtro' type='button' onclick='voltar()'> Voltar a adicionar </button>";
+          } else {
+            document.getElementsByClassName("resposta")[0].innerHTML = "<p> Carregando </p>";
+          }
+        }
+        http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_livros/excluir_livro.php?titulo=" + titulo, true);
+        http.send();
+      }
+    }
+
+    function respondeChecked() {
+      var cod_book = document.querySelector("input[type='radio']:checked").value;
+      // Armazenando o id do livro no localStorage
+      localStorage.setItem("cod", cod_book);
+
+      if(document.querySelector(".resposta button.filtro")) {
+        if(!(document.querySelector(".resposta button.confirm"))) {
+          var text = document.createTextNode("Ver dados do livro"),
+              button = document.createElement("button");
+
+          // Criando o butao
+          button.setAttribute("class", "btn bt confirm");
+          button.appendChild(text);
+          document.getElementsByClassName("resposta")[0].appendChild(button);
+
+          button.addEventListener("click", mostrarDados);
+        }
+      }
+    }
+
+    // Função que faz requisição no banco de dados e mostra os dados do livro
+    function mostrarDados() {
+      var cod = localStorage.getItem("cod");
+
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+          var resposta = http.responseText;
+          document.getElementsByClassName("resposta")[0].innerHTML = resposta + "<button type='button' class='btn bt confirm' onclick='excluir()'> Confirmar exclusão do livro </button>";
+        } else {
+          document.getElementsByClassName("resposta")[0].innerHTML = "<p> Carregando... </p>";
+        }
+      }
+
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_livros/mostrarDados.php?query=" + cod, true);
+      http.send();
+    }
+
+    function excluir() {
+      var cod = localStorage.getItem("cod");
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+          var resposta = http.responseText;
+          document.getElementsByClassName("resposta")[0].innerHTML = resposta + "<button type='button' class='btn filtro' onclick='voltar()'> Voltar a pesquisa </button>";
+        } else {
+          document.getElementsByClassName("resposta")[0].innerHTML = "<p> Carregando... </p>";
+        }
+      }
+
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_livros/excluir_livro.php?cod_book=" + cod, true);
+      http.send();
+    }
+
+    function voltar() {
+      window.location.reload();
+    }
+  </script>
+</div>
+</body>
+</html>
