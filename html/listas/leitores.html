@@ -2,14 +2,15 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="../../css/style_form.css">
-		<title> Formulário pessoas inadimplentes </title>
+		<link rel="stylesheet" href="../../css/style_form.css" media="screen">
+		<link rel="stylesheet" href="../../css/print.css" media="print">
+		<title> Formulário dos mais leitores | Qg da Leitura </title>
 	</head>
 	<body>
 	<div class="interface">
 		<a class="btn bt-voltar" href="menu-listas.html"> Menu </a>
 
-	    <h1> Gerar lista de: </h1>
+	    <h1> Lista dos maiores leitores </h1>
 
 	    <div class="filtros">
 	        <button type="button" class="btn bt-esc filtro" onclick="muda(1)"> Alunos </button>
@@ -28,7 +29,7 @@
 					</div>
 					<div>
 						<label for="numero"> N° de registros </label>
-						<input type="number" id="numero" name="quantidade">
+						<input type="number" id="numero" name="quantidade" value="10">
 					</div>
           <button type="button" id="submit" class="btn confirm"> Enviar </button>
       </fieldset>
@@ -40,51 +41,61 @@
 	</div>
 	</div>
 	<script>
-	document.getElementsByClassName("form_lista")[0].style.display = "none";
-	function muda(x){
-			document.getElementsByClassName("form_lista")[0].style.display = "block";
-			document.getElementsByClassName("filtros")[0].style.display = "none";
-			if(x != 1){
-					document.getElementsByTagName("select")[0].setAttribute("name", "diasPessoa");
-					document.getElementsByTagName("label")[0].innerHTML = "Exibir os leitores no período de:";
-			}
-	}
-
-	function volta(){
-			document.getElementsByClassName("form_lista")[0].style.display = "none";
-			document.getElementsByClassName("filtros")[0].style.display = "flex";
-			document.getElementsByClassName("resposta")[0].style.display = "none";
-	}
-
-	var btn = document.getElementById("submit");
-
-	// Executando a requisição ajax
-	btn.addEventListener("click", function() {
-		// Recuperando os dados dos formulários
-		var escolha = document.getElementsByTagName("select")[0].getAttribute("name"),
-				select  = document.getElementsByTagName("select")[0].value,
-				quantidade = document.getElementById("numero").value,
-				div = document.getElementsByClassName("resposta")[0],
-				p = "<p> Carregando... </p>";
-
-		// Realizando a requisição ajax
-		var http = new XMLHttpRequest();
-
-		http.onreadystatechange = function() {
-			if (http.readyState == 4 && http.status == 200) {
-				var resposta = http.responseText;
-				div.style.display = "block";
-				div.innerHTML = resposta;
-			} else {
-				div.style.display = "block";
-				div.innerHTML = p;
-			}
+		document.getElementsByClassName("form_lista")[0].style.display = "none";
+		function muda(x){
+				document.getElementsByClassName("form_lista")[0].style.display = "block";
+				document.getElementsByClassName("filtros")[0].style.display = "none";
+				if(x != 1){
+						document.getElementsByTagName("select")[0].setAttribute("name", "diasPessoa");
+						document.getElementsByTagName("label")[0].innerHTML = "Exibir os leitores no período de:";
+				}
 		}
 
-		http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/lista/lista-leitores.php?" + escolha + "=" + select + "&quantidade=" + quantidade, true);
-		http.send(null);
+		function volta(){
+				document.getElementsByClassName("form_lista")[0].style.display = "none";
+				document.getElementsByClassName("filtros")[0].style.display = "flex";
+				document.getElementsByClassName("resposta")[0].style.display = "none";
+		}
 
-	});
+		var btn = document.getElementById("submit");
+
+		// Executando a requisição ajax
+		btn.addEventListener("click", function() {
+			document.getElementsByClassName("resposta")[0].style.display = "block";
+			document.getElementsByClassName("frm")[0].style.display = "none";
+
+			var butao1 = " <button class='btn bt confirm' type='button' onclick='window.print()'> Imprimir </button> ";
+			var butao2 = " <button class='btn filtro' type='button' onclick='voltar()'> Voltar a adicionar </button> ";
+
+			// Recuperando os dados dos formulários
+			var escolha = document.getElementsByTagName("select")[0].getAttribute("name"),
+					select  = document.getElementsByTagName("select")[0].value,
+					quantidade = document.getElementById("numero").value,
+					div = document.getElementsByClassName("resposta")[0],
+					p = "<p> Carregando... </p>";
+
+			// Realizando a requisição ajax
+			var http = new XMLHttpRequest();
+
+			http.onreadystatechange = function() {
+				if (http.readyState == 4 && http.status == 200) {
+					var resposta = http.responseText;
+					div.style.display = "block";
+					div.innerHTML = resposta + butao1 + butao2;
+				} else {
+					div.style.display = "block";
+					div.innerHTML = p;
+				}
+			}
+
+			http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/lista/lista-leitores.php?" + escolha + "=" + select + "&quantidade=" + quantidade, true);
+			http.send(null);
+
+		});
+
+		function voltar() {
+			window.location.reload();
+		}
     </script>
 	</body>
 </html>
