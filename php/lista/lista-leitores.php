@@ -30,8 +30,15 @@
 
         //Caso a query retorne registros
         if(mysqli_num_rows($sel) != 0){
-						echo "<p> Exibindo os mais leitores no período de $per";
+						echo "<p> Exibindo os mais leitores no período de $per </p>";
             echo "<table>";
+            echo "<th>";
+              echo "<tr>";
+                echo "<td> Nome </td>";
+                echo "<td> Turma </td>";
+                echo "<td> Livros pegos </td>";
+              echo "</tr>";
+            echo "</th>";
             $data = mysqli_fetch_all($sel, MYSQLI_ASSOC);
             for ($x = 0; $x < count($data); $x++){
                 echo "<tr>";
@@ -41,7 +48,7 @@
                 echo "</tr>";
             }
             echo "</table>";
-						echo "<p> Data da lista: " . date("d/m/Y");
+						echo "<p> Data da lista: " . date("d/m/Y") . "</p>";
         }else{
             //Caso não retorne
             echo "<p> Não há alunos leitores no período indicado </p>";
@@ -64,8 +71,14 @@
         //Caso a query retorne registros
         if(mysqli_num_rows($sel) != 0){
             $data = mysqli_fetch_all($sel, MYSQLI_ASSOC);
-						echo "<p> Exibindo os mais leitores no período de $per";
+						echo "<p> Exibindo os mais leitores no período de $per </p>";
             echo "<table>";
+            echo "<th>";
+              echo "<tr>";
+                echo "<td> Nome </td>";
+                echo "<td> Data </td>";
+              echo "</tr>";
+            echo "</th>";
             for ($x = 0; $x < count($data); $x++){
                 echo "<tr>";
                     echo "<td>" . $data[$x]["nome"] . "</td>";
@@ -73,7 +86,7 @@
                 echo "</tr>";
             }
             echo "</table>";
-						echo "<p> Data da lista: " . date("d/m/Y");
+						echo "<p> Data da lista: " . date("d/m/Y") . "</p>";
         }else{
             //Caso não retorne
             echo "<p> Não há pessoas leitores no período indicado </p>";
