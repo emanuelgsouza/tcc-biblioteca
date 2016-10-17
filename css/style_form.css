@@ -4,10 +4,6 @@
 
 @charset "utf-8";
 
-body {
-  overflow: hidden;
-}
-
 h1 {
   margin-top: 2em;
 }
@@ -113,11 +109,16 @@ legend{
 }
 
 /* Formantando os butoes para os formulários de pesquisa e registrar emprestimo */
-.bt {
+.bt,
+.filtro {
 	margin: 0;
   padding: 1em;
   font-size: 1.6em;
   flex-grow: 1;
+}
+
+.filtro {
+  margin: 1em auto;
 }
 
 /* Estilizando o formulários de pesquisa */
@@ -141,11 +142,16 @@ fieldset#didatico, fieldset#escola, fieldset#genero, fieldset#autor, fieldset#li
 /* Formatando a resposta dos formulários de cadastro */
 .resposta {
   width: 50vw;
-  margin: -20em auto 0 auto;
+  margin: 0 auto;
   padding: 2em;
-  transform: translateY(300%);
-  transition: transform 1s;
-  z-index: 2;
+  display: none;
+}
+
+.interface-resposta {
+  width: 90%;
+  margin: 0 auto;
+  padding: 1em;
+  display: none;
 }
 
 .resposta p {
@@ -156,4 +162,84 @@ fieldset#didatico, fieldset#escola, fieldset#genero, fieldset#autor, fieldset#li
 .resposta button {
   display: block;
   margin: 2em auto;
+}
+
+.resposta input[type="radio"],
+.interface-resposta input[type="radio"] {
+  display: none;
+}
+
+.resposta label.escolha,
+.interface-resposta label.escolha {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  padding: .2em;
+  border: 2px solid #CCC;
+  text-align: center;
+  cursor: pointer;
+}
+
+.resposta input[type="radio"]:checked + label.escolha,
+.interface-resposta input[type="radio"]:checked + label.escolha {
+  border: 2px solid #00ABF9;
+}
+
+.resposta input[type="radio"]:checked + label.escolha:after,
+.interface-resposta input[type="radio"]:checked + label.escolha:after {
+  content: "";
+  background: url("../img/check.png");
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+}
+
+#resultstwo,
+#resultsthree {
+  text-align: center;
+  margin: 0 1em;
+  padding: 1em;
+}
+
+.interface-resposta p,
+.interface-resposta label,
+.interface-resposta input {
+  font-size: 1.6em;
+}
+
+#resultstwo {
+  width: 30%;
+  float: left;
+}
+
+#resultsthree {
+  width: 65%;
+  float: right;
+}
+
+#resultsthree input[type="text"],
+#resultsthree input[type="date"] {
+  display: block;
+  margin: 1em auto;
+}
+
+table {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+table th {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+table td {
+  font-size: 1.6em;
+  border: 1px solid #FFF;
+  padding: .5em;
 }

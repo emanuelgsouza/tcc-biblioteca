@@ -9,7 +9,8 @@
 .frm label,
 h1,
 legend,
-.resposta {
+.resposta,
+.interface-resposta {
   color: #FFF;
 }
 
@@ -33,7 +34,9 @@ input:invalid {
 
 /* Cores de fundo */
 fieldset,
-.resposta {
+.resposta,
+#resultstwo,
+#resultsthree {
   background-color: rgba(0, 0, 0, .6);
   border: 2px solid #A17D41;
 }
