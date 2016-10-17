@@ -78,4 +78,147 @@ function retornaIdIdreg($string){
     $id = substr($string, 0, $pos);
     return array($id, $idreg);
 }
+
+// Função que retorna o genero literário a partir da sigla
+function retornaGenero($string) {
+	switch ($string) {
+		case 'a':
+			return "Aventura";
+			break;
+
+		case 'rm':
+			return "Romance";
+			break;
+
+		case 'f':
+			return "Ficção";
+			break;
+
+		case 'tr':
+			return "Terror";
+			break;
+
+		case 's':
+			return "Suspense";
+			break;
+
+		case 'rp':
+			return "Romance Policial";
+			break;
+
+		case 'p':
+			return "Poesia";
+			break;
+
+		case 't':
+			return "Teatro";
+			break;
+
+		default:
+			return "Nenhum";
+			break;
+	}
+}
+
+// Função que retorna o escola literária a partir da sigla
+function retornaEscola($string) {
+	switch ($string) {
+		case 'c':
+			return "Clássico";
+			break;
+
+		case 'h':
+			return "Humanismo";
+			break;
+
+		case 'li':
+			return "Literatura de Informação";
+			break;
+
+		case 't':
+			return "Trovadorismo";
+			break;
+
+		case 'a':
+			return "Arcadismo";
+			break;
+
+		case 'b':
+			return "Barroco";
+			break;
+
+		case 'rm':
+			return "Romantismo";
+			break;
+
+		case 'r':
+			return "Realismo";
+			break;
+
+		case 's':
+			return "Simbolismo";
+			break;
+
+		case 'pem':
+			return "Pré-Modernismo";
+			break;
+
+		case 'm':
+			return "Modernismo";
+			break;
+
+		case 'pom':
+			return "Pós-Modernismo";
+			break;
+
+		default:
+			return "Nenhum";
+			break;
+	}
+}
+
+// Função que retorna categoria didática a partir da sigla
+function retornaDidatico($string) {
+	switch ($string) {
+		case 'fs':
+			return "Filosofia e Sociologia";
+			break;
+
+		case 'mf':
+			return "Matemática e Física";
+			break;
+
+		case 'pl':
+			return "Português e Literatura";
+			break;
+
+		case 'b':
+			return "Biologia e Química";
+			break;
+
+		case 'h':
+			return "História";
+			break;
+
+		case 'g':
+			return "Geografia";
+			break;
+
+		case 'p':
+			return "Pedagógicos";
+			break;
+
+		case 'e':
+			return "Enciclopédia";
+			break;
+
+		case 'd':
+			return "Dicionários";
+			break;
+			
+		default:
+			return "Nenhum";
+			break;
+	}
+}
 ?>
