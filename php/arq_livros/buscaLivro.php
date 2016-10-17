@@ -19,7 +19,7 @@
               $valor = $data[$x]['titulo'];
               $cod = $data[$x]['cod_livro'];
               $estoque = $data[$x]['estoque'];
-              echo "<input type='radio' name='escolha' value='$cod' id='$cod' onchange='respondeEmprestimo(this.value)'> <label for='$cod'> $valor | $estoque </label>";
+              echo "<input type='radio' name='escolha' value='$cod' id='$cod' onchange='respondeEmprestimo(this.value)'> <label for='$cod' class='escolha'> $valor | Estoque: $estoque </label>";
               echo "<div id='mostrarDadosLivro'></div>";
           }
       }else{
