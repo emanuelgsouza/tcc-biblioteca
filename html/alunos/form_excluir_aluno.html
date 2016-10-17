@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <title> Excluindo Alunos do Cadastro | Qg da Leitura </title>
+  <link rel="stylesheet" href="../../css/style_form.css">
+</head>
+<body>
+<div class="interface">
+  <a class="btn bt-voltar" href="menu_aluno.html"> Menu </a>
+
+  <h1> Excluir aluno do cadastro </h1>
+
+  <form class="frm frm-medium">
+    <fieldset>
+      <legend> Exclusão do aluno</legend>
+      <label> Informe o nome do aluno para o sistema </label>
+      <div>
+         <input type="text" placeholder="Digite o nome do aluno para pesquisa" name="nome" maxlength="15" size="35" autofocus id="query">
+         <button type="button" class="btn bt confirm" onclick="buscarAluno()"> Pesquisar </button>
+      </div>
+    </fieldset>
+  </form>
+
+  <div class="resposta"></div>
+  <script>
+  var butao1 = " <button class='btn bt confirm' type='button' onclick='excluir()'> Confirmar a exclusão do aluno </button> ";
+  var butao2 = " <button class='btn filtro' type='button' onclick='voltar()'> Voltar a pesquisa </button> ";
+
+  // Função que não deixa enviar nada caso o usuário digitou alguma coisa
+  function verificaCampo(campo) {
+    if(document.getElementById(campo).value == "") {
+      alert("Digite alguma entrada válida, não deixe o campo em branco");
+      document.getElementById(campo).focus();
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // Função que retorna o resultado da pesquisa
+  function buscarAluno(x) {
+    var result = verificaCampo("query");
+
+    if(result) {
+      // Fazendo surgir a tela de resposta
+      document.getElementsByClassName("resposta")[0].style.display = "block";
+      document.getElementsByClassName("frm")[0].style.display = "none";
+
+      var pesquisa = document.getElementById("query").value;
+
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+          var resposta = http.responseText;
+          document.getElementsByClassName("resposta")[0].innerHTML = resposta + butao2;
+        } else {
+          document.getElementsByClassName("resposta")[0].innerHTML = "<p> Carregando... </p>";
+        }
+      }
+
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_alunos/pesquisa_aluno.php?nome=" + pesquisa, true);
+      http.send();
+    }
+  }
+
+  // Função que mostra o butao para mostrar os dados do aluno
+  function respondeChecked() {
+    var id = document.querySelector("input[type='radio']:checked").value;
+    // Armazenando o id do aluno no localStorage
+    localStorage.setItem("id", id);
+
+    if(document.querySelector(".resposta button.filtro")) {
+      if(!(document.querySelector(".resposta button.confirm"))) {
+        var text = document.createTextNode("Ver dados do aluno"),
+            button = document.createElement("button");
+
+        // Criando o butao
+        button.setAttribute("class", "btn bt confirm");
+        button.appendChild(text);
+        document.getElementsByClassName("resposta")[0].appendChild(button);
+
+        // Chamando a função que irá fazer a requisição ajax para saber se o aluno está ou não com livro emprestado
+        button.addEventListener("click", mostrarDados);
+      }
+    }
+  }
+
+  // Função que faz requisição no banco de dados e mostra os dados do aluno
+  function mostrarDados() {
+    var idaluno = localStorage.getItem("id");
+
+    var http = new XMLHttpRequest();
+
+    http.onreadystatechange = function() {
+      if (http.readyState == 4 && http.status == 200) {
+        var resposta = http.responseText;
+        document.getElementsByClassName("resposta")[0].innerHTML = resposta + butao1 + butao2;
+      } else {
+        document.getElementsByClassName("resposta")[0].innerHTML = "<p> Carregando... </p>";
+      }
+    }
+
+    http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_alunos/excluir_registro.php?idaluno=" + idaluno, true);
+    http.send();
+  }
+
+  // Função que exclui os dados dos alunos
+  function excluir() {
+    var idaluno = localStorage.getItem("id");
+
+    var http = new XMLHttpRequest();
+
+    http.onreadystatechange = function() {
+      if (http.readyState == 4 && http.status == 200) {
+        var resposta = http.responseText;
+        document.getElementsByClassName("resposta")[0].innerHTML = resposta + butao2;
+      } else {
+        document.getElementsByClassName("resposta")[0].innerHTML = "<p> Carregando... </p>";
+      }
+    }
+
+    http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_alunos/excluir_registro.php?idAluno=" + idaluno, true);
+    http.send();
+  }
+
+  function voltar() {
+    window.location.reload();
+  }
+  </script>
+</div>
+</body>
+</html>
