@@ -17,6 +17,11 @@
 	width: 100%;
 }
 
+/* Formatando o menu da tela home */
+.menu {
+  margin-top: 2em;
+}
+
 /* Configuração basica */
 .btn-menu {
   margin: auto 1em;
