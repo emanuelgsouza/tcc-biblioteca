@@ -14,27 +14,27 @@
         <legend> Informações pessoais </legend>
         <div>
           <label>Nome: </label>
-          <input type="text" name="nome" placeholder="Digite o nome do aluno" maxlength="35" autofocus id="nome" required>
+          <input type="text" name="nome" placeholder="Digite o nome do aluno" maxlength="35" autofocus id="nome" >
         </div>
         <div>
           <label> Rua: </label>
-          <input type="text" name="rua" id="rua" placeholder="Rua nomedarua" required maxlength="30">
+          <input type="text" name="rua" id="rua" placeholder="Rua nomedarua" maxlength="30">
         </div>
         <div>
           <label> Complemento: </label>
-          <input type="text" name="complemento" id="complemento" placeholder="Lote 00 Quadra 00" required maxlength="20">
+          <input type="text" name="complemento" id="complemento" placeholder="Lote 00 Quadra 00" maxlength="20">
         </div>
         <div>
           <label> Bairro: </label>
-          <input type="text" name="bairro" id="bairro" placeholder="Digite o Bairro" required maxlength="15">
+          <input type="text" name="bairro" id="bairro" placeholder="Digite o Bairro" maxlength="15">
         </div>
           <div>
               <label> Telefone: </label>
-              <input type="tel" name="telefone" id="telefone" placeholder="12345678" pattern="\d\d\d\d\d\d\d\d">
+              <input type="tel" name="telefone" id="telefone" placeholder="12345678"  pattern="\d\d\d\d\d\d\d\d">
           </div>
           <div>
               <label> Celular: </label>
-              <input type="tel" name="celular" id="celular" placeholder="912345678" pattern="9\d\d\d\d\d\d\d\d">
+              <input type="tel" name="celular" id="celular" placeholder="912345678"  pattern="9\d\d\d\d\d\d\d\d">
           </div>
           <div class="div-butoes">
             <button type="button" class="btn confirm" id="btn-confirm"> Confirmar </button>
@@ -43,12 +43,36 @@
       </fieldset>
   </form>
   <div class="resposta">
-    <p id="resposta">  </p>
+    <p id="resposta"></p>
+    <button class="btn filtro" type="button" onclick="voltarAdicionar()"> Voltar a adicionar </button>
   </div>
 <script>
   "use strict";
   let btn_conf = document.getElementById("btn-confirm"),
       btn_reset = document.getElementById("btn-reset");
+
+  // Validando os campos
+  function validar(nm, tel, cel) {
+    if(nm == "") {
+      alert("O campo nome está em branco, digite alguma coisa");
+      document.getElementById("nome").focus();
+      return false;
+    } else if (/[^\D]/.test(nm)) {
+      alert("O campo nome está em tem letras e números, digite um nome válido");
+      document.getElementById("nome").focus();
+      return false;
+    } else if (tel.length != 8) {
+      alert("Digite um número de telefone de 8 digitos válido");
+      document.getElementById("telefone").focus();
+      return false;
+    } else if (tel.length != 9) {
+      alert("Digite um número de celular de 9 digitos válidos");
+      document.getElementById("celular").focus();
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   btn_conf.addEventListener("click", function() {
     // Recuperando os dados dos formulários
@@ -59,34 +83,52 @@
         telefone = document.getElementById("telefone").value,
         celular = document.getElementById("celular").value;
 
-    // Realizando a requisição ajax
-    var http = new XMLHttpRequest();
+    var result = validar(nome, telefone, celular);
 
-    http.onreadystatechange = function() {
-      console.log("Cheguei aqui");
-      if (http.readyState == 4 && http.status == 200) {
-        var resposta = http.responseText;
-        document.getElementsByClassName("resposta")[0].style.display = "block";
-        document.getElementById("resposta").innerHTML = resposta;
-      } else {
-        document.getElementsByClassName("resposta")[0].style.display = "block";
-        document.getElementById("resposta").innerHTML = "Carregando";
+    if (result) {
+      // Fazendo surgir a tela de resposta
+      document.getElementsByClassName("resposta")[0].style.display = "block";
+      document.getElementsByClassName("frm")[0].style.display = "none";
+
+      // Realizando a requisição ajax
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function() {
+        console.log("Cheguei aqui");
+        if (http.readyState == 4 && http.status == 200) {
+          var resposta = http.responseText;
+          document.getElementsByClassName("resposta")[0].style.display = "block";
+          document.getElementById("resposta").innerHTML = resposta;
+        } else {
+          document.getElementsByClassName("resposta")[0].style.display = "block";
+          document.getElementById("resposta").innerHTML = "Carregando";
+        }
       }
+
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_pessoas/adicionar_pessoa.php?nome=" + nome + "&rua=" + rua + "&complemento=" + complemento + "&bairro=" + bairro + "&telefone=" + telefone + "&celular=" + celular, true);
+      http.send(null);
     }
-
-    http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_pessoas/adicionar_pessoa.php?nome=" + nome + "&rua=" + rua + "&complemento=" + complemento + "&bairro=" + bairro + "&telefone=" + telefone + "&celular=" + celular, true);
-    http.send(null);
   });
 
-  btn_reset.addEventListener("click", function() {
+  btn_reset.addEventListener("click", resetar);
+
+  function resetar() {
     // "Limpando" os campos
-    document.getElementById("nome").value = "",
-    document.getElementById("rua").value = "",
-    document.getElementById("complemento").value = "",
-    document.getElementById("bairro").value = "",
-    document.getElementById("telefone").value = "",
+    document.getElementById("nome").value = "";
+    document.getElementById("nome").focus();
+    document.getElementById("rua").value = "";
+    document.getElementById("complemento").value = "";
+    document.getElementById("bairro").value = "";
+    document.getElementById("telefone").value = "";
     document.getElementById("celular").value = "";
-  });
+  };
+
+  function voltarAdicionar() {
+    // Voltando com o frm
+    document.getElementsByClassName("resposta")[0].style.display = "none";
+    document.getElementsByClassName("frm")[0].style.display = "block";
+    resetar();
+  }
 </script>
 </div>
 </body>

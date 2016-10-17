@@ -33,7 +33,7 @@ if(!($c >= 1)){
         die(mysqli_error($con));
     }
 }else{ //Caso a pessoa já esteja registrado, mensagem de erro
-        echo "O registro de $nome já existe no banco de dados de nao alunos";
+        echo "O registro de <span class='txt-alert'>$nome</span> já existe no banco de dados de nao alunos";
 }
 // Fechando a conexão
 fechaDB($con);
