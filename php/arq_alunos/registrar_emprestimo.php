@@ -9,15 +9,8 @@ $con = conectaDB();
 if($con){}else {echo "<p> Não houve conexão <br> </p>";	die(mysqli_error($con));}
 
 // Pesquisando o livro de fato
-if(isset($_GET["idAluno"])){
-    $idAluno = $_GET["idAluno"];
-    $codBook = $_GET["codBook"];
-
-    // Mostrando para qual aluno está sendo emprestado
-    $q = "SELECT aluno, turma FROM alunos_matriculados WHERE idaluno lIKE '$idAluno'";
-    $sel = executaQuery($con, $q);
-    $data = mysqli_fetch_all($sel, MYSQLI_ASSOC);
-    echo "<p> Registrando empréstimo do aluno(a) " . $data[0]["aluno"] . " da turma " . $data[0]["turma"] . "</p>";
+if(isset($_GET["query"])){
+    $codBook = $_GET["query"];
 
     // Mostrando o livro pesquisado
     $q    = "SELECT idlivro,titulo, autor, estoque FROM livros WHERE cod_livro = $codBook";
@@ -25,13 +18,15 @@ if(isset($_GET["idAluno"])){
     if(mysqli_num_rows($sel) != 0){ // Se o livro existe
       $data = mysqli_fetch_all($sel, MYSQLI_ASSOC);
       $estoque = $data[0]["estoque"];
-      if($estoque != 0){ // Conferindo se o livro está no estoque
-          $idlivro = $data[0]["idlivro"];
-          $titulo  = $data[0]["titulo"];
-          echo "<p> O resultado da busca foi </p>";
-          echo "<p> Título: " . $data[0]["titulo"] . " </p>";
-          echo "<p> Autor: " . $data[0]["autor"] . " </p>";
-          echo "<button type='button' name='escolha' class='bt confirm' onclick='confirmar(1)'> Solicitar empréstimo </button>";
+      if($estoque > 0){
+        // Conferindo se o livro está no estoque
+        $idlivro = $data[0]["idlivro"];
+        $titulo  = $data[0]["titulo"];
+        echo "<p> O resultado da busca foi </p>";
+        echo "<p> Título: " . $data[0]["titulo"] . " </p>";
+        echo "<p> Autor: " . $data[0]["autor"] . " </p>";
+        echo "<input type='date' id='date'>";
+        echo "<button type='button' name='escolha' class='btn bt confirm' onclick='confirmarEmprestimo()'> Solicitar empréstimo </button>";
       }else{
           echo "<p> O livro não pode ser emprestado porque não há mais em estoque";
       }

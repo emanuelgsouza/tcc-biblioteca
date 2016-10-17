@@ -27,7 +27,7 @@ if(isset($_GET["idaluno"])){
         echo "<p> Data: " . $dia . " </p>";
         echo "<p> Título: " . $data[0]["titulo"] . " </p>";
         echo "<p> Autor: " . $data[0]["autor"] . " </p>";
-        echo "<button type='button' name='confirm' class='bt confirm' onclick='confirmaDevolucao()'> Confirmar Devolução </button>";
+        echo "<button type='button' name='confirm' class='btn bt confirm' onclick='confirmaDevolucao()'> Confirmar Devolução </button>";
         echo "<div id='mostrarDadosLivro'></div>";
         }else{}
 }else{}

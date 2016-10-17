@@ -20,7 +20,7 @@ if(isset($_GET["nome"])){
         for($x = 0; $x < count($data); $x++){
             $aluno = $data[$x]["idaluno"];
             $valor = $data[$x]["aluno"] . " | " . $data[$x]["turma"];
-            echo "<input type='radio' name='escolha' value='$aluno' id='$aluno' onchange='respondeChecked()'> <label for='$aluno'> $valor </label> <br>";
+            echo "<input type='radio' name='escolha' value='$aluno' id='$aluno' onchange='respondeChecked()'> <label for='$aluno' class='escolha'> $valor </label> <br>";
         }
     }else{echo "<p> Este nome não está registrado no banco de dados </p>";}
 }
@@ -32,6 +32,7 @@ if(isset($_GET["idaluno"])){
     $sel = executaQuery($con, $q);
     $c   = mysqli_num_rows($sel);
     if($c != 0){
+        echo "<div id='resultstwo'>";
         echo "<p> Mostrando os dados do aluno: </p>";
         $data = mysqli_fetch_all($sel, MYSQLI_ASSOC);
         for($x = 0; $x < count($data); $x++){
@@ -40,6 +41,8 @@ if(isset($_GET["idaluno"])){
               echo "<p> Nome: $aluno </p>";
               echo "<p> Turma: $turma </p>";
         }
+        echo "<button class='btn bt filtro' type='button' onclick='voltarPesquisa()'> Voltar ao formulario de adicionar </button>";
+        echo "</div>";
     }
 
     // Fazendo a busca no banco de dados para registrar emprestimo ou devolução
@@ -49,22 +52,24 @@ if(isset($_GET["idaluno"])){
     $situacao = $data[0]["situacao"];
     $idreg = $data[0]["MAX(r.idregistro)"];
     $idlivro = $data[0]["idlivro"];
+    echo "<div id='resultsthree'>";
     if($situacao === "e"){
         echo "<p> Há um livro emprestado </p>";
         echo "<p> Título: " . $data[0]["titulo"] . " </p>";
         echo "<p> Autor: " . $data[0]["autor"] . " </p>";
-        echo "<button type='button' class='bt confirm' data-idlivro='$idlivro' data-idreg='$idreg' id='bt-reg' onclick='mostrarEmprestimo()'> Mostrar dados do emprestimo </button>";
+        echo "<button type='button' class='btn bt confirm' data-idlivro='$idlivro' data-idreg='$idreg' id='bt-reg' onclick='mostrarEmprestimo()'> Mostrar dados do emprestimo </button>";
         echo "<div id='mostrarDadosLivro'></div>";
     }else{
         // Caso não tenha algum livro emprestado
         echo "<div>";
         echo "<p> O aluno não possui livro emprestado </p>";
-        echo "<label for='codbook'> Digite o nome do livro para registrar empréstimo </label>";
-        echo "<input type='text' id='codbook' onkeyup='buscaLivro(this.value)'>";
+        echo "<label for='titulo'> Digite o nome do livro para registrar empréstimo </label>";
+        echo "<input type='text' id='titulo' autofocus>";
+        echo "<button class='btn bt filtro' onclick='buscaLivro()'> Pesquisar </button>";
         echo "<div id='recebeBusca'></div>";
-        // echo "<button type='button' class='bt confirm' data-estado='devolver' data-id='$id' id='bt-reg' onclick='registrar(2)'> Registrar empréstimo </button>";
         echo "</div>";
     }
+    echo "</div>";
 }
 
 // Fechando a conexão

@@ -11,7 +11,7 @@ if(!$con){echo "<p> Não houve conexão <br> </p>";	die(mysqli_error($con));}
 if(isset($_GET["idaluno"])){
     $aluno = $_GET["idaluno"];
     $livro = $_GET["cod_book"];
-    $date = date("20y-m-d");
+    $date = $_GET["data"];
 
     // Pegando o nome do aluno
     $q = "SELECT aluno, turma FROM alunos_matriculados WHERE idaluno = $aluno";
