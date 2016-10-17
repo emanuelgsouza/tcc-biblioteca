@@ -15,15 +15,15 @@
     	<legend> Informações do livro </legend>
       <div class="col-large">
           <label> Título </label>
-          <input type="text" placeholder="Digite o título do livro" name="titulo" maxlength="35" autofocus id="titulo" required>
+          <input type="text" placeholder="Digite o título do livro" name="titulo" maxlength="35" autofocus id="titulo" >
       </div>
       <div class="col-large">
           <label> Autor </label>
-          <input type="text" placeholder="Digite o autor do livro" name="autor" maxlength="35" id="autor" required>
+          <input type="text" placeholder="Digite o autor do livro" name="autor" maxlength="35" id="autor" >
       </div>
       <div class="col-large">
           <label> Editora </label>
-          <input type="text" placeholder="Digite a editora do livro" name="editora" maxlength="35" id="editora" required>
+          <input type="text" placeholder="Digite a editora do livro" name="editora" maxlength="35" id="editora" >
       </div>
       <div class="col-tres">
         <div>
@@ -36,7 +36,7 @@
         </div>
         <div>
           <label> Estoque </label>
-          <input type="number" name="estoque" min="0" placeholder="Estoque" required id="estoque">
+          <input type="number" name="estoque" min="0" placeholder="Estoque" id="estoque">
         </div>
       </div>
       <div class="div-butoes">
@@ -54,6 +54,24 @@
     let btn_conf = document.getElementById("btn-confirm"),
         btn_reset = document.getElementById("btn-reset");
 
+    function validar(tt, aut, edit) {
+      if(tt == "") {
+        alert("O campo título está em branco, digite alguma coisa");
+        document.getElementById("titulo").focus();
+        return false;
+      } else if (aut == "") {
+        alert("O campo autor está em branco");
+        document.getElementById("autor").focus();
+        return false;
+      } else if (edit == "") {
+        alert("O campo editora está em branco");
+        document.getElementById("editora").focus();
+        return false;
+      } else {
+        return true;
+      }
+    }
+
     btn_conf.addEventListener("click", function() {
       // Recuperando os dados dos formulários
       var titulo  = document.getElementById("titulo").value,
@@ -63,39 +81,43 @@
           livro = document.getElementById("livro").value,
           estoque = document.getElementById("estoque").value;
 
-      // Fazendo surgir a tela de resposta
-      document.getElementsByClassName("resposta")[0].style.transform = "translateY(0)";
-      document.getElementsByClassName("frm")[0].style.transition = "transform 1s";
-      document.getElementsByClassName("frm")[0].style.transform = "translateY(-200%)";
+      var result = validar(titulo, autor, editora);
 
-      // Realizando a requisição ajax
-      var http = new XMLHttpRequest();
+      if (result) {
+        // Fazendo surgir a tela de resposta
+        document.getElementsByClassName("resposta")[0].style.display = "block";
+        document.getElementsByClassName("frm")[0].style.display = "none";
 
-      http.onreadystatechange = function() {
-        if (http.readyState == 4 && http.status == 200) {
-          var resposta = http.responseText;
-          document.getElementsByClassName("resposta")[0].style.display = "block";
-          document.getElementById("resposta").innerHTML = resposta;
-        } else {
-          document.getElementsByClassName("resposta")[0].style.display = "block";
-          document.getElementById("resposta").innerHTML = "Carregando";
+        // Realizando a requisição ajax
+        var http = new XMLHttpRequest();
+
+        http.onreadystatechange = function() {
+          if (http.readyState == 4 && http.status == 200) {
+            var resposta = http.responseText;
+            document.getElementsByClassName("resposta")[0].style.display = "block";
+            document.getElementById("resposta").innerHTML = resposta;
+          } else {
+            document.getElementsByClassName("resposta")[0].style.display = "block";
+            document.getElementById("resposta").innerHTML = "Carregando";
+          }
         }
+
+        http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_morto/adicionar_livro.php?titulo=" + titulo + "&autor=" + autor + "&editora=" + editora + "&gaveta=" + gaveta + "&livro=" + livro + "&estoque=" + estoque, true);
+        http.send(null);
       }
 
-      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_morto/adicionar_livro.php?titulo=" + titulo + "&autor=" + autor + "&editora=" + editora + "&gaveta=" + gaveta + "&livro=" + livro + "&estoque=" + estoque, true);
-      http.send(null);
-
-      });
+    });
 
     btn_reset.addEventListener("click", resetar);
 
     function resetar() {
       // "Limpando" os campos
-      document.getElementById("titulo").value = "",
-      document.getElementById("autor").value = "",
-      document.getElementById("editora").value = "",
-      document.getElementById("gaveta").value = "",
-      document.getElementById("livro").value = "",
+      document.getElementById("titulo").value = "";
+      document.getElementById("titulo").focus();
+      document.getElementById("autor").value = "";
+      document.getElementById("editora").value = "";
+      document.getElementById("gaveta").value = "";
+      document.getElementById("livro").value = "";
       document.getElementById("estoque").value = "";
       document.getElementsByClassName("resposta")[0].style.display = "none";
       document.getElementById("resposta").innerHTML = "";
@@ -103,9 +125,8 @@
 
     function voltarAdicionar() {
       // Voltando com o frm
-      document.getElementsByClassName("resposta")[0].style.transform = "translateY(300%)";
-      document.getElementsByClassName("frm")[0].style.transition = "transform 1s";
-      document.getElementsByClassName("frm")[0].style.transform = "translateY(0)";
+      document.getElementsByClassName("resposta")[0].style.display = "none";
+      document.getElementsByClassName("frm")[0].style.display = "block";
       resetar();
     }
   </script>
