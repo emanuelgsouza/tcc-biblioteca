@@ -11,7 +11,7 @@ if($con){}else {echo "<p> Não houve conexão <br> </p>";	die(mysqli_error($con)
 if(isset($_GET["idnaluno"])){
     $pessoa = $_GET["idnaluno"];
     $livro = $_GET["cod_book"];
-    $date = date("20y-m-d");
+    $date = $_GET["data"];
 
     // Pegando o nome da pessoa
     $q = "SELECT nome FROM naoalunos WHERE idnaluno = $pessoa";
@@ -33,7 +33,7 @@ if(isset($_GET["idnaluno"])){
     $sel = executaQuery($con, $q);
     if($sel) {
       // Mostrando que foi registrado
-      echo "<p> Foi registrado o empréstimo do livro $titulo a pessoa $nome </p>";
+      echo "<p> Foi registrado o empréstimo do livro <span class='txt-confirm'>$titulo</span> a pessoa <span class='txt-confirm'>$nome</span> </p>";
     } else {
       echo "<p> Não houve o registro do empréstimo do livro </p>";
     }
@@ -46,12 +46,12 @@ if(isset($_GET["idnaluno"])){
     $est = $data[0]["estoque"];
 
     // Diminuindo o estoque
-    $q = "UPDATE livros SET estoque = $est-1 WHERE idlivro = $livro";
+    $q = "UPDATE livros SET estoque = $est-1 WHERE idlivro = $idlivro";
     $sel = executaQuery($con, $q);
     if(!$sel){die(mysqli_error($con));}
 
     // Colocando o registro na tabela de registro de livros
-    $q = "INSERT INTO reglivros (idreg, idlivro, data, situacao) VALUES (DEFAULT, '$livro', '$date', 'e')";
+    $q = "INSERT INTO reglivros (idreg, idlivro, data, situacao) VALUES (DEFAULT, '$idlivro', '$date', 'e')";
     $sel = executaQuery($con, $q);
     if(!$sel){die(mysqli_error($con));}
 }
