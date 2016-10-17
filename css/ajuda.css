@@ -1,0 +1,30 @@
+@charset: "UTF-8";
+
+@import url("geral.css");
+@import url("color.css");
+
+.interface > p, ul {
+  width: 50%;
+  margin: .5em auto;
+  font-size: 1.6em;
+  padding: 1em;
+  background-color: rgba(0, 0, 0, .8);
+  color: #FFF;
+}
+
+ul {
+  list-style: none;
+}
+
+ul p {
+  text-align: justify;
+  text-indent: 1em;
+}
+
+li::first-line {color: #0F0;}
+
+a {
+  color: #DDEB43;
+}
+
+p {text-align: center;}
