@@ -20,7 +20,7 @@ if(isset($_GET["titulo"])){
     for($x = 0; $x < count($data); $x++){
       $valor = $data[0]['titulo'] . " de " . $data[0]['autor'];
       $idlivro = $data[0]['idlivro_arq'];
-      echo "<input type='radio' name='escolha' value='$idlivro' id='$idlivro' onchange='respondeChecked()'> <label for='$idlivro'> $valor </label> <br>";
+      echo "<input type='radio' name='escolha' value='$idlivro' id='$idlivro' onchange='respondeChecked()'> <label for='$idlivro' class='escolha'> $valor </label> <br>";
     }
   } else {
     echo "<p> Este livro não está registrado no banco de dados!</p>";
@@ -32,19 +32,16 @@ if(isset($_GET["titulo"])){
   $sel = executaQuery($con, $q);
   $c   = mysqli_num_rows($sel);
   if($c != 0){
-    echo "<p> O(s) livro(s) de $autor são: </p>";
+    echo "<p> O(s) livro(s) de <span class='txt-confirm'>$autor</span> são: </p>";
     $data = mysqli_fetch_all($sel, MYSQLI_ASSOC);
-    echo "<table>";
-    echo "<th> Título </th>";
-    echo "<th> Cod_livro</th>";
     for($x = 0; $x < count($data); $x++){
         $valor = $data[$x]['titulo'];
-        echo "<tr> <td> $valor </td> </tr>";
+        echo "<p> $valor </p>";
     }
-    echo "</table>";
-    echo "<button type='button' onclick='window.print()' class='bt confirm'> Gerar Lista </button>";
+    echo "<button class='btn bt confirm' type='button' onclick='window.print()'> Imprimir </button>";
+    echo "<button class='btn bt filtro' type='button' onclick='voltarAdicionar()'> Voltar a adicionar </button>";
   } else {
-    echo "<p> O autor $autor não está registrado no banco de dados </p>";
+    echo "<p> O autor <span class='txt-alert'>$autor</span> não está registrado no banco de dados </p>";
   }
 }
 // Fechando a conexão
