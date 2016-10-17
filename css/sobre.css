@@ -1,0 +1,34 @@
+@charset: "UTF-8";
+
+@import url("geral.css");
+@import url("color.css");
+
+figure {
+  display: block;
+  width: 30%;
+  margin: 0 auto;
+}
+
+figure img {max-width: 100%;}
+
+figure.emanuel {
+  width: 20%;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+h2 {
+  font-size: 2em;
+  text-align: center;
+}
+
+p, h2 {color: #FFF;}
+
+p {
+  width: 50%;
+  margin: 1em auto;
+  text-align: center;
+  font-size: 1.6em;
+  padding: 1em;
+  background-color: rgba(0, 0, 0, .8);
+}
