@@ -5,30 +5,37 @@
 
 figure {
   display: block;
-  width: 30%;
+  width: 40%;
   margin: 0 auto;
 }
 
 figure img {max-width: 100%;}
 
 figure.emanuel {
-  width: 20%;
   border-radius: 100%;
   overflow: hidden;
 }
 
-h2 {
-  font-size: 2em;
-  text-align: center;
-}
-
-p, h2 {color: #FFF;}
-
 p {
-  width: 50%;
+  width: 80%;
   margin: 1em auto;
   text-align: center;
   font-size: 1.6em;
   padding: 1em;
   background-color: rgba(0, 0, 0, .8);
+  color: #FFF;
+}
+
+.separates {
+  width: 50%;
+  display: inline-block;
+  margin-top: 3em;
+}
+
+.separates:first-child {
+  float: left;
+}
+
+.separates:last-child {
+  float: right;
 }
