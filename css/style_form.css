@@ -173,12 +173,14 @@ fieldset#didatico, fieldset#escola, fieldset#genero, fieldset#autor, fieldset#li
 .interface-resposta label.escolha {
   position: relative;
   display: block;
-  margin: 0 auto;
   padding: .2em;
   border: 2px solid #CCC;
   text-align: center;
   cursor: pointer;
 }
+
+.resposta label.escolha { margin: 0 auto;}
+.interface-resposta label.escolha { margin: .8em auto;}
 
 .resposta input[type="radio"]:checked + label.escolha,
 .interface-resposta input[type="radio"]:checked + label.escolha {
@@ -248,9 +250,9 @@ table td {
 .data {
   width: 80%;
   margin: 1em auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+  /* display: flex;
+  justify-content: space-around;
+  align-items: baseline; */
 }
 
 .data label {
