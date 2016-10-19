@@ -18,11 +18,11 @@ if(isset($_GET["diasAluno"])){
 
   // Caso a pessoa deseja saber os inadimplentes a mais do que 30 dias
   if($op === 1){
-      $q = "SELECT c.aluno, d.titulo, b.data FROM regalunos as b join alunos_matriculados as c on b.idaluno = c.idaluno join livros as d on b.idlivro = d.idlivro where situacao LIKE 'e' and data < '$periodo' and not EXISTS (select idaluno from regalunos as a where situacao like 'd' and b.idaluno= a.idaluno) LIMIT $qtn";
+      $q = "SELECT c.aluno, d.titulo, b.data, b.prazo FROM regalunos as b join alunos_matriculados as c on b.idaluno = c.idaluno join livros as d on b.idlivro = d.idlivro where situacao LIKE 'e' and prazo < '$periodo' and not EXISTS (select idaluno from regalunos as a where situacao like 'd' and b.idaluno= a.idaluno) LIMIT $qtn";
   }
   //Caso os inadimplentes à dias
   else{
-      $q = "SELECT c.aluno, d.titulo, b.data FROM regalunos as b join alunos_matriculados as c on b.idaluno = c.idaluno join livros as d on b.idlivro = d.idlivro where situacao LIKE 'e' and data > '$periodo' and not EXISTS (select idaluno from regalunos as a where situacao like 'd' and b.idaluno = a.idaluno) LIMIT $qtn";
+      $q = "SELECT c.aluno, d.titulo, b.data, b.prazo FROM regalunos as b join alunos_matriculados as c on b.idaluno = c.idaluno join livros as d on b.idlivro = d.idlivro where situacao LIKE 'e' and prazo < '$periodo' and not EXISTS (select idaluno from regalunos as a where situacao like 'd' and b.idaluno = a.idaluno) LIMIT $qtn";
   }
 
   $sel = executaQuery($con, $q);
@@ -35,6 +35,7 @@ if(isset($_GET["diasAluno"])){
           echo "<td> Nome </td>";
           echo "<td> Titulo </td>";
           echo "<td> Empréstimo </td>";
+          echo "<td> Prazo </td>";
         echo "</tr>";
       echo "</th>";
       $data = mysqli_fetch_all($sel, MYSQLI_ASSOC);
@@ -43,6 +44,7 @@ if(isset($_GET["diasAluno"])){
               echo "<td>" . $data[$x]["aluno"] . "</td>";
               echo "<td>" . $data[$x]["titulo"] . "</td>";
               echo "<td>" . date('d/m', strtotime($data[$x]["data"])) . "</td>";
+              echo "<td>" . date('d/m', strtotime($data[$x]["prazo"])) . "</td>";
           echo "</tr>";
       }
       echo "</table>";
@@ -58,11 +60,11 @@ if(isset($_GET["diasAluno"])){
 
   // Caso a pessoa deseja saber os inadimplentes a mais do que 30 dias
   if($op === 1){
-      $q = "SELECT c.nome, d.titulo, b.data FROM regnaoalunos as b join naoalunos as c on b.idnaluno = c.idnaluno join livros as d on b.idlivro = d.idlivro where situacao LIKE 'e' and data < '$periodo' and not EXISTS (select idnaluno from regnaoalunos as a where situacao like 'd' and b.idnaluno = a.idnaluno) LIMIT $qtn";
+      $q = "SELECT c.nome, d.titulo, b.data, b.prazo FROM regnaoalunos as b join naoalunos as c on b.idnaluno = c.idnaluno join livros as d on b.idlivro = d.idlivro where situacao LIKE 'e' and prazo < '$periodo' and not EXISTS (select idnaluno from regnaoalunos as a where situacao like 'd' and b.idnaluno = a.idnaluno) LIMIT $qtn";
   }
   //Caso os inadimplentes à dias
   else{
-      $q = "SELECT c.nome, d.titulo, b.data FROM regnaoalunos as b join naoalunos as c on b.idnaluno = c.idnaluno join livros as d on b.idlivro = d.idlivro where situacao LIKE 'e' and data > '$periodo' and not EXISTS (select idnaluno from regnaoalunos as a where situacao like 'd' and b.idnaluno = a.idnaluno) LIMIT $qtn";
+      $q = "SELECT c.nome, d.titulo, b.data, b.prazo FROM regnaoalunos as b join naoalunos as c on b.idnaluno = c.idnaluno join livros as d on b.idlivro = d.idlivro where situacao LIKE 'e' and prazo < '$periodo' and not EXISTS (select idnaluno from regnaoalunos as a where situacao like 'd' and b.idnaluno = a.idnaluno) LIMIT $qtn";
   }
 
   $sel = executaQuery($con, $q);
@@ -74,6 +76,7 @@ if(isset($_GET["diasAluno"])){
           echo "<td> Nome </td>";
           echo "<td> Titulo </td>";
           echo "<td> Empréstimo </td>";
+          echo "<td> Prazo </td>";
         echo "</tr>";
       echo "</th>";
       $data = mysqli_fetch_all($sel, MYSQLI_ASSOC);
@@ -82,6 +85,7 @@ if(isset($_GET["diasAluno"])){
               echo "<td>" . $data[$x]["nome"] . "</td>";
               echo "<td>" . $data[$x]["titulo"] . "</td>";
               echo "<td>" . date('d/m', strtotime($data[$x]["data"])) . "</td>";
+              echo "<td>" . date('d/m', strtotime($data[$x]["prazo"])) . "</td>";
           echo "</tr>";
       }
       echo "</table>";
