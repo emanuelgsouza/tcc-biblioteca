@@ -12,6 +12,8 @@ if(isset($_GET["idaluno"])){
     $aluno = $_GET["idaluno"];
     $livro = $_GET["cod_book"];
     $date = $_GET["data"];
+    $prazo = $_GET["prazo"];
+    $prazo = date("Y/m/d", strtotime($prazo, strtotime($date)));
 
     // Pegando o nome do aluno
     $q = "SELECT aluno, turma FROM alunos_matriculados WHERE idaluno = $aluno";
@@ -30,11 +32,11 @@ if(isset($_GET["idaluno"])){
     $idLivro = $data[0]["idlivro"];
 
     // Registrando o empréstimo
-    $q = "INSERT INTO regalunos (idregistro, data, situacao, idaluno, idlivro) VALUES (DEFAULT, '$date', 'e', '$aluno', '$idLivro')";
+    $q = "INSERT INTO regalunos (idregistro, data, situacao, idaluno, idlivro, prazo) VALUES (DEFAULT, '$date', 'e', '$aluno', '$idLivro', '$prazo')";
     $sel = executaQuery($con, $q);
     if($sel) {
       // Mostrando que foi registrado
-      echo "<p> Foi registrado o empréstimo do livro $titulo ao aluno(a) $nome da turma $turma </p>";
+      echo "<p> Foi registrado o empréstimo do livro <span class='txt-confirm'>$titulo</span> ao aluno(a) <span class='txt-confirm'>$nome</span> da turma <span class='txt-confirm'>$turma</span> </p>";
     } else {
       echo "<p> Não houve o registro do empréstimo do livro </p>";
     }

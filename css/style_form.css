@@ -243,3 +243,25 @@ table td {
   border: 1px solid #FFF;
   padding: .5em;
 }
+
+/* Formatando a div com a data dos prazos */
+.data {
+  width: 80%;
+  margin: 1em auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.data label {
+  margin-right: 1em;
+}
+
+.data select {
+  flex-grow: auto;
+  padding: .3em;
+}
+
+.data input[type="date"] {
+  margin-left: 0px;
+}

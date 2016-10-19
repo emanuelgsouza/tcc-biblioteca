@@ -168,9 +168,9 @@
     // Função que confirma o emprestimo
     function confirmarEmprestimo() {
       var data = document.getElementById("date").value;
+      var prazo = document.getElementById("selectDate").value;
       var idaluno = localStorage.getItem("id");
       var cod = localStorage.getItem("cod_book");
-
       var http = new XMLHttpRequest();
 
       http.onreadystatechange = function() {
@@ -188,7 +188,7 @@
         }
       }
 
-      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_alunos/registro_final.php?idaluno=" + idaluno + "&cod_book=" + cod + "&data=" + data, true);
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_alunos/registro_final.php?idaluno=" + idaluno + "&cod_book=" + cod + "&data=" + data + "&prazo=" + prazo, true);
       http.send();
     }
 
@@ -219,6 +219,7 @@
     function confirmaDevolucao() {
       var idaluno = localStorage.getItem("id");
       var idlivro = localStorage.getItem("idlivro");
+      var data = document.getElementById("selectDate").value;
 
       var http = new XMLHttpRequest();
 
@@ -237,7 +238,7 @@
         }
       }
 
-      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_alunos/registrar_devolucao.php?idAluno=" + idaluno + "&idLivro=" + idlivro, true);
+      http.open("GET", "http://127.0.0.1/tcc-biblioteca/php/arq_alunos/registrar_devolucao.php?idAluno=" + idaluno + "&idLivro=" + idlivro + "&data=" + data, true);
       http.send();
     }
 

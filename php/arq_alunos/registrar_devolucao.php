@@ -19,14 +19,19 @@ if(isset($_GET["idaluno"])){
         $data = mysqli_fetch_all($sel, MYSQLI_ASSOC);
         echo "<p> Registrando devolução de " . $data[0]["aluno"] . " da turma " . $data[0]["turma"] . "</p>";
         echo "<p> Dados do empréstimo </p>";
-        $q  = "SELECT r.idlivro, r.data, l.titulo, l.autor FROM regalunos as r JOIN livros as l ON r.idlivro = l.idlivro WHERE r.idregistro = $idreg";
+        $q  = "SELECT r.idlivro, r.data, l.titulo, l.autor, r.prazo FROM regalunos as r JOIN livros as l ON r.idlivro = l.idlivro WHERE r.idregistro = $idreg";
         $sel  = executaQuery($con, $q);
         $data = mysqli_fetch_all($sel, MYSQLI_ASSOC);
         $dia = strtotime($data[0]["data"]);
         $dia = date("d-m-Y", $dia);
+        $prazo = strtotime($data[0]["prazo"]);
+        $prazo = date("d-m-Y", $prazo);
         echo "<p> Data: " . $dia . " </p>";
+        echo "<p> Prazo: " . $prazo . " </p>";
         echo "<p> Título: " . $data[0]["titulo"] . " </p>";
         echo "<p> Autor: " . $data[0]["autor"] . " </p>";
+        echo "<label for='selectDate'> Insira a data de devolução: </label>";
+        echo "<input type='date' id='selectDate'>";
         echo "<button type='button' name='confirm' class='btn bt confirm' onclick='confirmaDevolucao()'> Confirmar Devolução </button>";
         echo "<div id='mostrarDadosLivro'></div>";
         }else{}
@@ -35,7 +40,7 @@ if(isset($_GET["idaluno"])){
 if(isset($_GET["idAluno"])){ // Fazer o registro da devolução e renovando o estoque
     $id = $_GET["idAluno"];
     $idlivro = $_GET["idLivro"];
-    $date = date("20y-m-d");
+    $date = $_GET["data"];
     // Registrando o a devolução
     $q = "INSERT INTO regalunos (data, situacao, idaluno, idlivro) VALUES ('$date', 'd', '$id', $idlivro)";
     $sel = executaQuery($con, $q);
@@ -53,7 +58,7 @@ if(isset($_GET["idAluno"])){ // Fazer o registro da devolução e renovando o es
         $titulo = $data[0]["titulo"];
 
         // Mostrando que foi registrado
-        echo "<p> Foi registrado a devolução do livro $titulo por $nome";
+        echo "<p> Foi registrado a devolução do livro <span class='txt-confirm'>$titulo</span> por <span class='txt-confirm'>$nome</span>";
 
         // Recuperando o estoque
         $q = "SELECT estoque FROM livros WHERE idlivro = $idlivro";
