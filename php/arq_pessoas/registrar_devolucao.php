@@ -19,14 +19,19 @@ if(isset($_GET["idnaluno"])){
         $data = mysqli_fetch_all($sel, MYSQLI_ASSOC);
         echo "<p> Registrando devolução de " . $data[0]["nome"] . "</p>";
         echo "<p> Dados do empréstimo </p>";
-        $q  = "SELECT r.idlivro, r.data, l.titulo, l.autor FROM regnaoalunos as r JOIN livros as l ON r.idlivro = l.idlivro WHERE idregistro = $idreg";
+        $q  = "SELECT r.idlivro, r.data, l.titulo, l.autor, r.prazo FROM regnaoalunos as r JOIN livros as l ON r.idlivro = l.idlivro WHERE idregistro = $idreg";
         $sel  = executaQuery($con, $q);
         $data = mysqli_fetch_all($sel, MYSQLI_ASSOC);
         $dia = strtotime($data[0]["data"]);
         $dia = date("d-m-Y", $dia);
+        $prazo = strtotime($data[0]["prazo"]);
+        $prazo = date("d-m-Y", $prazo);
         echo "<p> Data: " . $dia . " </p>";
+        echo "<p> Prazo: " . $prazo . " </p>";
         echo "<p> Título: " . $data[0]["titulo"] . " </p>";
         echo "<p> Autor: " . $data[0]["autor"] . " </p>";
+        echo "<label for='selectDate'> Insira a data de devolução: </label>";
+        echo "<input type='date' id='selectDate'>";
         echo "<button type='button' name='confirm' class='btn bt confirm' onclick='confirmaDevolucao()'> Confirmar Devolução </button>";
         echo "<div id='mostrarDadosLivro'></div>";
         }else{}

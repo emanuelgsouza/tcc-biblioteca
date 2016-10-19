@@ -15,12 +15,13 @@ if(isset($_GET["nome"])){
     $c   = mysqli_num_rows($sel);
     if($c != 0){
         $data = mysqli_fetch_all($sel, MYSQLI_ASSOC);
+        echo "<p> Selecione abaixo o nome </p>";
         for($x = 0; $x < count($data); $x++){
           $pessoa = $data[$x]["idnaluno"];
           $valor = $data[$x]["nome"] . " | " . $data[$x]["telefone2"];
           echo "<input type='radio' name='escolha' value='$pessoa' id='$pessoa' onchange='respondeChecked()'> <label for='$pessoa' class='escolha'> $valor </label> <br>";
         }
-    }else{echo "<p> O nome $nome não está registrado no banco de dados de pessoas!</p>";}
+    }else{echo "<p> O nome <span class='txt-alert'>$nome</span> não está registrado no banco de dados de pessoas!</p>";}
 }else{}
 
 // Para parte de registro de devolução ou empréstimo de determinado livro

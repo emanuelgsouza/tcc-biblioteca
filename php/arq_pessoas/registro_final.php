@@ -12,6 +12,8 @@ if(isset($_GET["idnaluno"])){
     $pessoa = $_GET["idnaluno"];
     $livro = $_GET["cod_book"];
     $date = $_GET["data"];
+    $prazo = $_GET["prazo"];
+    $prazo = date("Y/m/d", strtotime($prazo, strtotime($date)));
 
     // Pegando o nome da pessoa
     $q = "SELECT nome FROM naoalunos WHERE idnaluno = $pessoa";
@@ -29,7 +31,7 @@ if(isset($_GET["idnaluno"])){
     $idlivro = $data[0]["idlivro"];
 
     // Registrando o empréstimo
-    $q = "INSERT INTO regnaoalunos (idregistro, data, situacao, idnaluno, idlivro) VALUES (DEFAULT, '$date', 'e', '$pessoa', '$idlivro')";
+    $q = "INSERT INTO regnaoalunos (idregistro, data, situacao, idnaluno, idlivro, prazo) VALUES (DEFAULT, '$date', 'e', '$pessoa', '$idlivro', '$prazo')";
     $sel = executaQuery($con, $q);
     if($sel) {
       // Mostrando que foi registrado
