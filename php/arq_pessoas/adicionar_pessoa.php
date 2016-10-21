@@ -6,7 +6,7 @@ require "../funcoes.php";
 
 // Recuperando as variáveis do método POST
 $nome        = $_GET["nome"];
-$nome        = limparNome($nome);
+$nome        = retornaString($nome);
 $rua         = (empty($_GET["rua"])) ? 'null': $_GET["rua"];
 $complemento = (empty($_GET["complemento"])) ? 'null' : $_GET["complemento"];
 $bairro      = (empty($_GET["bairro"])) ? 'null' : $_GET["bairro"];
@@ -23,7 +23,7 @@ $c     = mysqli_num_rows($verif);
 if(!($c >= 1)){
     // Chamando função para inserção de dados no banco de dados de alunos não matriculados
     $endereco = "$rua - $complemento  - $bairro";
-    $endereco = limparNome($endereco);
+    $endereco = retornaString($endereco);
     $q = "INSERT INTO naoalunos (nome, telefone1, telefone2, endereco) VALUES ('$nome', '$telefone', '$celular', '$endereco')";
     $db = executaQuery($con, $q);
     if($db){

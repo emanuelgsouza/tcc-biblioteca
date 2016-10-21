@@ -5,11 +5,11 @@ require "../funcoes.php";
 
 // Pegando as variáveis do método POST
 $titulo   = isset($_GET["titulo"])?$_GET["titulo"]:"";
-$titulo   = strtoupper($titulo);
+$titulo   = retornaString($titulo);
 $autor    = isset($_GET["autor"])?$_GET["autor"]:"";
-$autor    = strtoupper($autor);
+$autor    = retornaString($autor);
 $editora  = isset($_GET["editora"])?$_GET["editora"]:"";
-$editora  = strtoupper($editora);
+$editora  = retornaString($editora);
 $gaveta   = isset($_GET["gaveta"])?$_GET["gaveta"]:"";
 $livro    = isset($_GET["livro"])?$_GET["livro"]:"";
 $estoque  = isset($_GET["estoque"])?$_GET["estoque"]:"";

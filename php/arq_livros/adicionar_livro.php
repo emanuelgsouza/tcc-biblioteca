@@ -4,28 +4,25 @@
 
   // Pegando as variáveis do método POST
   $titulo   = isset($_GET["titulo"])?$_GET["titulo"]:"";
-  $titulo   = strtoupper($titulo);
+  $titulo   = retornaString($titulo);
   $autor    = isset($_GET["autor"])?$_GET["autor"]:"";
-  $autor    = strtoupper($autor);
+  $autor    = retornaString($autor);
   $editora  = isset($_GET["editora"])?$_GET["editora"]:"";
-  $editora  = strtoupper($editora);
+  $editora  = retornaString($editora);
   $genero   = isset($_GET["genero"])?$_GET["genero"]:"n";
-  $genero   = strtoupper($genero);
   $escola   = isset($_GET["escola"])?$_GET["escola"]:"n";
-  $escola   = strtoupper($escola);
   $didatico = isset($_GET["didatico"])?$_GET["didatico"]:"n";
-  $didatico = strtoupper($didatico);
   $estoque  = isset($_GET["estoque"])?$_GET["estoque"]:"0";
   $estante  = isset($_GET["estante"])?$_GET["estante"]:"0";
   $prateleira = isset($_GET["prateleira"])?$_GET["estante"]:"0";
   $cod_book = isset($_GET["cod_livro"])?$_GET["cod_livro"]:"0";
-  $prateleira = strtoupper($prateleira);
+  $prateleira = retornaString($prateleira);
 
   // Chamando a função de conexão
   $con = conectaDB();
   if($con) {}else {echo "<p> Não houve conexão <br> </p>";die(mysqli_error($con));}
 
-  //Verificando se o usuário não está tentando inserir um livro o mesmo código
+  //Verificando se o usuário não está tentando inserir um livro com o mesmo código
   $verif = pesquisaCod($con, $cod_book);
   $c = mysqli_num_rows($verif);
   if(!($c >= 1)){

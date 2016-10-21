@@ -11,7 +11,7 @@ if($con){}else {echo "<p> Não houve conexão <br> </p>";	die(mysqli_error($con)
 // Caso os dados foram enviados
 if(isset($_GET["nome"]) and isset($_GET["turma"])){
     $nome  = $_GET["nome"];
-    $nome  = limparNome($nome); // Tirando qualquer espaço entre o nome e colocando as letras em maíusculas
+    $nome  = retornaString($nome);
     $turma = $_GET["turma"];
     // Verificando se o registro do aluno está no banco de dados
     $verif = pesquisaIndividuo($con, $nome, true, $turma);
