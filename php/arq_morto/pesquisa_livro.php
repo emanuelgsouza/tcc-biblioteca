@@ -39,9 +39,10 @@ if(isset($_GET["titulo"])){
         echo "<p> $valor </p>";
     }
     echo "<button class='btn bt confirm' type='button' onclick='window.print()'> Imprimir </button>";
-    echo "<button class='btn bt filtro' type='button' onclick='voltarAdicionar()'> Voltar a adicionar </button>";
+    echo "<button class='btn bt filtro' type='button' onclick='voltarAdicionar()'> Voltar aos filtros </button>";
   } else {
     echo "<p> O autor <span class='txt-alert'>$autor</span> não está registrado no banco de dados </p>";
+    echo "<button class='btn bt filtro' type='button' onclick='voltarAdicionar()'> Voltar aos filtros </button>";
   }
 }
 // Fechando a conexão

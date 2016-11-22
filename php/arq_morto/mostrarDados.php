@@ -23,7 +23,7 @@ for($x = 0; $x < count($resultados); $x++){
     $b = ucwords($resultados[$x]);
     echo "<p> $b : <span class='txt-confirm'> $a </span></p>";
 }
-echo "<button class='btn filtro' type='button' onclick='voltar()'> Voltar a pesquisa </button>";
+echo "<button class='btn filtro' type='button' onclick='voltarAdicionar()'> Voltar aos filtros </button>";
 
 // Fechando a conexão
 fechaDB($con);

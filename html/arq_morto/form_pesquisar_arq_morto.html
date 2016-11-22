@@ -76,7 +76,7 @@
         http.onreadystatechange = function() {
           if(http.readyState == 4 && http.status == 200) {
             var resposta = http.responseText;
-            divResposta.innerHTML = resposta + "<button class='btn filtro' type='button' onclick='voltarAdicionar()'> Voltar a adicionar </button>";
+            divResposta.innerHTML = resposta + "<button class='btn filtro' type='button' onclick='voltarAdicionar()'> Voltar aos filtros </button>";
           } else {
             divResposta.innerHTML = "<p> Carregando </p>";
           }
