@@ -1,4 +1,4 @@
-# library-system
+# Library System
 
 > A library system develop in Vue.js
 
@@ -15,4 +15,16 @@ npm run dev
 npm run build
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+---
+
+Este sistema irá atender as necessidades da Biblioteca do Portugal Névis. As tecnologias utilizadas para a construção de tal sistema são:
+
++ Biblioteca para a constução de componentes: [**Vue.js**](https://vuejs.org/);
++ Framework para a compilação do Sistema, visando a criação de uma *app* para Desktop: [**Electron**](http://electron.atom.io/);
++ Biblioteca css para a construção de componentes: ainda a resolver;
+
+---
+
+Neste repositório, além dos arquivos para a *build* e afins, há também uma pequena documentação do sistema, mostrando as entidades do banco de dados, os requisitos que o sistema atende e afins.
+
+Confira a doc [aqui](documentation.md).
