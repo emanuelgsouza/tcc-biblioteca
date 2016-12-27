@@ -4,13 +4,10 @@
 </template>
 
 <script>
-import Hello from './components/Hello';
-
 export default {
-  name: 'app'
+  name: 'app',
 };
 </script>
 
-<style>
-
+<style src="assets/sass/app.sass" lang="sass">
 </style>
