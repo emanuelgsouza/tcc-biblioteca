@@ -1,5 +1,10 @@
 .DS_Store
-node_modules/
-dist/
+app/dist/index.html
+app/dist/build.js
+app/dist/styles.css
+builds/*
+node_modules
 npm-debug.log
-old-dist/
+npm-debug.log.*
+thumbs.db
+!.gitkeep

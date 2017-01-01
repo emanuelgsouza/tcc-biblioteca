@@ -1,2 +1,3 @@
-build/*.js
-config/*.js
+app/node_modules/**
+app/dist/**
+app/electron.js
