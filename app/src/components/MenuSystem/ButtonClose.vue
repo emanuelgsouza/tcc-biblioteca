@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="icon">
+    <span class="icon" @click="close">
       <i class="fa fa-times"></i>
     </span>
   </div>
@@ -8,6 +8,11 @@
 
 <script>
 export default {
+  methods: {
+    close () {
+      this.$emit('closeMenu')
+    }
+  }
 }
 </script>
 

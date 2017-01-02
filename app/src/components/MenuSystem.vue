@@ -2,7 +2,7 @@
   <div class="menu">
     <Logo></Logo>
     <hr>
-    <ButtonClose></ButtonClose>
+    <ButtonClose @closeMenu="close"></ButtonClose>
   </div>
 </template>
 
@@ -17,8 +17,8 @@ export default {
     ButtonClose
   },
   methods: {
-    toggle () {
-
+    close () {
+      this.$emit('closeMenu')
     }
   }
 }
@@ -26,9 +26,21 @@ export default {
 
 <style scoped>
 .menu {
-  width: 25vw;
+  width: 20vw;
   height: 100vh;
   position: absolute;
+  z-index: 6;
   background-color: #007F7F;
+}
+
+.menu.is-active::before {
+  content: "";
+  position: absolute;
+  left: 20vw;
+  display: block;
+  width: 80vw;
+  height: 100vh;
+  z-index: 0;
+  background-color: rgba(0, 0, 0, .5);
 }
 </style>
