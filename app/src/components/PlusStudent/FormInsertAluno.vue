@@ -30,11 +30,12 @@
       <hr>
       <div class="columns">
         <div class="column is-6">
-          <input
+          <button
             class="button is-success is-medium is-fullwidth"
-            type="submit"
-            value="Confirmar"
+            type="button"
             @click="confirm">
+            Confirmar
+          </button>
         </div>
         <div class="column is-6">
           <input

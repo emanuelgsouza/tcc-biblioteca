@@ -13,22 +13,22 @@
 
   <ul class="menu-list">
     <li>
-      <a href="#"
-        :class="{ 'is-active' : states[0].aluno }"
-        @click="states[0].aluno = !states[0].aluno">
+      <a
+        :class="{ 'is-active' : currentMenu === 'aluno' }"
+        @click="currentMenu = 'aluno'">
         <span class="icon"><i class="fa fa-graduation-cap"></i></span>
         Menu Aluno
       </a>
       <transition name="slide-fade">
-        <ul v-if="states[0].aluno">
+        <ul v-if="currentMenu === 'aluno'">
           <li>
             <router-link to="/plus-student">
               <span class="icon"><i class="fa fa-plus"></i></span> Adicionar Aluno
             </router-link>
-            <a href="#">
+            <a>
               <span class="icon"><i class="fa fa-times"></i></span> Excluir Aluno
             </a>
-            <a href="#">
+            <a>
               <span class="icon"><i class="fa fa-exchange"></i></span> Empréstimo ou Devolução
             </a>
           </li>
@@ -39,22 +39,22 @@
 
   <ul class="menu-list">
     <li>
-      <a href="#"
-        :class="{ 'is-active' : states[1].naoAluno }"
-        @click="states[1].naoAluno = !states[1].naoAluno">
+      <a
+        :class="{ 'is-active' : currentMenu === 'naoAluno' }"
+        @click="currentMenu = 'naoAluno'">
         <span class="icon"><i class="fa fa-user"></i></span>
         Menu Não Aluno
       </a>
       <transition name="slide-fade">
-        <ul v-if="states[1].naoAluno">
+        <ul v-if="currentMenu === 'naoAluno'">
           <li>
-            <a href="#">
+            <a>
               <span class="icon"><i class="fa fa-plus"></i></span> Adicionar Não Aluno
             </a>
-            <a href="#">
+            <a>
               <span class="icon"><i class="fa fa-times"></i></span> Excluir Não Aluno
             </a>
-            <a href="#">
+            <a>
               <span class="icon"><i class="fa fa-exchange"></i></span> Empréstimo ou Devolução
             </a>
           </li>
@@ -65,22 +65,22 @@
 
   <ul class="menu-list">
     <li>
-      <a href="#"
-        :class="{ 'is-active' : states[2].livro }"
-        @click="states[2].livro = !states[2].livro">
+      <a
+        :class="{ 'is-active' : currentMenu === 'livro' }"
+        @click="currentMenu = 'livro'">
         <span class="icon"><i class="fa fa-book"></i></span>
         Menu Livros
       </a>
       <transition name="slide-fade">
-        <ul v-if="states[2].livro">
+        <ul v-if="currentMenu === 'livro'">
           <li>
-            <a href="#">
+            <a>
               <span class="icon"><i class="fa fa-plus"></i></span> Adicionar Livro
             </a>
-            <a href="#">
+            <a>
               <span class="icon"><i class="fa fa-times"></i></span> Excluir Livro
             </a>
-            <a href="#">
+            <a>
               <span class="icon"><i class="fa fa-search"></i></span> Pesquisar Livro
             </a>
           </li>
@@ -91,22 +91,22 @@
 
   <ul class="menu-list">
     <li>
-      <a href="#"
-        :class="{ 'is-active' : states[3].arqMorto }"
-        @click="states[3].arqMorto = !states[3].arqMorto">
+      <a
+        :class="{ 'is-active' : currentMenu === 'arqMorto' }"
+        @click="currentMenu = 'arqMorto'">
         <span class="icon"><i class="fa fa-file"></i></span>
         Menu Arquivo Morto
       </a>
       <transition name="slide-fade">
-        <ul v-if="states[3].arqMorto">
+        <ul v-if="currentMenu === 'arqMorto'">
           <li>
-            <a href="#">
+            <a>
               <span class="icon"><i class="fa fa-plus"></i></span> Adicionar Arq Morto
             </a>
-            <a href="#">
+            <a>
               <span class="icon"><i class="fa fa-times"></i></span> Excluir Arq Morto
             </a>
-            <a href="#">
+            <a>
               <span class="icon"><i class="fa fa-search"></i></span> Pesquisar Arq Morto
             </a>
           </li>
@@ -117,22 +117,22 @@
 
   <ul class="menu-list">
     <li>
-      <a href="#"
-        :class="{ 'is-active' : states[4].listas }"
-        @click="states[4].listas = !states[4].listas">
+      <a
+        :class="{ 'is-active' : currentMenu === 'listas' }"
+        @click="currentMenu = 'listas'">
         <span class="icon"><i class="fa fa-list"></i></span>
         Menu Listas
       </a>
       <transition name="slide-fade">
-        <ul v-if="states[4].listas">
+        <ul v-show="currentMenu === 'listas'">
           <li>
-            <a href="#">
+            <a>
               <span class="icon"><i class="fa fa-legal"></i></span> Inadimplentes
             </a>
-            <a href="#">
+            <a>
               <span class="icon"><i class="fa fa-check"></i></span> Maiores Leitores
             </a>
-            <a href="#">
+            <a>
               <span class="icon"><i class="fa fa-bookmark"></i></span> Livros Mais Lidos
             </a>
           </li>
@@ -143,7 +143,7 @@
 
   <ul class="menu-list">
     <li>
-      <a href="#">
+      <a>
         <span class="icon"><i class="fa fa-info"></i></span> Sobre
       </a>
     </li>
@@ -159,14 +159,7 @@ export default {
   name: 'menu-system',
   data () {
     return {
-      view: false,
-      states: [
-        { aluno: false },
-        { naoAluno: false },
-        { livro: false },
-        { arqMorto: false },
-        { listas: false }
-      ]
+      currentMenu: null
     }
   },
   components: {
@@ -210,7 +203,7 @@ export default {
   transition: all .3s ease;
   }
   .slide-fade-leave-active {
-  transition: all .3s ease;
+  transition: all .1s ease;
   }
   .slide-fade-enter, .slide-fade-leave-active {
   transform: translateX(-100%);
