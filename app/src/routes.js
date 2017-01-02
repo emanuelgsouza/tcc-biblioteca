@@ -5,6 +5,11 @@ export default [
     component: require('components/LandingPageView')
   },
   {
+    path: '/plus-student',
+    name: 'plus-student',
+    component: require('components/PlusStudent')
+  },
+  {
     path: '*',
     redirect: '/'
   }

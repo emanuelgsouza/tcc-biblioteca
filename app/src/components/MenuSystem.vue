@@ -5,9 +5,9 @@
   <hr>
   <ul class="menu-list">
     <li>
-      <a href="#">
+      <router-link to="/">
         <span class="icon"><i class="fa fa-home"></i></span> Home
-      </a>
+      </router-link>
     </li>
   </ul>
 
@@ -22,9 +22,9 @@
       <transition name="slide-fade">
         <ul v-if="states[0].aluno">
           <li>
-            <a href="#">
+            <router-link to="/plus-student">
               <span class="icon"><i class="fa fa-plus"></i></span> Adicionar Aluno
-            </a>
+            </router-link>
             <a href="#">
               <span class="icon"><i class="fa fa-times"></i></span> Excluir Aluno
             </a>
@@ -187,6 +187,7 @@ export default {
     height: 100vh;
     position: absolute;
     z-index: 6;
+    background-color: #FFF;
   }
 
   .menu.is-active::before {
