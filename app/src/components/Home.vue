@@ -1,6 +1,3 @@
-<style scoped>
-</style>
-
 <template>
   <div>
     <transition name="slide-fade">
@@ -20,8 +17,8 @@
 </template>
 
 <script>
-import Logo from './LandingPageView/Logo'
-import ButtonSystem from './LandingPageView/ButtonSystem'
+import Logo from './Home/Logo'
+import ButtonSystem from './Home/ButtonSystem'
 import MenuSystem from './MenuSystem'
 
 export default {

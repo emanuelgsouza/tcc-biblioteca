@@ -1,7 +1,7 @@
 <script>
 export default {
   methods: {
-    modify () {
+    opemMenu () {
       this.$emit('toggleMenu')
     }
   }
@@ -13,7 +13,7 @@ export default {
     <button
       type="button"
       class="button is-primary is-fullwidth is-medium"
-      @click="modify">
+      @click="opemMenu">
       Acessar o Sistema
     </button>
   </div>
