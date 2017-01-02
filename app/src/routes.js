@@ -7,7 +7,12 @@ export default [
   {
     path: '/plus-student',
     name: 'plus-student',
-    component: require('components/PlusStudent')
+    component: require('components/Forms/PlusStudent')
+  },
+  {
+    path: '/delete-student',
+    name: 'delete-student',
+    component: require('components/Forms/DeleteStudent')
   },
   {
     path: '*',
