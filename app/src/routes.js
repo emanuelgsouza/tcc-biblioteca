@@ -15,6 +15,11 @@ export default [
     component: require('components/Forms/DeleteStudent')
   },
   {
+    path: '/exchange-student',
+    name: 'exchange-student',
+    component: require('components/Forms/ExchangeStudent')
+  },
+  {
     path: '*',
     redirect: '/'
   }
