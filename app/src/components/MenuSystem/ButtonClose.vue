@@ -18,10 +18,13 @@ export default {
 
 <style scoped>
 .icon {
-  color: #252525;
   position: absolute;
   top: 1em;
   right: .8em;
   cursor: pointer;
+}
+
+.icon:hover {
+  color: #00b89c;
 }
 </style>

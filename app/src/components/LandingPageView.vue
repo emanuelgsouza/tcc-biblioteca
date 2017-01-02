@@ -52,7 +52,7 @@ export default {
 transition: all .3s ease;
 }
 .slide-fade-leave-active {
-transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+transition: all .8s ease;
 }
 .slide-fade-enter, .slide-fade-leave-active {
 transform: translateX(-100%);

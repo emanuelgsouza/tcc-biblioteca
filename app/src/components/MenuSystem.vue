@@ -1,9 +1,154 @@
 <template>
-  <div class="menu">
-    <Logo></Logo>
-    <hr>
-    <ButtonClose @closeMenu="close"></ButtonClose>
-  </div>
+<aside class="menu">
+  <Logo></Logo>
+  <ButtonClose @closeMenu="close"></ButtonClose>
+  <hr>
+  <ul class="menu-list">
+    <li>
+      <a href="#">
+        <span class="icon"><i class="fa fa-home"></i></span> Home
+      </a>
+    </li>
+  </ul>
+
+  <ul class="menu-list">
+    <li>
+      <a href="#"
+        :class="{ 'is-active' : states[0].aluno }"
+        @click="states[0].aluno = !states[0].aluno">
+        <span class="icon"><i class="fa fa-graduation-cap"></i></span>
+        Menu Aluno
+      </a>
+      <transition name="slide-fade">
+        <ul v-if="states[0].aluno">
+          <li>
+            <a href="#">
+              <span class="icon"><i class="fa fa-plus"></i></span> Adicionar Aluno
+            </a>
+            <a href="#">
+              <span class="icon"><i class="fa fa-times"></i></span> Excluir Aluno
+            </a>
+            <a href="#">
+              <span class="icon"><i class="fa fa-exchange"></i></span> Empréstimo ou Devolução
+            </a>
+          </li>
+        </ul>
+      </transition>
+    </li>
+  </ul>
+
+  <ul class="menu-list">
+    <li>
+      <a href="#"
+        :class="{ 'is-active' : states[1].naoAluno }"
+        @click="states[1].naoAluno = !states[1].naoAluno">
+        <span class="icon"><i class="fa fa-user"></i></span>
+        Menu Não Aluno
+      </a>
+      <transition name="slide-fade">
+        <ul v-if="states[1].naoAluno">
+          <li>
+            <a href="#">
+              <span class="icon"><i class="fa fa-plus"></i></span> Adicionar Não Aluno
+            </a>
+            <a href="#">
+              <span class="icon"><i class="fa fa-times"></i></span> Excluir Não Aluno
+            </a>
+            <a href="#">
+              <span class="icon"><i class="fa fa-exchange"></i></span> Empréstimo ou Devolução
+            </a>
+          </li>
+        </ul>
+      </transition>
+    </li>
+  </ul>
+
+  <ul class="menu-list">
+    <li>
+      <a href="#"
+        :class="{ 'is-active' : states[2].livro }"
+        @click="states[2].livro = !states[2].livro">
+        <span class="icon"><i class="fa fa-book"></i></span>
+        Menu Livros
+      </a>
+      <transition name="slide-fade">
+        <ul v-if="states[2].livro">
+          <li>
+            <a href="#">
+              <span class="icon"><i class="fa fa-plus"></i></span> Adicionar Livro
+            </a>
+            <a href="#">
+              <span class="icon"><i class="fa fa-times"></i></span> Excluir Livro
+            </a>
+            <a href="#">
+              <span class="icon"><i class="fa fa-search"></i></span> Pesquisar Livro
+            </a>
+          </li>
+        </ul>
+      </transition>
+    </li>
+  </ul>
+
+  <ul class="menu-list">
+    <li>
+      <a href="#"
+        :class="{ 'is-active' : states[3].arqMorto }"
+        @click="states[3].arqMorto = !states[3].arqMorto">
+        <span class="icon"><i class="fa fa-file"></i></span>
+        Menu Arquivo Morto
+      </a>
+      <transition name="slide-fade">
+        <ul v-if="states[3].arqMorto">
+          <li>
+            <a href="#">
+              <span class="icon"><i class="fa fa-plus"></i></span> Adicionar Arq Morto
+            </a>
+            <a href="#">
+              <span class="icon"><i class="fa fa-times"></i></span> Excluir Arq Morto
+            </a>
+            <a href="#">
+              <span class="icon"><i class="fa fa-search"></i></span> Pesquisar Arq Morto
+            </a>
+          </li>
+        </ul>
+      </transition>
+    </li>
+  </ul>
+
+  <ul class="menu-list">
+    <li>
+      <a href="#"
+        :class="{ 'is-active' : states[4].listas }"
+        @click="states[4].listas = !states[4].listas">
+        <span class="icon"><i class="fa fa-list"></i></span>
+        Menu Listas
+      </a>
+      <transition name="slide-fade">
+        <ul v-if="states[4].listas">
+          <li>
+            <a href="#">
+              <span class="icon"><i class="fa fa-legal"></i></span> Inadimplentes
+            </a>
+            <a href="#">
+              <span class="icon"><i class="fa fa-check"></i></span> Maiores Leitores
+            </a>
+            <a href="#">
+              <span class="icon"><i class="fa fa-bookmark"></i></span> Livros Mais Lidos
+            </a>
+          </li>
+        </ul>
+      </transition>
+    </li>
+  </ul>
+
+  <ul class="menu-list">
+    <li>
+      <a href="#">
+        <span class="icon"><i class="fa fa-info"></i></span> Sobre
+      </a>
+    </li>
+  </ul>
+</aside>
 </template>
 
 <script>
@@ -12,6 +157,18 @@ import ButtonClose from './MenuSystem/ButtonClose'
 
 export default {
   name: 'menu-system',
+  data () {
+    return {
+      view: false,
+      states: [
+        { aluno: false },
+        { naoAluno: false },
+        { livro: false },
+        { arqMorto: false },
+        { listas: false }
+      ]
+    }
+  },
   components: {
     Logo,
     ButtonClose
@@ -25,22 +182,37 @@ export default {
 </script>
 
 <style scoped>
-.menu {
-  width: 20vw;
-  height: 100vh;
-  position: absolute;
-  z-index: 6;
-  background-color: #007F7F;
-}
+  .menu {
+    width: 20vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 6;
+  }
 
-.menu.is-active::before {
-  content: "";
-  position: absolute;
-  left: 20vw;
-  display: block;
-  width: 80vw;
-  height: 100vh;
-  z-index: 0;
-  background-color: rgba(0, 0, 0, .5);
-}
+  .menu.is-active::before {
+    content: "";
+    position: absolute;
+    left: 20vw;
+    display: block;
+    width: 80vw;
+    height: 100vh;
+    z-index: 0;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .icon {
+    margin-top: -3px;
+    margin-right: 2px;
+  }
+
+  .slide-fade-enter-active {
+  transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+  transition: all .3s ease;
+  }
+  .slide-fade-enter, .slide-fade-leave-active {
+  transform: translateX(-100%);
+  opacity: 0;
+  }
 </style>
