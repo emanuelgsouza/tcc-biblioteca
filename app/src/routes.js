@@ -40,6 +40,11 @@ export default [
     component: require('components/Forms/People/PlusPeople')
   },
   {
+    path: '/delete-people',
+    name: 'delete-people',
+    component: require('components/Forms/People/DeletePeople')
+  },
+  {
     path: '*',
     redirect: '/'
   }

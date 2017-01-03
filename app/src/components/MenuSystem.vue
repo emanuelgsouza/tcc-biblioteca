@@ -51,9 +51,9 @@
             <router-link to="/plus-people">
               <span class="icon"><i class="fa fa-plus"></i></span> Adicionar Não Aluno
             </router-link>
-            <a>
+            <router-link to="/delete-people">
               <span class="icon"><i class="fa fa-times"></i></span> Excluir Não Aluno
-            </a>
+            </router-link>
             <a>
               <span class="icon"><i class="fa fa-exchange"></i></span> Empréstimo ou Devolução
             </a>
