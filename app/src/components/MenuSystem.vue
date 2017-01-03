@@ -132,9 +132,9 @@
             <router-link to="/list-readers">
               <span class="icon"><i class="fa fa-check"></i></span> Maiores Leitores
             </router-link>
-            <a>
+            <router-link to="/list-books">
               <span class="icon"><i class="fa fa-bookmark"></i></span> Livros Mais Lidos
-            </a>
+            </router-link>
             <router-link to="/list-class">
               <span class="icon"><i class="fa fa-window-maximize"></i></span> Alunos por Turma
             </router-link>

@@ -80,6 +80,11 @@ export default [
     component: require('components/Forms/Lists/Readers')
   },
   {
+    path: '/list-books',
+    name: 'list-books',
+    component: require('components/Forms/Lists/Books')
+  },
+  {
     path: '*',
     redirect: '/'
   }

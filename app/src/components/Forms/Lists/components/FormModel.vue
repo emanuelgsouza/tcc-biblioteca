@@ -25,7 +25,6 @@
           <button class="button is-info is-medium" @click="backFilters"> Filtros </button>
         </p>
       </div>
-    </div>
     </form>
   </div>
 </template>
