@@ -25,6 +25,11 @@ export default [
     component: require('components/Forms/Book/PlusBook')
   },
   {
+    path: '/delete-book',
+    name: 'delete-book',
+    component: require('components/Forms/Book/DeleteBook')
+  },
+  {
     path: '*',
     redirect: '/'
   }

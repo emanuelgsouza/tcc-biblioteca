@@ -77,9 +77,9 @@
             <router-link to="/plus-book">
               <span class="icon"><i class="fa fa-plus"></i></span> Adicionar Livro
             </router-link>
-            <a>
+            <router-link to="/delete-book">
               <span class="icon"><i class="fa fa-times"></i></span> Excluir Livro
-            </a>
+            </router-link>
             <a>
               <span class="icon"><i class="fa fa-search"></i></span> Pesquisar Livro
             </a>
