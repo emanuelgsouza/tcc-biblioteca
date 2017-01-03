@@ -80,9 +80,9 @@
             <router-link to="/delete-book">
               <span class="icon"><i class="fa fa-times"></i></span> Excluir Livro
             </router-link>
-            <a>
+            <router-link to="/search-book">
               <span class="icon"><i class="fa fa-search"></i></span> Pesquisar Livro
-            </a>
+            </router-link>
           </li>
         </ul>
       </transition>

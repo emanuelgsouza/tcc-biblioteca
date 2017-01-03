@@ -30,6 +30,11 @@ export default [
     component: require('components/Forms/Book/DeleteBook')
   },
   {
+    path: '/search-book',
+    name: 'search-book',
+    component: require('components/Forms/Book/SearchBook')
+  },
+  {
     path: '*',
     redirect: '/'
   }
