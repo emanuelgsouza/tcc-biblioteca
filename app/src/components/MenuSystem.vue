@@ -48,9 +48,9 @@
       <transition name="slide-fade">
         <ul v-if="currentMenu === 'naoAluno'">
           <li>
-            <a>
+            <router-link to="/plus-people">
               <span class="icon"><i class="fa fa-plus"></i></span> Adicionar Não Aluno
-            </a>
+            </router-link>
             <a>
               <span class="icon"><i class="fa fa-times"></i></span> Excluir Não Aluno
             </a>

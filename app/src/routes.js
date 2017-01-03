@@ -35,6 +35,11 @@ export default [
     component: require('components/Forms/Book/SearchBook')
   },
   {
+    path: '/plus-people',
+    name: 'plus-people',
+    component: require('components/Forms/People/PlusPeople')
+  },
+  {
     path: '*',
     redirect: '/'
   }
