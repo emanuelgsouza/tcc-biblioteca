@@ -74,9 +74,9 @@
       <transition name="slide-fade">
         <ul v-if="currentMenu === 'livro'">
           <li>
-            <a>
+            <router-link to="/plus-book">
               <span class="icon"><i class="fa fa-plus"></i></span> Adicionar Livro
-            </a>
+            </router-link>
             <a>
               <span class="icon"><i class="fa fa-times"></i></span> Excluir Livro
             </a>

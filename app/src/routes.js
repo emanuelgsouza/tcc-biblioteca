@@ -20,6 +20,11 @@ export default [
     component: require('components/Forms/Student/ExchangeStudent')
   },
   {
+    path: '/plus-book',
+    name: 'plus-book',
+    component: require('components/Forms/Book/PlusBook')
+  },
+  {
     path: '*',
     redirect: '/'
   }
