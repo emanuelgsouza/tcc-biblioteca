@@ -135,6 +135,9 @@
             <a>
               <span class="icon"><i class="fa fa-bookmark"></i></span> Livros Mais Lidos
             </a>
+            <router-link to="/list-class">
+              <span class="icon"><i class="fa fa-window-maximize"></i></span> Alunos por Turma
+            </router-link>
           </li>
         </ul>
       </transition>

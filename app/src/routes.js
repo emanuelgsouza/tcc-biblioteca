@@ -65,6 +65,11 @@ export default [
     component: require('components/Forms/ArqMorto/SearchArqMorto')
   },
   {
+    path: '/list-class',
+    name: 'list-class',
+    component: require('components/Forms/Lists/StudentsForClass')
+  },
+  {
     path: '*',
     redirect: '/'
   }
