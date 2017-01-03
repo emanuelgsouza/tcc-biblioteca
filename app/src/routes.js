@@ -55,6 +55,11 @@ export default [
     component: require('components/Forms/ArqMorto/PlusArqMorto')
   },
   {
+    path: '/delete-arq-morto',
+    name: 'delete-arq-morto',
+    component: require('components/Forms/ArqMorto/DeleteArqMorto')
+  },
+  {
     path: '*',
     redirect: '/'
   }
