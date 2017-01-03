@@ -85,6 +85,11 @@ export default [
     component: require('components/Forms/Lists/Books')
   },
   {
+    path: '/about',
+    name: 'about',
+    component: require('components/About')
+  },
+  {
     path: '*',
     redirect: '/'
   }

@@ -146,9 +146,9 @@
 
   <ul class="menu-list">
     <li>
-      <a>
+      <router-link to="/about">
         <span class="icon"><i class="fa fa-info"></i></span> Sobre
-      </a>
+      </router-link>
     </li>
   </ul>
 </aside>
