@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Hero from '../Hero/Main'
+import Hero from '../../Hero/Main'
 import FormDeleteStudent from './DeleteStudent/FormDeleteStudent'
 
 export default {
