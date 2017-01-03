@@ -75,6 +75,11 @@ export default [
     component: require('components/Forms/Lists/Defaulters')
   },
   {
+    path: '/list-readers',
+    name: 'list-readers',
+    component: require('components/Forms/Lists/Readers')
+  },
+  {
     path: '*',
     redirect: '/'
   }

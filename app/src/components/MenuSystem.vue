@@ -129,9 +129,9 @@
             <router-link to="/list-defaulters">
               <span class="icon"><i class="fa fa-legal"></i></span> Inadimplentes
             </router-link>
-            <a>
+            <router-link to="/list-readers">
               <span class="icon"><i class="fa fa-check"></i></span> Maiores Leitores
-            </a>
+            </router-link>
             <a>
               <span class="icon"><i class="fa fa-bookmark"></i></span> Livros Mais Lidos
             </a>
