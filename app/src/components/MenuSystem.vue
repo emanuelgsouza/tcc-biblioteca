@@ -106,9 +106,9 @@
             <router-link to="/delete-arq-morto">
               <span class="icon"><i class="fa fa-times"></i></span> Excluir Arq Morto
             </router-link>
-            <a>
+            <router-link to="/search-arq-morto">
               <span class="icon"><i class="fa fa-search"></i></span> Pesquisar Arq Morto
-            </a>
+            </router-link>
           </li>
         </ul>
       </transition>

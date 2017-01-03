@@ -60,6 +60,11 @@ export default [
     component: require('components/Forms/ArqMorto/DeleteArqMorto')
   },
   {
+    path: '/search-arq-morto',
+    name: 'search-arq-morto',
+    component: require('components/Forms/ArqMorto/SearchArqMorto')
+  },
+  {
     path: '*',
     redirect: '/'
   }
