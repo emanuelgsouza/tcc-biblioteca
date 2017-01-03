@@ -70,6 +70,11 @@ export default [
     component: require('components/Forms/Lists/StudentsForClass')
   },
   {
+    path: '/list-defaulters',
+    name: 'list-defaulters',
+    component: require('components/Forms/Lists/Defaulters')
+  },
+  {
     path: '*',
     redirect: '/'
   }

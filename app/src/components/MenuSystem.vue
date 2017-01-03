@@ -126,9 +126,9 @@
       <transition name="slide-fade">
         <ul v-show="currentMenu === 'listas'">
           <li>
-            <a>
+            <router-link to="/list-defaulters">
               <span class="icon"><i class="fa fa-legal"></i></span> Inadimplentes
-            </a>
+            </router-link>
             <a>
               <span class="icon"><i class="fa fa-check"></i></span> Maiores Leitores
             </a>
