@@ -100,9 +100,9 @@
       <transition name="slide-fade">
         <ul v-if="currentMenu === 'arqMorto'">
           <li>
-            <a>
+            <router-link to="/plus-arq-morto">
               <span class="icon"><i class="fa fa-plus"></i></span> Adicionar Arq Morto
-            </a>
+            </router-link>
             <a>
               <span class="icon"><i class="fa fa-times"></i></span> Excluir Arq Morto
             </a>

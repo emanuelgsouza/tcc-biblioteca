@@ -50,6 +50,11 @@ export default [
     component: require('components/Forms/People/ExchangePeople')
   },
   {
+    path: '/plus-arq-morto',
+    name: 'plus-arq-morto',
+    component: require('components/Forms/ArqMorto/PlusArqMorto')
+  },
+  {
     path: '*',
     redirect: '/'
   }
