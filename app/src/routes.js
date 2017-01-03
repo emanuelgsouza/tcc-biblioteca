@@ -45,6 +45,11 @@ export default [
     component: require('components/Forms/People/DeletePeople')
   },
   {
+    path: '/exchange-people',
+    name: 'exchange-people',
+    component: require('components/Forms/People/ExchangePeople')
+  },
+  {
     path: '*',
     redirect: '/'
   }
