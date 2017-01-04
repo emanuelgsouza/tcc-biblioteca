@@ -1,8 +1,4 @@
-// File of schemas based on schema-inspector plugin
-
-// Doc of plugin: https://github.com/Atinux/schema-inspector
-
-export const schemaStudent = {
+export default {
   type: 'object',
   properties: {
     nome: { type: 'string' },
