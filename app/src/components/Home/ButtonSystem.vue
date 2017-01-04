@@ -14,7 +14,7 @@ export default {
       type="button"
       class="button is-primary is-fullwidth is-medium"
       @click="opemMenu">
-      Acessar o Sistema
+      Acessar o Menu do Sistema
     </button>
   </div>
 </template>
