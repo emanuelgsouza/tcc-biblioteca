@@ -6,12 +6,12 @@
         <input
           type="text"
           class="input is-medium is-expanded"
-          :class="classNameHelp"
           placeholder="Nome"
+          :class="classNameHelp"
           required
           autofocus
           v-model="name">
-          <i class="fa" :class="{ 'fa-check' : classNameHelp === 'is-success' }"></i>
+          <i class="fa" :class="className"></i>
           <span class="help" :class="classNameHelp"> {{ nameHelp }} </span>
       </div>
       <label for="" class="label"> Digite a turma do aluno </label>
@@ -19,12 +19,12 @@
         <input
           type="number"
           class="input is-medium is-expanded"
-          :class="classTurmaHelp"
           placeholder="Turma"
+          :class="classTurmaHelp"
           min="901"
           required
           v-model="turma">
-          <i class="fa" :class="{ 'fa-check' : classTurmaHelp === 'is-success' }"></i>
+          <i class="fa" :class="classTurma"></i>
           <span class="help" :class="classTurmaHelp"> {{ turmaHelp }} </span>
       </div>
       <hr>
@@ -45,59 +45,69 @@
         </div>
       </div>
     </form>
+    <hr>
+    <Notification v-if="err" @closeNotification="err = false"></Notification>
   </div>
 </template>
 
 <script>
+import { createPeople } from '../../../../helpers/factories'
+import { isNameValid, isClassValid } from '../../../../helpers/functions'
+import Notification from '../../formComponents/Notification'
+
 export default {
+  components: { Notification },
   data () {
     return {
-      formIsValid: [false, false],
       name: '',
       turma: '',
-      nameHelp: '',
       classNameHelp: '',
+      className: '',
+      nameHelp: '',
       classTurmaHelp: '',
-      turmaHelp: ''
+      classTurma: '',
+      turmaHelp: '',
+      err: false
     }
   },
   watch: {
     name () {
-      const regExp = /0-9/
       if (this.name === '') {
-        this.nameHelp = ''
+        this.className = ''
         this.classNameHelp = ''
-        this.formIsValid[0] = false
-      } else if (regExp.test(this.name)) {
-        this.nameHelp = 'Nome digitado incorretamente'
+        this.nameHelp = ''
+      } else if (!isNameValid(this.name)) {
+        this.className = 'fa-warning'
         this.classNameHelp = 'is-danger'
-        this.formIsValid[0] = false
+        this.nameHelp = 'Nome inválido! Somente letras serão aceitas, sem acentos nem cecidilha'
       } else {
-        this.nameHelp = 'Nome digitado corretamente'
+        this.className = 'fa-check'
         this.classNameHelp = 'is-success'
-        this.formIsValid[0] = true
+        this.nameHelp = 'Nome válido!'
       }
     },
     turma () {
       if (this.turma === '') {
+        this.classTurma = ''
         this.classTurmaHelp = ''
         this.turmaHelp = ''
-        this.formIsValid[1] = false
-      } else if (this.turma < 901) {
+      } else if (!isClassValid(this.turma)) {
+        this.classTurma = 'fa-warning'
         this.classTurmaHelp = 'is-danger'
-        this.turmaHelp = 'Digite uma turma válida, números menores que 901 não são aceitos'
-        this.formIsValid[1] = false
-      } else if (this.turma >= 901) {
+        this.turmaHelp = 'Turma inválida! Turmas acima de 901 serão aceitas'
+      } else {
+        this.classTurma = 'fa-check'
         this.classTurmaHelp = 'is-success'
-        this.turmaHelp = 'Turma válida'
-        this.formIsValid[1] = true
+        this.turmaHelp = 'Turma válida!'
       }
     }
   },
   methods: {
     confirm () {
-      const valid = this.formIsValid.every((item) => item === true)
-      console.log(valid)
+      const valid = createPeople('student', this.name, this.turma)
+      if (!valid.valid) {
+        this.err = true
+      }
     }
   }
 }
