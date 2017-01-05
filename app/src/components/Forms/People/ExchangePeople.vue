@@ -4,7 +4,7 @@
     <section class="section">
       <div class="columns is-centered">
         <div class="column is-8">
-          <FormExchangePeople></FormExchangePeople>
+          <FormExchangePeople @search="pesquisar"></FormExchangePeople>
         </div>
       </div>
     </section>
@@ -16,7 +16,12 @@ import Hero from '../../Hero/Main'
 import FormExchangePeople from './ExchangePeople/FormExchangePeople'
 
 export default {
-  name: 'form-delete-student',
-  components: { Hero, FormExchangePeople }
+  name: 'form-search-pleople',
+  components: { Hero, FormExchangePeople },
+  methods: {
+    pesquisar () {
+      console.log(arguments)
+    }
+  }
 }
 </script>
