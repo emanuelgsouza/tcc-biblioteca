@@ -22,7 +22,9 @@ export default {
   },
   methods: {
     enviarDados () {
-      this.$emit('search', this.value)
+      if (this.value !== '') {
+        this.$emit('search', this.value)
+      }
     }
   }
 }

@@ -4,7 +4,7 @@
     <section class="section">
       <div class="columns is-centered">
         <div class="column is-8">
-          <FormDeleteBook></FormDeleteBook>
+          <FormDeleteBook @delete="deletar"></FormDeleteBook>
         </div>
       </div>
     </section>
@@ -17,6 +17,11 @@ import FormDeleteBook from './DeleteBook/FormDeleteBook'
 
 export default {
   name: 'form-delete-book',
-  components: { Hero, FormDeleteBook }
+  components: { Hero, FormDeleteBook },
+  methods: {
+    deletar () {
+      console.log(arguments)
+    }
+  }
 }
 </script>
