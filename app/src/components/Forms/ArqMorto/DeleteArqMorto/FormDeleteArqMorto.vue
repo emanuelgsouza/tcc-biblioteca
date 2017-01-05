@@ -1,34 +1,29 @@
 <template>
   <div>
     <form>
-      <InputText
-        label="Digite o título do livro para pesquisa"
+      <InputSearch
+        label="Digite o título do livro"
         placeholder="Título"
-        @sendData="title = arguments[0]"
-      ></InputText>
-      <hr>
-      <ButtonsFooter @confirm="confirmar"></ButtonsFooter>
-      </div>
+        @search="search"></InputSearch>
     </form>
   </div>
 </template>
 
 <script>
-import InputText from '../../formComponents/InputText'
-import ButtonsFooter from '../../formComponents/ButtonsFooter'
+import InputSearch from '../../formComponents/InputSearch'
 
 export default {
-  components: { InputText, ButtonsFooter },
+  components: { InputSearch },
   data () {
     return {
       title: ''
     }
   },
   methods: {
-    confirmar () {
-      const title = this.title.trim()
-      const dados = { title }
-      this.$emit('delete', dados)
+    search () {
+      const dados = arguments[0]
+      const title = dados.trim()
+      this.$emit('delete', title)
     }
   }
 }
