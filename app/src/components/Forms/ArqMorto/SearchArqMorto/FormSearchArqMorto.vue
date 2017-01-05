@@ -7,12 +7,15 @@
       Título em especial
     </button>
     <transition>
-      <Inputs
+      <InputSearchFilter
         v-if="currentSearch === 'titulo'"
         title="Pesquise pelo título do livro"
         @backFilters="toggleFilters(false)"
         placeholder="Digite um título para pesquisa"
-        ></Inputs>
+        type="title"
+        @sendData="value = arguments[0]"
+        @confirm="search"
+        ></InputSearchFilter>
     </transition>
 
     <button
@@ -22,27 +25,31 @@
       Autor
     </button>
     <transition>
-      <Inputs
+      <InputSearchFilter
         v-if="currentSearch === 'autor'"
         title="Pesquise pelo título do livro"
         @backFilters="toggleFilters(false)"
         placeholder="Digite um autor para pesquisa"
-        ></Inputs>
+        type="author"
+        @sendData="value = arguments[0]"
+        @confirm="search"
+        ></InputSearchFilter>
     </transition>
   </div>
 </template>
 
 <script>
-import Inputs from './Inputs'
+import InputSearchFilter from '../../formComponents/InputSearchFilter.vue'
 
 export default {
   data () {
     return {
       currentSearch: null,
-      showButton: true
+      showButton: true,
+      value: ''
     }
   },
-  components: { Inputs },
+  components: { InputSearchFilter },
   methods: {
     toggleFilters (showFilter, esc) {
       if (showFilter) {
@@ -52,6 +59,10 @@ export default {
         this.showButton = true
         this.currentSearch = null
       }
+    },
+    search () {
+      const type = arguments[0]
+      this.$emit('pesquisar', this.value, type)
     }
   }
 }

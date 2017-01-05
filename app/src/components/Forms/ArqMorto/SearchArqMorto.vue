@@ -4,7 +4,7 @@
     <section class="section">
       <div class="columns is-centered">
         <div class="column is-8">
-          <FormSearchArqMorto></FormSearchArqMorto>
+          <FormSearchArqMorto @pesquisar="pesquisar"></FormSearchArqMorto>
         </div>
       </div>
     </section>
@@ -17,6 +17,11 @@ import FormSearchArqMorto from './SearchArqMorto/FormSearchArqMorto'
 
 export default {
   name: 'form-search-book',
-  components: { Hero, FormSearchArqMorto }
+  components: { Hero, FormSearchArqMorto },
+  methods: {
+    pesquisar () {
+      console.log(arguments)
+    }
+  }
 }
 </script>
