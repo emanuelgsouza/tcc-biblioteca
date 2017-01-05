@@ -1,19 +1,19 @@
 <template>
   <div>
     <form>
-      <InputSearch
+      <InputSearchDel
         label="Digite o título do livro"
         placeholder="Título"
-        @search="search"></InputSearch>
+        @search="search"></InputSearchDel>
     </form>
   </div>
 </template>
 
 <script>
-import InputSearch from '../../formComponents/InputSearch'
+import InputSearchDel from '../../formComponents/InputSearchDel'
 
 export default {
-  components: { InputSearch },
+  components: { InputSearchDel },
   data () {
     return {
       title: ''
