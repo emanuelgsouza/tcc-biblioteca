@@ -1,60 +1,42 @@
 <template>
   <div>
     <form>
-      <label for="" class="label"> Digite o nome do aluno para pesquisa </label>
-      <div class="control has-icon has-icon-right">
-        <input
-          type="text"
-          class="input is-medium is-expanded"
-          :class="classNameHelp"
-          placeholder="Nome"
-          required
-          autofocus
-          v-model="name">
-          <i class="fa" :class="{ 'fa-check' : classNameHelp === 'is-success' }"></i>
-          <span class="help" :class="classNameHelp"> {{ nameHelp }} </span>
-      </div>
+      <InputName
+        label="Digite o nome do aluno para pesquisa"
+        placeholder="Nome"
+        @sendData="captureName"
+      ></InputName>
       <hr>
-      <div class="columns">
-        <div class="column is-6">
-          <button
-            class="button is-success is-medium is-fullwidth"
-            type="button">
-            Confirmar
-          </button>
-        </div>
-        <div class="column is-6">
-          <input
-            class="button is-danger is-medium is-fullwidth"
-            type="reset"
-            value="Cancelar">
-        </div>
-      </div>
+      <ButtonsFooter @confirm="confirmar"></ButtonsFooter>
     </form>
   </div>
 </template>
 
 <script>
+import { createPeople } from '../../../../helpers/factories'
+import InputName from '../../formComponents/InputName'
+import ButtonsFooter from '../../formComponents/ButtonsFooter'
+
 export default {
+  components: { InputName, ButtonsFooter },
   data () {
     return {
-      name: '',
-      nameHelp: '',
-      classNameHelp: ''
+      name: ''
     }
   },
-  watch: {
-    name () {
-      const regExp = /0-9/
-      if (this.name === '') {
-        this.nameHelp = ''
-        this.classNameHelp = ''
-      } else if (regExp.test(this.name)) {
-        this.nameHelp = 'Nome digitado incorretamente'
-        this.classNameHelp = 'is-danger'
+  methods: {
+    captureName () {
+      const name = arguments[0]
+      this.name = name
+    },
+    confirmar () {
+      const valid = createPeople('student', this.name)
+      if (valid.valid) {
+        const estadoNotification = 'positive'
+        const dados = { Name: this.name }
+        this.$emit('delete', dados, estadoNotification, true)
       } else {
-        this.nameHelp = 'Nome digitado corretamente'
-        this.classNameHelp = 'is-success'
+        this.$emit('delete')
       }
     }
   }
