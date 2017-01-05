@@ -1,7 +1,7 @@
 <template>
   <div>
     <label for="" class="label"> {{ label }} </label>
-    <div class="control has-icon has-icon-right">
+    <p class="control has-icon has-icon-right">
       <input
         type="text"
         class="input is-medium is-expanded"
@@ -10,8 +10,8 @@
         required
         v-model="text">
       <i class="fa" :class="{ 'fa-check' : help }"></i>
-      <span class="help" :class="{ 'is-success' :help }"> Campo válido </span>
-    </div>
+      <span class="help" :class="{ 'is-success' :help }" v-if="help"> Campo válido </span>
+    </p>
   </div>
 </template>
 
@@ -21,11 +21,6 @@ export default {
   data () {
     return { text: '', help: false }
   },
-  methods: {
-    sendData () {
-      this.$emit('sendData', this.text)
-    }
-  },
   watch: {
     text () {
       if (this.text === '') {
@@ -33,6 +28,7 @@ export default {
       } else {
         this.help = true
       }
+      this.$emit('sendData', this.text)
     }
   }
 }
