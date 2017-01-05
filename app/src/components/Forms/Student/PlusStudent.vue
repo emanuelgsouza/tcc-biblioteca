@@ -41,6 +41,10 @@ export default {
         this.open = false
         this.dados = arguments[0]
         this.estadoNotification = arguments[1]
+      } else {
+        this.open = false
+        this.dados = []
+        this.estadoNotification = 'negative'
       }
     },
     close () {
