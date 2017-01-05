@@ -4,7 +4,7 @@
       <button
         class="button is-success is-medium is-fullwidth"
         type="button"
-        @click="confirm">
+        @click="confirmar">
         Confirmar
       </button>
     </div>
@@ -20,7 +20,7 @@
 <script>
 export default {
   methods: {
-    confirm () {
+    confirmar () {
       this.$emit('confirm')
     }
   }
