@@ -4,7 +4,7 @@
     <section class="section">
       <div class="columns is-centered">
         <div class="column is-8">
-          <FormExchangeStudent></FormExchangeStudent>
+          <FormExchangeStudent @search="pesquisar"></FormExchangeStudent>
         </div>
       </div>
     </section>
@@ -17,6 +17,11 @@ import FormExchangeStudent from './ExchangeStudent/FormExchangeStudent'
 
 export default {
   name: 'form-delete-student',
-  components: { Hero, FormExchangeStudent }
+  components: { Hero, FormExchangeStudent },
+  methods: {
+    pesquisar () {
+      console.log(arguments)
+    }
+  }
 }
 </script>
