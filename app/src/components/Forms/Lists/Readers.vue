@@ -15,6 +15,7 @@
               v-if="currentSearch === 'aluno'"
               label="Exibir os leitores no período de"
               @backFilters="toggleFilters(false)"
+              @sendData="gerarLista"
               ></FormModel>
           </transition>
 
@@ -29,6 +30,7 @@
               v-if="currentSearch === 'pessoa'"
               label="Exibir os leitores no período de"
               @backFilters="toggleFilters(false)"
+              @sendData="gerarLista"
               ></FormModel>
           </transition>
         </div>
@@ -58,6 +60,9 @@ export default {
         this.showButton = true
         this.currentSearch = null
       }
+    },
+    gerarLista () {
+      console.log(arguments)
     }
   }
 }
