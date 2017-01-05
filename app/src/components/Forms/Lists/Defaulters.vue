@@ -15,6 +15,7 @@
               v-if="currentSearch === 'aluno'"
               label="Alunos Inadimplentes à"
               @backFilters="toggleFilters(false)"
+              @sendData="pesquisar"
               ></FormModel>
           </transition>
 
@@ -29,6 +30,7 @@
               v-if="currentSearch === 'pessoa'"
               label="Pessoas Inadimplentes à"
               @backFilters="toggleFilters(false)"
+              @sendData="pesquisar"
               ></FormModel>
           </transition>
         </div>
@@ -58,6 +60,9 @@ export default {
         this.showButton = true
         this.currentSearch = null
       }
+    },
+    pesquisar () {
+      console.log(arguments)
     }
   }
 }
