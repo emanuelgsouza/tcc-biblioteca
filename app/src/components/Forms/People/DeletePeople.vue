@@ -4,7 +4,7 @@
     <section class="section">
       <div class="columns is-centered">
         <div class="column is-8">
-          <FormDeletePeople></FormDeletePeople>
+          <FormDeletePeople @delete="deletar"></FormDeletePeople>
         </div>
       </div>
     </section>
@@ -17,6 +17,11 @@ import FormDeletePeople from './DeletePeople/FormDeletePeople'
 
 export default {
   name: 'form-delete-people',
-  components: { Hero, FormDeletePeople }
+  components: { Hero, FormDeletePeople },
+  methods: {
+    deletar () {
+      console.log(arguments)
+    }
+  }
 }
 </script>
