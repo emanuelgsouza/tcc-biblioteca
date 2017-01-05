@@ -1,4 +1,4 @@
-import { isNameValid } from '../functions'
+import { isNameValid } from '../validates'
 import createStudent from './createStudent'
 import createNotStudent from './createNotStudent'
 
