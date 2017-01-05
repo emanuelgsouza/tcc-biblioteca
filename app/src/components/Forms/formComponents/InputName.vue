@@ -9,7 +9,6 @@
         :class="classNameHelp"
         required
         autofocus
-        :disabled="disabled"
         v-model="name">
         <i class="fa" :class="className"></i>
         <span class="help" :class="classNameHelp"> {{ nameHelp }} </span>
@@ -21,7 +20,7 @@
 import { isNameValid } from '../../../helpers/validates'
 
 export default {
-  props: ['placeholder', 'label', 'disabled', 'resetar'],
+  props: ['placeholder', 'label'],
   data () {
     return {
       name: '',

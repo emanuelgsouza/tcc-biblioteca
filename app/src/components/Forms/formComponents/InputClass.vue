@@ -9,7 +9,6 @@
           :class="classTurmaHelp"
           min="901"
           required
-          :disabled="disabled"
           v-model="turma">
           <i class="fa" :class="classTurma"></i>
           <span class="help" :class="classTurmaHelp"> {{ turmaHelp }} </span>
@@ -21,7 +20,7 @@
 import { isClassValid } from '../../../helpers/validates'
 
 export default {
-  props: ['placeholder', 'label', 'dissabled'],
+  props: ['placeholder', 'label'],
   data () {
     return {
       turma: '',
