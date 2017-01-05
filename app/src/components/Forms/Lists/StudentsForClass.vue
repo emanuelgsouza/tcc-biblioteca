@@ -5,18 +5,12 @@
       <div class="columns is-centered">
         <div class="column is-8">
           <form>
-            <label for="" class="label"> Informe a turma </label>
-            <div class="control">
-              <input
-                type="number"
-                class="input is-medium is-expanded"
-                placeholder="Turma"
-                required
-                autofocus
-                v-model="turma">
-              </div>
-              <button class="button is-medium is-success"> Pesquisar </button>
+            <InputClass
+              label="Digite o número da turma para pesquisa"
+              placeholder="Turma"
+              @sendData="value = arguments[0]"></InputClass>
           </form>
+          <button class="button is-medium is-success" @click="pesquisar"> Pesquisar </button>
         </div>
       </div>
     </section>
@@ -24,10 +18,22 @@
 </template>
 
 <script>
+import { isClassValid } from '../../../helpers/validates'
 import Hero from '../../Hero/Main'
+import InputClass from '../formComponents/InputClass'
 
 export default {
   name: 'list-students-class',
-  components: { Hero }
+  components: { Hero, InputClass },
+  data () {
+    return {
+      value: ''
+    }
+  },
+  methods: {
+    pesquisar () {
+      if (isClassValid(this.value)) console.log(this.value)
+    }
+  }
 }
 </script>
