@@ -4,7 +4,7 @@
     <section class="section">
       <div class="columns is-centered">
         <div class="column is-8">
-          <FormDeleteArqMorto></FormDeleteArqMorto>
+          <FormDeleteArqMorto @delete="deletar"></FormDeleteArqMorto>
         </div>
       </div>
     </section>
@@ -17,6 +17,11 @@ import FormDeleteArqMorto from './DeleteArqMorto/FormDeleteArqMorto'
 
 export default {
   name: 'form-delete-arq-morto',
-  components: { Hero, FormDeleteArqMorto }
+  components: { Hero, FormDeleteArqMorto },
+  methods: {
+    deletar () {
+      console.log(arguments)
+    }
+  }
 }
 </script>
