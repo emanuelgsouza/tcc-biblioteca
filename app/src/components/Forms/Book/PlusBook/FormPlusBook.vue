@@ -1,182 +1,115 @@
 <template>
   <div>
     <form>
-      <label class="label"> Digite o título do livro </label>
-      <div class="control has-icon has-icon-right">
-        <input
-          type="text"
-          class="input is-medium is-expanded"
-          :class="classTitleHelp"
-          placeholder="Título"
-          required
-          autofocus
-          v-model="title">
-          <i class="fa" :class="{ 'fa-check' : classTitleHelp === 'is-success' }"></i>
-          <span class="help" :class="classTitleHelp"> {{ titleHelp }} </span>
-      </div>
-      <label class="label"> Digite o nome do autor </label>
-      <div class="control has-icon has-icon-right">
-        <input
-          type="text"
-          class="input is-medium is-expanded"
-          :class="classAuthorHelp"
-          placeholder="Autor"
-          min="901"
-          required
-          v-model="author">
-          <i class="fa" :class="{ 'fa-check' : classAuthorHelp === 'is-success' }"></i>
-          <span class="help" :class="classAuthorHelp"> {{ authorHelp }} </span>
-      </div>
-      <label class="label"> Digite o nome da editora </label>
-      <div class="control has-icon has-icon-right">
-        <input
-          type="text"
-          class="input is-medium is-expanded"
-          :class="classEditoraHelp"
-          placeholder="Editora"
-          min="901"
-          required
-          v-model="editora">
-          <i class="fa" :class="{ 'fa-check' : classEditoraHelp === 'is-success' }"></i>
-          <span class="help" :class="classEditoraHelp"> {{ editoraHelp }} </span>
-      </div>
-      <label class="label"> Gênero Literário </label>
-      <p class="control">
-        <span class="select is-fullwidth">
-          <select>
-            <option selected> Selecione um gênero literário </option>
-          </select>
-        </span>
-      </p>
-      <label class="label"> Escola Literária </label>
-      <p class="control">
-        <span class="select is-fullwidth">
-          <select>
-            <option selected> Selecione uma escola literária </option>
-          </select>
-        </span>
-      </p>
-      <label class="label"> Categoria Didática </label>
-      <p class="control">
-        <span class="select is-fullwidth">
-          <select>
-            <option v selected> Selecione uma categoria didática </option>
-          </select>
-        </span>
-      </p>
-      <div class="control is-horizontal">
-        <div class="control is-grouped">
-          <p class="control is-expanded">
-            <input type="number" class="input is-medium" placeholder="Código do Livro" min="0">
-          </p>
-          <p class="control is-expanded">
-            <input type="number" class="input is-medium" placeholder="Estante" min="0">
-          </p>
-        </div>
-      </div>
-      <div class="control is-horizontal">
-        <div class="control is-grouped">
-          <p class="control is-expanded">
-            <input type="text" class="input is-medium" placeholder="Prateleira" min="0">
-          </p>
-          <p class="control is-expanded">
-            <input type="number" class="input is-medium" placeholder="Estoque" min="0">
-          </p>
-        </div>
-      </div>
+      <InputText
+        label="Digite o título do livro"
+        placeholder="Título"
+        @sendData="title = arguments[0]"></InputText>
+      <InputName
+        label="Digite o nome do autor"
+        placeholder="Autor"
+        @sendData="author = arguments[0]"></InputName>
+      <InputText
+        label="Digite o nome da editora"
+        placeholder="Editora"
+        @sendData="editora = arguments[0]"></InputText>
+      <SelectBook
+        label="Genero Literário"
+        :dados="dadosGenre"
+        @sendData="genero = arguments[0]"></SelectBook>
+      <SelectBook
+        label="Escola Literária"
+        :dados="dadosSchool"
+        @sendData="escola = arguments[0]"></SelectBook>
+      <SelectBook
+        label="Categoria Didatica"
+        :dados="dadosDidatic"
+        @sendData="didatico = arguments[0]"></SelectBook>
+      <InputNumber
+        label="Digite o código do livro"
+        placeholder="Código"
+        min="0"
+        @sendData="codigo = arguments[0]"></InputNumber>
+      <InputText
+        label="Digite a letra da estante"
+        placeholder="Estante"
+        @sendData="estante = arguments[0]"></InputText>
+      <InputNumber
+        label="Digite o número da prateleira"
+        placeholder="Prateleira"
+        min="0"
+        @sendData="prateleira = arguments[0]"></InputNumber>
+      <InputNumber
+        label="Digite o estoque"
+        placeholder="Estoque"
+        min="0"
+        @sendData="estoque = arguments[0]"></InputNumber>
       <hr>
-      <div class="columns">
-        <div class="column is-6">
-          <button
-            class="button is-success is-medium is-fullwidth"
-            type="button"
-            @click="confirm">
-            Confirmar
-          </button>
-        </div>
-        <div class="column is-6">
-          <input
-            class="button is-danger is-medium is-fullwidth"
-            type="reset"
-            value="Cancelar">
-        </div>
-      </div>
+      <ButtonsFooter @confirm="confirmar"></ButtonsFooter>
     </form>
   </div>
 </template>
 
 <script>
+import { isNameValid, isNumberValid } from '../../../../helpers/validates'
+import { genre, didatic, schools } from '../../../../helpers/Objects'
+import { createBook } from '../../../../helpers/factories'
+import InputText from '../../formComponents/InputText'
+import InputName from '../../formComponents/InputName'
+import InputNumber from '../../formComponents/InputNumber'
+import SelectBook from '../../formComponents/SelectBook'
+import ButtonsFooter from '../../formComponents/ButtonsFooter'
+
 export default {
+  components: { InputText, InputName, InputNumber, SelectBook, ButtonsFooter },
   data () {
     return {
-      formIsValid: [false, false, false],
       title: '',
-      titleHelp: '',
-      classTitleHelp: '',
       author: '',
-      authorHelp: '',
-      classAuthorHelp: '',
       editora: '',
-      editoraHelp: '',
-      classEditoraHelp: ''
-    }
-  },
-  watch: {
-    title () {
-      const regExp = /0-9/
-      if (this.title === '') {
-        this.titleHelp = ''
-        this.classTitleHelp = ''
-        this.formIsValid[0] = false
-      } else if (regExp.test(this.title)) {
-        this.titleHelp = 'Nome digitado incorretamente'
-        this.classTitleHelp = 'is-danger'
-        this.formIsValid[0] = false
-      } else {
-        this.titleHelp = 'Nome digitado corretamente'
-        this.classTitleHelp = 'is-success'
-        this.formIsValid[0] = true
-      }
-    },
-    author () {
-      const regExp = /0-9/
-      console.log(this.author)
-      if (this.author === '') {
-        this.classAuthorHelp = ''
-        this.authorHelp = ''
-        this.formIsValid[1] = false
-      } else if (regExp.test(this.title)) {
-        this.classAuthorHelp = 'is-danger'
-        this.authorHelp = 'Digite um nome válido'
-        this.formIsValid[1] = false
-      } else {
-        this.classAuthorHelp = 'is-success'
-        this.authorHelp = 'Nome válido'
-        this.formIsValid[1] = true
-      }
-    },
-    editora () {
-      const regExp = /0-9/
-      console.log(this.editora)
-      if (this.editora === '') {
-        this.classEditoraHelp = ''
-        this.editoraHelp = ''
-        this.formIsValid[2] = false
-      } else if (regExp.test(this.title)) {
-        this.classEditoraHelp = 'is-danger'
-        this.editoraHelp = 'Digite um nome válido'
-        this.formIsValid[2] = false
-      } else {
-        this.classEditoraHelp = 'is-success'
-        this.editoraHelp = 'Nome válido'
-        this.formIsValid[2] = true
-      }
+      didatico: '',
+      escola: '',
+      genero: '',
+      codigo: '',
+      prateleira: '',
+      estante: '',
+      estoque: '',
+      dadosGenre: genre,
+      dadosSchool: schools,
+      dadosDidatic: didatic
     }
   },
   methods: {
-    confirm () {
-      const valid = this.formIsValid.every((item) => item === true)
-      console.log(valid)
+    confirmar () {
+      const array = []
+      array.push(this.title.length > 0)
+      array.push(isNameValid(this.author))
+      array.push(this.editora.length > 0)
+      array.push(!(isNumberValid(this.codigo).err))
+      array.push(isNameValid(this.estante))
+      array.push(!isNumberValid(this.prateleira).err)
+      array.push(!isNumberValid(this.estoque).err)
+      const valid = array.every(item => item === true)
+      if (valid) {
+        const dados = {
+          Titulo: this.title,
+          Autor: this.author,
+          Editora: this.editora,
+          Genero: this.genero,
+          Escola: this.escola,
+          Didatico: this.didatico,
+          Codigo: this.codigo,
+          Prateleira: this.prateleira,
+          Estante: this.estante,
+          Estoque: this.estoque
+        }
+        const isBookValid = createBook(this.title, this.author, this.editora, this.genero, this.escola, this.didatico, this.codigo, this.estante, this.prateleira, this.estoque)
+        if (isBookValid.valid) {
+          this.$emit('confirm', 'positive', dados)
+        } else {
+          this.$emit('confirm', 'negative')
+        }
+      }
     }
   }
 }
