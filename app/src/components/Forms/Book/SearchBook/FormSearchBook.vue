@@ -10,7 +10,9 @@
       <Selects
         v-if="currentSearch === 'literario'"
         title="Selecione o Gênero Literário"
+        :dados="genre"
         @backFilters="toggleFilters(false)"
+        @pesquisar="search"
         ></Selects>
     </transition>
 
@@ -24,7 +26,9 @@
       <Selects
         v-if="currentSearch === 'didatico'"
         title="Selecione a categoria didática"
+        :dados="didatic"
         @backFilters="toggleFilters(false)"
+        @pesquisar="search"
         ></Selects>
     </transition>
 
@@ -38,7 +42,9 @@
       <Selects
         v-if="currentSearch === 'escola'"
         title="Selecione escola literária"
+        :dados="schools"
         @backFilters="toggleFilters(false)"
+        @pesquisar="search"
         ></Selects>
     </transition>
 
@@ -52,8 +58,9 @@
       <Inputs
         v-if="currentSearch === 'titulo'"
         title="Pesquise pelo título do livro"
-        @backFilters="toggleFilters(false)"
         placeholder="Digite um título para pesquisa"
+        @backFilters="toggleFilters(false)"
+        @pesquisar="search"
         ></Inputs>
     </transition>
 
@@ -67,14 +74,16 @@
       <Inputs
         v-if="currentSearch === 'autor'"
         title="Pesquise pelo título do livro"
-        @backFilters="toggleFilters(false)"
         placeholder="Digite um autor para pesquisa"
+        @backFilters="toggleFilters(false)"
+        @pesquisar="search"
         ></Inputs>
     </transition>
   </div>
 </template>
 
 <script>
+import { genre, didatic, schools } from '../../../../helpers/Objects'
 import Selects from './Selects'
 import Inputs from './Inputs'
 
@@ -82,7 +91,10 @@ export default {
   data () {
     return {
       currentSearch: null,
-      showButton: true
+      showButton: true,
+      genre,
+      didatic,
+      schools
     }
   },
   components: { Selects, Inputs },
@@ -95,6 +107,10 @@ export default {
         this.showButton = true
         this.currentSearch = null
       }
+    },
+    search () {
+      const data = arguments[0]
+      this.$emit('search', data)
     }
   }
 }

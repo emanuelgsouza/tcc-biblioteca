@@ -3,14 +3,14 @@
     <h2> {{ title }} </h2>
     <p class="control">
       <span class="select is-medium is-fullwidth">
-        <select>
-          <option value=""> Selecione um genero literário </option>
+        <select v-model="value">
+          <option v-for="option in dados" :value="option.value"> {{ option.text }} </option>
         </select>
       </span>
     </p>
     <div class="control is-grouped">
       <p class="control">
-        <button class="button is-success is-medium"> Pesquisar </button>
+        <button class="button is-success is-medium" @click="pesquisar"> Pesquisar </button>
       </p>
       <p class="control">
         <button class="button is-info is-medium" @click="backFilters"> Filtros </button>
@@ -21,10 +21,14 @@
 
 <script>
 export default {
-  props: ['title'],
+  props: ['title', 'dados'],
+  data () { return { value: 'n' } },
   methods: {
     backFilters () {
       this.$emit('backFilters')
+    },
+    pesquisar () {
+      this.$emit('pesquisar', this.value)
     }
   }
 }
