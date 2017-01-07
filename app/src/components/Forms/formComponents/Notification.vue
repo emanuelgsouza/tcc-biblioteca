@@ -1,10 +1,11 @@
 <template>
   <div class="notification" :class="className">
     <button class="delete" @click="closeNotification"></button>
-    {{ title }}
+    <h1 class="title is-4 has-text-centered">{{ title }}</h1>
+    <hr v-show="estado === 'positive'">
     <ul v-if="estado === 'positive'">
       <li v-for="(value, key) in dados">
-        <p>{{ key }} - {{ value }}</p>
+        <p class="title is-4 datas">{{ key }} - {{ value }}</p>
       </li>
     </ul>
   </div>
@@ -36,3 +37,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .datas {
+    font-weight: 500;
+  }
+</style>
