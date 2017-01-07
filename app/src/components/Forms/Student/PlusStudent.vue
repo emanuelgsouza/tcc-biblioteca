@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { addStudent } from '../../../pouchdb/student'
 import Hero from '../../Hero/Main'
 import FormInsertAluno from './PlusStudent/FormInsertAluno'
 import Notification from '../formComponents/Notification'
@@ -31,7 +32,8 @@ export default {
     return {
       err: false,
       open: true,
-      estadoNotification: 'negative'
+      estadoNotification: 'negative',
+      dados: []
     }
   },
   methods: {
@@ -39,8 +41,23 @@ export default {
       this.err = true
       if (arguments[2]) {
         this.open = false
-        this.dados = arguments[0]
+        const dados = arguments[0]
         this.estadoNotification = arguments[1]
+        const student = {
+          name: dados.Name,
+          turma: dados.Turma
+        }
+        const self = this
+        const result = addStudent(student)
+        result.then(function (data) {
+          // Capture the data
+          if (data.ok) {
+            self.dados = {
+              Nome: dados.Name,
+              Turma: dados.Turma
+            }
+          }
+        })
       } else {
         this.open = false
         this.dados = []
