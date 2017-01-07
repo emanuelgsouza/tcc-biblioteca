@@ -44,7 +44,7 @@ export default {
         const dados = arguments[0]
         this.estadoNotification = arguments[1]
         const student = {
-          name: dados.Name,
+          name: dados.Name.toUpperCase(),
           turma: dados.Turma
         }
         const self = this
