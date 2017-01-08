@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { createPeople } from '../../../../helpers/factories'
+import { createStudent } from '../../../../helpers/factories'
 import InputName from '../../formComponents/InputName'
 import InputClass from '../../formComponents/InputClass'
 import ButtonsFooter from '../../formComponents/ButtonsFooter'
@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     confirmar () {
-      const valid = createPeople('student', this.name, this.turma)
+      const valid = createStudent(this.name, this.turma)
       if (valid.valid && this.turma) {
         const estadoNotification = 'positive'
         const dados = { Name: this.name, Turma: this.turma }
