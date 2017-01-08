@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { addBook } from '../../../pouchdb/book'
 import Hero from '../../Hero/Main'
 import FormInsertBook from './PlusBook/FormPlusBook'
 import Notifications from '../formComponents/Notification'
@@ -28,9 +29,17 @@ export default {
       if (arguments[0] === 'negative') {
         this.estado = 'negative'
       } else {
-        this.estado = 'positive'
-        this.array = arguments[1]
-        this.formValid = true
+        const array = arguments[1]
+        const self = this
+        addBook(array).then(function (data) {
+          if (data.ok) {
+            self.estado = 'positive'
+            self.array = array
+            self.formValid = true
+          } else {
+            self.estado = 'negative'
+          }
+        })
       }
     },
     close () {

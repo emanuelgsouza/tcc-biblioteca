@@ -92,16 +92,16 @@ export default {
       const valid = array.every(item => item === true)
       if (valid) {
         const dados = {
-          Titulo: this.title,
-          Autor: this.author,
-          Editora: this.editora,
-          Genero: this.genero,
-          Escola: this.escola,
-          Didatico: this.didatico,
-          Codigo: this.codigo,
-          Prateleira: this.prateleira,
-          Estante: this.estante,
-          Estoque: this.estoque
+          titulo: this.title.toUpperCase(),
+          autor: this.author.toUpperCase(),
+          editora: this.editora.toUpperCase(),
+          genero: this.genero.toUpperCase(),
+          escola: this.escola.toUpperCase(),
+          didatico: this.didatico.toUpperCase(),
+          codigo: this.codigo,
+          estante: this.estante.toUpperCase(),
+          prateleira: this.prateleira,
+          estoque: this.estoque
         }
         const isBookValid = createBook(this.title, this.author, this.editora, this.genero, this.escola, this.didatico, this.codigo, this.estante, this.prateleira, this.estoque)
         if (isBookValid.valid) {
