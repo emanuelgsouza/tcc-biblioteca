@@ -1,5 +1,5 @@
 <template>
-  <div class="columns">
+  <div class="columns is-mobile">
     <div class="column is-6">
       <button
         class="button is-success is-medium is-fullwidth"
@@ -12,7 +12,7 @@
       <input
         class="button is-danger is-medium is-fullwidth"
         type="reset"
-        value="Cancelar">
+        value="Limpar">
     </div>
   </div>
 </template>
