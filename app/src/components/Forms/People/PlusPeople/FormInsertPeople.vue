@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { createPeople } from '../../../../helpers/factories'
+import { createNotStudent } from '../../../../helpers/factories'
 import InputName from '../../formComponents/InputName'
 import InputText from '../../formComponents/InputText'
 import InputPhone from '../../formComponents/InputPhone'
@@ -54,14 +54,14 @@ export default {
       this.telefone2 = arguments[0]
     },
     confirmar () {
-      const valid = createPeople('notStudent', this.name, this.endereco, this.telefone1, this.telefone2)
+      const valid = createNotStudent(this.name, this.endereco, this.telefone1, this.telefone2)
       if (valid.valid) {
         const estadoNotification = 'positive'
         const dados = {
-          Name: this.name,
-          Enredeço: this.endereco,
-          Telefone1: this.telefone1,
-          Telefone2: this.telefone2
+          name: this.name,
+          endereco: this.endereco,
+          telefone1: this.telefone1,
+          telefone2: this.telefone2
         }
         this.$emit('result', dados, estadoNotification, true)
       } else {
