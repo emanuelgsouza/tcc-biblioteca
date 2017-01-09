@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { createPeople } from '../../../../helpers/factories'
+import { createNotStudent } from '../../../../helpers/factories'
 import InputName from '../../formComponents/InputName'
 import ButtonsFooter from '../../formComponents/ButtonsFooter'
 
@@ -30,7 +30,7 @@ export default {
       this.name = name
     },
     confirmar () {
-      const valid = createPeople('notStudent', this.name)
+      const valid = createNotStudent(this.name)
       console.log(valid)
       if (valid.valid) {
         const estadoNotification = 'positive'
