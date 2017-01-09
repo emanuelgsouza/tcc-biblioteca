@@ -59,18 +59,17 @@ export default {
   methods: {
     confirmar () {
       const valid = createArqMorto(this.title, this.author, this.editora, this.gaveta, this.book, this.estoque)
-      console.log(valid)
       if (valid.valid) {
         const estadoNotification = 'positive'
         const dados = {
-          Título: this.title,
-          Autor: this.author,
-          Editora: this.editora,
-          Gaveta: this.gaveta,
-          Livro: this.livro,
-          Estoque: this.estoque
+          titulo: this.title,
+          autor: this.author,
+          editora: this.editora,
+          gaveta: this.gaveta,
+          livro: this.book,
+          estoque: this.estoque
         }
-        this.$emit('result', dados, estadoNotification, true)
+        this.$emit('result', true, dados, estadoNotification)
       } else {
         this.$emit('result')
       }
