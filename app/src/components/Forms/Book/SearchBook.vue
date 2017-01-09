@@ -5,6 +5,12 @@
       <div class="columns is-centered">
         <div class="column is-8">
           <FormSearchBook @search="pesquisar" v-if="!pesquisando"></FormSearchBook>
+          <TableForPrint
+            v-if="showResult"
+            :label="label"
+            :titles="titles"
+            :results="array"
+            @backSearch="showForm = true; showResult = false"></TableForPrint>
         </div>
       </div>
     </section>
@@ -18,11 +24,20 @@ import FormSearchBook from './SearchBook/FormSearchBook'
 export default {
   name: 'form-search-book',
   components: { Hero, FormSearchBook },
-  data () { return { pesquisando: false } },
+  data () {
+    return {
+      pesquisando: false,
+      showResult: false,
+      results: [],
+      filtro: '',
+      value: ''
+    }
+  },
   methods: {
     pesquisar () {
       this.pesquisando = true
-      console.log(arguments)
+      this.filtro = arguments[1]
+      this.value = arguments[0]
     }
   }
 }

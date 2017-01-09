@@ -110,7 +110,7 @@ export default {
     },
     search () {
       const data = arguments[0]
-      this.$emit('search', data)
+      this.$emit('search', data, this.currentSearch)
     }
   }
 }

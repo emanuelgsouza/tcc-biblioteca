@@ -1,9 +1,15 @@
 import pouchdb from '../index'
 
 export default function (selective, valueSelective) {
+  let selector
   if (selective === 'titulo') {
-    var selector = {
+    selector = {
       titulo: {$regex: valueSelective},
+      table: 'arqMorto'
+    }
+  } else {
+    selector = {
+      autor: {$regex: valueSelective},
       table: 'arqMorto'
     }
   }

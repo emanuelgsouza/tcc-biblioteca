@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="css" scoped>
 .button.is-info,
 .button.is-success {
   display: block;
