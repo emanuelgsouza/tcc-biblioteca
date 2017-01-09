@@ -32,7 +32,7 @@ export default {
   methods: {
     confirmar () {
       this.help = true
-      if (arguments[0] === 'negative') {
+      if (arguments[2] === 'negative') {
         this.estado = 'negative'
       } else {
         const array = arguments[1]

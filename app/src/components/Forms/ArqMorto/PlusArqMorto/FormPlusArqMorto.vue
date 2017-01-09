@@ -62,9 +62,9 @@ export default {
       if (valid.valid) {
         const estadoNotification = 'positive'
         const dados = {
-          titulo: this.title,
-          autor: this.author,
-          editora: this.editora,
+          titulo: this.title.toUpperCase(),
+          autor: this.author.toUpperCase(),
+          editora: this.editora.toUpperCase(),
           gaveta: this.gaveta,
           livro: this.book,
           estoque: this.estoque
