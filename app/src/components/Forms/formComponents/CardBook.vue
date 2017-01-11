@@ -8,9 +8,9 @@
     <div class="card-content">
       <p> Autor: {{ object.autor }} </p>
       <p> Editora: {{ object.editora }} </p>
-      <p> Genero: {{ object.genero }} </p>
-      <p> Didatico: {{ object.didatico }} </p>
-      <p> Literário: {{ object.escola }} </p>
+      <p> Genero: {{ object.genero | genero }} </p>
+      <p> Didatico: {{ object.didatico | didatico }} </p>
+      <p> Literário: {{ object.escola | literario }} </p>
       <p> Codigo completo: {{ object.codigo }} - {{object.estante}} - {{ object.prateleira }} </p>
       <p> Estoque: {{ object.estoque }} </p>
     </div>
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import { returnGenre, returnDidatic, returnSchool } from '../../../helpers/filters'
+
 export default {
   props: ['object', 'purpose', 'showButtons'],
   data () { return { showButton: false } },
@@ -49,6 +51,17 @@ export default {
   methods: {
     returnDados () {
       this.$emit('returnData', this.object._id, this.object._rev, this.object.titulo)
+    }
+  },
+  filters: {
+    didatico (value) {
+      return returnDidatic(value)
+    },
+    literario (value) {
+      return returnSchool(value)
+    },
+    genero (value) {
+      return returnGenre(value)
     }
   }
 }
