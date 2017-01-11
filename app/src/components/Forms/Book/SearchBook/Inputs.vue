@@ -31,7 +31,7 @@ export default {
       this.$emit('backFilters')
     },
     search () {
-      if (this.classe === 'is-success') this.$emit('pesquisar', this.value)
+      if (this.classe === 'is-success') this.$emit('pesquisar', this.value.toUpperCase())
     }
   },
   watch: {

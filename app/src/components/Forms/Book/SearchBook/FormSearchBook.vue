@@ -120,4 +120,8 @@ export default {
 button.button {
   margin: 1em 0;
 }
+
+div {
+  margin: .5em 0;
+}
 </style>

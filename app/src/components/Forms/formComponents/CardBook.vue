@@ -14,7 +14,7 @@
       <p> Codigo completo: {{ object.codigo }} - {{object.estante}} - {{ object.prateleira }} </p>
       <p> Estoque: {{ object.estoque }} </p>
     </div>
-    <div class="card-footer">
+    <div class="card-footer" v-if="showButtons">
       <div class="card-footer-item">
         <button
           class="button is-fullwidth is-info"
@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  props: ['object', 'purpose'],
+  props: ['object', 'purpose', 'showButtons'],
   data () { return { showButton: false } },
   computed: {
     classCard () {
