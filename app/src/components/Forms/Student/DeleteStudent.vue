@@ -57,12 +57,12 @@ export default {
         const name = arguments[0].Name.toUpperCase()
         const self = this
         searchStudent(name).then(function (data) {
-          if (data.rows.length === 0) {
+          if (data.length === 0) {
             self.err = true
           } else {
             self.showForm = false
             self.showResult = true
-            self.results = data.rows
+            self.results = data
           }
         })
       }
