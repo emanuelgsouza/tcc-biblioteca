@@ -1,13 +1,16 @@
 import pouchdb from '../index'
 
-export default function (name) {
-  return pouchdb.allDocs({
-    include_docs: true,
-    startkey: name,
-    endkey: `${name}\uffff`
-  }).then(function (response) {
-    return response
-  }).catch(function (err) {
-    return err
+export default function (nome) {
+  return pouchdb.createIndex({
+    index: { fields: ['name', 'table'] }
+  }).then(function () {
+    return pouchdb.find({
+      selector: {
+        name: {$regex: nome},
+        table: 'student'
+      }
+    }).then(function (response) {
+      return response.docs
+    })
   })
 }

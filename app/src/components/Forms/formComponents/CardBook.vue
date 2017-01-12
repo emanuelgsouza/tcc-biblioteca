@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     returnDados () {
-      this.$emit('returnData', this.object._id, this.object._rev, this.object.titulo)
+      this.$emit('returnData', this.object._id, this.object._rev, this.object.titulo, this.object.estoque)
     }
   },
   filters: {

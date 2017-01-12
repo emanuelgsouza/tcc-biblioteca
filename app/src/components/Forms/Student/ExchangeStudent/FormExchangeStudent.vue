@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { createNotStudent } from '../../../../helpers/factories'
+import { createStudent } from '../../../../helpers/factories'
 import InputName from '../../formComponents/InputName'
 import ButtonsFooter from '../../formComponents/ButtonsFooter'
 
@@ -30,13 +30,11 @@ export default {
       this.name = name
     },
     confirmar () {
-      const valid = createNotStudent('student', this.name)
+      const valid = createStudent(this.name)
       if (valid.valid) {
-        const estadoNotification = 'positive'
-        const dados = { Name: this.name }
-        this.$emit('search', dados, estadoNotification, true)
+        this.$emit('search', true, this.name)
       } else {
-        this.$emit('search')
+        this.$emit('search', false)
       }
     }
   }

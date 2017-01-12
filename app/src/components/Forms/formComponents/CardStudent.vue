@@ -2,11 +2,11 @@
   <div class="card" style="width: 100%">
     <div class="card-header">
       <div class="card-header-title">
-        <h2 class="title is-4"> Aluno: {{ object.doc.name }} </h2>
+        <h2 class="title is-4"> Aluno: {{ object.name }} </h2>
       </div>
     </div>
     <div class="card-content">
-      <p> Turma: {{ object.doc.turma }} </p>
+      <p> Turma: {{ object.turma }} </p>
     </div>
     <div class="card-footer">
       <div class="card-footer-item">
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     returnDados () {
-      this.$emit('returnData', this.object.doc._id, this.object.doc._rev, this.object.doc.name, this.object.doc.turma)
+      this.$emit('returnData', this.object._id, this.object._rev, this.object.name, this.object.turma, this.object.records)
     }
   }
 }
