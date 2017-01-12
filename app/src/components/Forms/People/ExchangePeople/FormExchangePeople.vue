@@ -31,11 +31,8 @@ export default {
     },
     confirmar () {
       const valid = createNotStudent(this.name)
-      console.log(valid)
       if (valid.valid) {
-        const estadoNotification = 'positive'
-        const dados = { Name: this.name }
-        this.$emit('search', dados, estadoNotification, true)
+        this.$emit('search', true, this.name)
       } else {
         this.$emit('search')
       }

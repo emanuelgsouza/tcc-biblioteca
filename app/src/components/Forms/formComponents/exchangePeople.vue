@@ -68,6 +68,12 @@ export default {
   computed: {
     objectResult () {
       if (this.object.type === 'student') return { Nome: this.object.nome, Turma: this.object.turma }
+      return {
+        Nome: this.object.nome,
+        Endereço: this.object.endereço,
+        Telefone1: this.object.telefone1,
+        Telefone2: this.object.telefone2
+      }
     },
     type () {
       if (this.object.type === 'student') return 'student'
@@ -96,7 +102,6 @@ export default {
   mounted () {
     const records = this.object.records
     const obj = records[records.length - 1]
-    console.log(obj)
     if (records === []) {
       this.emprestimo = true
     } else if (obj !== undefined && obj.type === 'lent') {

@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     returnDados () {
-      this.$emit('returnData', this.object._id, this.object._rev, this.object.name)
+      this.$emit('returnData', this.object._id, this.object._rev, this.object.name, this.object.endereco, this.object.telefone1, this.object.telefone2, this.object.records)
     }
   }
 }
