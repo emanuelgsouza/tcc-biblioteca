@@ -50,7 +50,7 @@
       v-if="estoqueBaixo"
       label="O livro selecionado não está em estoque"
       state="is-danger"
-      @closeNotification="estoqueBaixo = false"></NotificationSearch>
+      @closeNotification="estoqueBaixo = false; showSearch = true"></NotificationSearch>
   </div>
 </template>
 
@@ -97,6 +97,7 @@ export default {
       this.showSearch = false
       this.showLend = true
       if (arguments[3] === 0) {
+        this.showLend = false
         this.estoqueBaixo = true
       }
     },
