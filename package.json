@@ -64,6 +64,7 @@
     "bulma": "^0.2.3",
     "font-awesome": "^4.7.0",
     "pouchdb": "^6.1.1",
+    "pouchdb-browser": "^6.1.1",
     "pouchdb-find": "^0.10.4"
   }
 }
