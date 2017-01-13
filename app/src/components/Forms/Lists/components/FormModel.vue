@@ -2,17 +2,6 @@
   <div>
     <form>
       <div class="control">
-        <label class="label"> {{ label }} </label>
-        <div class="control">
-          <div class="select is-fullwidth">
-            <select v-model="dado">
-              <option value="1"> Um mês </option>
-              <option value="2"> Dois meses </option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="control">
         <label class="label"> Número de Registros </label>
         <div class="control">
           <input
@@ -36,16 +25,15 @@
 
 <script>
 export default {
-  props: ['label'],
   data () {
-    return { dado: '1', numberRegister: 10 }
+    return { numberRegister: 10 }
   },
   methods: {
     backFilters () {
       this.$emit('backFilters')
     },
     sendData () {
-      if (!(this.numberRegister <= 0)) this.$emit('sendData', this.dado, this.numberRegister)
+      if (!(this.numberRegister <= 0)) this.$emit('sendData', this.numberRegister)
     }
   }
 }

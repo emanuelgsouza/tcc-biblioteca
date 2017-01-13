@@ -8,7 +8,9 @@ export default function (student) {
     table: 'student',
     name: name,
     turma: turma,
-    records: []
+    records: [],
+    counterExchange: 0,
+    counterNotReturned: 0
   }
   const result = pouchdb.put(objStudent)
     .then(function (response) {

@@ -26,7 +26,7 @@ import { exchangePeople, updateBook } from '../../../pouchdb/general'
 import NotificationSearch from './NotificationSearch'
 
 export default {
-  props: ['people', 'book'],
+  props: ['people', 'book', 'type'],
   components: { NotificationSearch },
   data () {
     return { confirmReturned: false, date: '' }
@@ -56,7 +56,7 @@ export default {
         this.people[1].push(objRecord)
         const records = this.people[1]
         const self = this
-        exchangePeople(this.people[0], records, 'student').then(function (data) {
+        exchangePeople(this.people[0], records, this.type, true).then(function (data) {
           if (data.ok) {
             updateBook(self.book._id).then(function (data) {
               if (data.ok) {

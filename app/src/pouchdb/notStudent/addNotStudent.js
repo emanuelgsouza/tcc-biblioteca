@@ -10,7 +10,9 @@ export default function (notStudent) {
     endereco: endereco,
     telefone1: telefone1,
     telefone2: telefone2,
-    records: []
+    records: [],
+    counterExchange: 0,
+    counterNotReturned: 0
   }
   const result = pouchdb.put(objNotStudent)
     .then(function (response) {

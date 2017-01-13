@@ -1,16 +1,26 @@
 import pouchdb from '../index'
 
-export default function (id, records, type) {
+export default function (id, records, type, returned) {
+  var counterNotReturned, counterExchange
   if (type === 'student') {
     return pouchdb.get(id)
       .then(function (doc) {
+        if (returned) {
+          counterNotReturned = 0
+          counterExchange = doc.counterExchange
+        } else {
+          counterExchange = doc.counterExchange + 1
+          counterNotReturned = 1
+        }
         return pouchdb.put({
           _id: id,
           _rev: doc._rev,
           name: doc.name,
           turma: doc.turma,
           table: 'student',
-          records
+          records,
+          counterExchange,
+          counterNotReturned
         })
       }).then(function (response) {
         return response
@@ -20,6 +30,13 @@ export default function (id, records, type) {
   } else {
     return pouchdb.get(id)
       .then(function (doc) {
+        if (returned) {
+          counterNotReturned = 0
+          counterExchange = doc.counterExchange
+        } else {
+          counterExchange = doc.counterExchange + 1
+          counterNotReturned = 1
+        }
         return pouchdb.put({
           _id: id,
           _rev: doc._rev,
@@ -28,7 +45,9 @@ export default function (id, records, type) {
           telefone1: doc.telefone1,
           telefone2: doc.telefone2,
           table: 'notStudent',
-          records
+          records,
+          counterExchange,
+          counterNotReturned
         })
       }).then(function (response) {
         return response

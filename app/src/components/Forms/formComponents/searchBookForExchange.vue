@@ -114,7 +114,7 @@ export default {
         this.people[1].push(objRecord)
         const records = this.people[1]
         const self = this
-        exchangePeople(this.people[0], records, this.type).then(function (data) {
+        exchangePeople(this.people[0], records, this.type, false).then(function (data) {
           if (data.ok) {
             updateBook(self.book._id, 'plus', objsRecordBook).then(function (data) {
               if (data.ok) {
