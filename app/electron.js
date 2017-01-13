@@ -26,7 +26,8 @@ function createWindow () {
   })
 
   mainWindow.loadURL(config.url)
-
+  mainWindow.maximize()
+  mainWindow.setMenu(null)
   if (process.env.NODE_ENV === 'development') {
     BrowserWindow.addDevToolsExtension(path.join(__dirname, '../node_modules/devtron'))
 
