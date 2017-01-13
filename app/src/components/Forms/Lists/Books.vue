@@ -4,20 +4,7 @@
     <section class="section">
       <div class="columns is-centered">
         <div class="column is-8">
-          <form>
-            <div class="control">
-              <label class="label"> Exibir Livros mais lidos no período de </label>
-              <div class="control">
-                <div class="select is-fullwidth">
-                  <select v-model="dado">
-                    <option value="2"> Dois meses </option>
-                    <option value="3"> Três meses </option>
-                    <option value="6"> Seis meses </option>
-                    <option value="12"> Anual </option>
-                  </select>
-                </div>
-              </div>
-            </div>
+          <form v-if="showForm">
             <div class="control">
               <label class="label"> Número de Registros </label>
               <div class="control">
@@ -26,6 +13,17 @@
             </div>
             <button class="button is-success is-medium" @click="sendData"> Gerar Lista </button>
           </form>
+          <hr v-if="err">
+          <div class="notification is-danger" v-if="err">
+            <button class="delete" @click="err = false"></button>
+            <h2 class="title is-4"> A pesquisa não retornou nenhum registro </h2>
+          </div>
+          <TableForPrint
+            v-if="showResult"
+            label="Livros mais lidos:"
+            :titles="{ value1: 'Titulo', value2: 'Empréstimos' }"
+            :results="array"
+            @backSearch="showForm = true; showResult = false"></TableForPrint>
         </div>
       </div>
     </section>
@@ -33,21 +31,44 @@
 </template>
 
 <script>
+import { searchForCounter } from '../../../pouchdb/book'
+import TableForPrint from '../formComponents/TableForPrint'
 import Hero from '../../Hero/Main'
 
 export default {
+  components: { TableForPrint, Hero },
   data () {
     return {
-      dado: 2,
-      numberRegister: 10
+      numberRegister: 10,
+      results: [],
+      showForm: true,
+      showResult: false,
+      err: false
     }
   },
-  components: { Hero },
   methods: {
     sendData () {
       if (!(this.numberRegister <= 0)) {
-        console.log(this.numberRegister)
+        searchForCounter(this.numberRegister).then((data) => {
+          if (data.length !== 0) {
+            this.results = data
+            this.err = false
+            this.showForm = false
+            this.showResult = true
+          } else {
+            this.err = true
+            this.showForm = false
+            this.showResult = false
+          }
+        })
       }
+    }
+  },
+  computed: {
+    array () {
+      return this.results.map(item => Object.assign({}, {
+        titulo: item.titulo, counter: item.counterExchange
+      }))
     }
   }
 }

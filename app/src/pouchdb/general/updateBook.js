@@ -1,9 +1,11 @@
 import pouchdb from '../index'
 
-export default function (idBook, paramEstoque) {
+export default function (idBook, paramEstoque, objRecord) {
   if (paramEstoque === 'plus') {
     return pouchdb.get(idBook)
       .then(function (doc) {
+        const records = doc.records
+        records.push(objRecord)
         return pouchdb.put({
           table: 'book',
           _id: doc._id,
@@ -18,7 +20,8 @@ export default function (idBook, paramEstoque) {
           estante: doc.estante,
           prateleira: doc.prateleira,
           estoque: doc.estoque - 1,
-          counterExchange: doc.counterExchange + 1
+          counterExchange: doc.counterExchange + 1,
+          records
         })
       }).then(function (response) {
         return response
@@ -41,7 +44,9 @@ export default function (idBook, paramEstoque) {
           codigo: doc.codigo,
           estante: doc.estante,
           prateleira: doc.prateleira,
-          estoque: doc.estoque + 1
+          estoque: doc.estoque + 1,
+          counterExchange: doc.counterExchange,
+          records: doc.records
         })
       }).then(function (response) {
         return response

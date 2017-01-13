@@ -108,12 +108,15 @@ export default {
           type: 'lent',
           idBook: this.book._id
         }
+        const objsRecordBook = {
+          date: this.date
+        }
         this.people[1].push(objRecord)
         const records = this.people[1]
         const self = this
         exchangePeople(this.people[0], records, this.type).then(function (data) {
           if (data.ok) {
-            updateBook(self.book._id, 'plus').then(function (data) {
+            updateBook(self.book._id, 'plus', objsRecordBook).then(function (data) {
               if (data.ok) {
                 self.showLend = false
                 self.lendConfirm = true

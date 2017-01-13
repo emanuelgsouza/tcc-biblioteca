@@ -18,7 +18,11 @@
             <h2 class="title is-4 has-text-centered"> Resultados </h2>
             <div class="columns is-centered is-multiline">
               <div class="column is-4" v-for="obj in results">
-                <CardBook :object="obj" @returnData="deletar" purpose="delete"></CardBook>
+                <CardBook
+                  :object="obj"
+                  @returnData="deletar"
+                  purpose="delete"
+                  :showButtons="true"></CardBook>
               </div>
             </div>
             <button
