@@ -151,6 +151,14 @@
       </router-link>
     </li>
   </ul>
+
+  <ul class="menu-list">
+    <li>
+      <router-link to="/backup">
+        <span class="icon"><i class="fa fa-database"></i></span> Backup
+      </router-link>
+    </li>
+  </ul>
 </aside>
 </template>
 

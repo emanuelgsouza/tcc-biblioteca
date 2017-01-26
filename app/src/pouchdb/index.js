@@ -1,7 +1,10 @@
 import PouchDb from 'pouchdb-browser'
-import PouchdbFind from 'pouchdb-find'
+import pouchdbFind from 'pouchdb-find'
+import replicationStream from 'pouchdb-replication-stream'
 
-PouchDb.plugin(PouchdbFind)
+PouchDb.plugin(pouchdbFind)
+PouchDb.plugin(replicationStream.plugin)
+PouchDb.adapter('writableStream', replicationStream.adapters.writableStream)
 
 const library = new PouchDb('library')
 

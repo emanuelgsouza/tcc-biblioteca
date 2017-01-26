@@ -90,6 +90,11 @@ export default [
     component: require('components/About')
   },
   {
+    path: '/backup',
+    name: 'backup',
+    component: require('components/Backup')
+  },
+  {
     path: '*',
     redirect: '/'
   }

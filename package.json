@@ -47,6 +47,7 @@
     "html-webpack-plugin": "^2.16.1",
     "json-loader": "^0.5.4",
     "node-sass": "^4.1.1",
+    "pouchdb-replication-stream": "^1.2.9",
     "sass-loader": "^4.1.1",
     "schema-inspector": "^1.6.8",
     "style-loader": "^0.13.1",
